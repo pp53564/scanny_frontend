@@ -10,12 +10,21 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.Scanny"
+        android:theme="@style/Theme.UI_UX_Demo"
         tools:targetApi="31">
         <activity
-            android:name=".MainActivity"
-            android:exported="true"
-            android:label="@string/app_name">
+            android:name="com.ui_ux_demo.HomeActivity"
+            android:exported="false"
+            android:label="@string/title_activity_home"
+            android:theme="@style/Theme.UI_UX_Demo" />
+        <activity
+            android:name="com.ui_ux_demo.ProfileActivity"
+            android:exported="false"
+            android:label="@string/title_activity_profile"
+            android:theme="@style/Theme.UI_UX_Demo" />
+        <activity
+            android:name="com.ui_ux_demo.MainActivity"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
