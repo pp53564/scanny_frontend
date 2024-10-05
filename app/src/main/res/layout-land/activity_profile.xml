@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/light_blue"
-    tools:context="com.ui_ux_demo.ProfileActivity">
+    tools:context="com.scanny_project.ProfileActivity">
 
     <ScrollView
         android:layout_width="match_parent"

@@ -1,9 +1,8 @@
-package com.ui_ux_demo
+package com.scanny_project
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import com.example.ui_ux_demo.R
 import com.example.ui_ux_demo.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {

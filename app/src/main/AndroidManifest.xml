@@ -13,17 +13,17 @@
         android:theme="@style/Theme.UI_UX_Demo"
         tools:targetApi="31">
         <activity
-            android:name="com.ui_ux_demo.HomeActivity"
+            android:name="com.scanny_project.HomeActivity"
             android:exported="false"
             android:label="@string/title_activity_home"
             android:theme="@style/Theme.UI_UX_Demo" />
         <activity
-            android:name="com.ui_ux_demo.ProfileActivity"
+            android:name="com.scanny_project.ProfileActivity"
             android:exported="false"
             android:label="@string/title_activity_profile"
             android:theme="@style/Theme.UI_UX_Demo" />
         <activity
-            android:name="com.ui_ux_demo.MainActivity"
+            android:name="com.scanny_project.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
