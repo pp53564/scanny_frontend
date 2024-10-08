@@ -13,6 +13,6 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "UI_UX_Demo"
+rootProject.name = "Scanny"
 include(":app")
  

@@ -2,6 +2,7 @@ plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
     id("androidx.navigation.safeargs.kotlin")
+    id("de.undercouch.download") version "5.3.0"
 }
 
 android {
@@ -37,10 +38,20 @@ android {
     buildFeatures {
         viewBinding = true
     }
+    androidResources {
+        noCompress += "tflite"
+    }
 }
+
+extra.set("ASSET_DIR", "$projectDir/src/main/assets")
+apply {
+    from("download_models.gradle")
+}
+
 
 dependencies {
 
+    implementation("androidx.coordinatorlayout:coordinatorlayout:1.2.0")
     val camerax_version = "1.3.4"
     implementation("androidx.camera:camera-core:$camerax_version")
     implementation("androidx.camera:camera-camera2:$camerax_version")
@@ -61,4 +72,6 @@ dependencies {
     implementation("org.tensorflow:tensorflow-lite-gpu-delegate-plugin:0.4.0")
     implementation("org.tensorflow:tensorflow-lite-gpu:2.9.0")
     implementation("org.tensorflow:tensorflow-lite-support:0.4.0")
+
+    implementation("androidx.coordinatorlayout:coordinatorlayout:1.2.0")
 }

@@ -4,3 +4,5 @@ plugins {
     id("org.jetbrains.kotlin.android") version "1.9.10" apply false
     id("androidx.navigation.safeargs") version "2.5.0" apply false
 }
+
+
