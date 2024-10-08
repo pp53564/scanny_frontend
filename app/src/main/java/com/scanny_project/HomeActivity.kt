@@ -35,12 +35,15 @@ class HomeActivity : AppCompatActivity() {
                 else -> false
             }   }
             navigation.selectedItemId = R.id.home
+
+
+        binding.cvScanning.setOnClickListener {
+            startActivity(Intent(this, CameraActivity::class.java))
+        }
     }
 
     override fun onResume() {
         super.onResume()
         navigation.selectedItemId = R.id.home
     }
-
-
 }
