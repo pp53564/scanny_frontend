@@ -19,7 +19,7 @@ class HomeActivity : AppCompatActivity() {
         binding = ActivityHomeBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        navigation = binding.bottomNavigationView
+        navigation = binding.root.findViewById(R.id.bottomNavigationView)
 
         navigation.setOnItemSelectedListener { item ->
             when(item.itemId) {
@@ -28,8 +28,8 @@ class HomeActivity : AppCompatActivity() {
                     startActivity(Intent(applicationContext, ProfileActivity::class.java))
                     true
                 }
-                R.id.settings -> {
-                    startActivity(Intent(applicationContext, ProfileActivity::class.java))
+                R.id.camera -> {
+                    startActivity(Intent(applicationContext, CameraActivity::class.java))
                     true
                 }
                 else -> false

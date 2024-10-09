@@ -22,6 +22,7 @@ import androidx.camera.lifecycle.ProcessCameraProvider
 import androidx.core.content.ContextCompat
 import androidx.navigation.Navigation
 import com.example.ui_ux_demo.R
+import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.scanny_project.ObjectDetectorHelper
 import org.tensorflow.lite.task.vision.detector.Detection
 import java.util.LinkedList
@@ -29,6 +30,8 @@ import java.util.concurrent.ExecutorService
 import java.util.concurrent.Executors
 
 class CameraFragment: Fragment(), ObjectDetectorHelper.DetectorListener{
+    private lateinit var bottomSheetBehavior: BottomSheetBehavior<View>
+
     private val TAG = "ObjectDetection"
 
     private var _fragmentCameraBinding: FragmentCameraBinding? = null
@@ -66,6 +69,24 @@ class CameraFragment: Fragment(), ObjectDetectorHelper.DetectorListener{
         savedInstanceState: Bundle?
     ): View {
         _fragmentCameraBinding = FragmentCameraBinding.inflate(inflater, container, false)
+        bottomSheetBehavior = BottomSheetBehavior.from(fragmentCameraBinding.bottomSheetLayout.root)
+
+        bottomSheetBehavior.addBottomSheetCallback(object : BottomSheetBehavior.BottomSheetCallback() {
+            override fun onStateChanged(bottomSheet: View, newState: Int) {
+                when (newState) {
+                    BottomSheetBehavior.STATE_EXPANDED -> {
+                        fragmentCameraBinding.bottomSheetLayout.imUp.setImageResource(R.drawable.down)
+                    }
+                    BottomSheetBehavior.STATE_COLLAPSED -> {
+                        fragmentCameraBinding.bottomSheetLayout.imUp.setImageResource(R.drawable.baseline_arrow_upward_24)
+                    }
+                }
+            }
+
+            override fun onSlide(bottomSheet: View, slideOffset: Float) {
+                // You can also handle sliding events if necessary
+            }
+        })
 
         return fragmentCameraBinding.root
     }

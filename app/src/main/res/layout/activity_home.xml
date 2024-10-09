@@ -45,16 +45,6 @@
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
 
-                    <ImageView
-                        android:id="@+id/ivNotification2"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_margin="20dp"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintHorizontal_bias="1.0"
-                        app:layout_constraintStart_toEndOf="@+id/tvRobot"
-                        app:layout_constraintTop_toTopOf="parent"
-                        app:srcCompat="@drawable/notification" />
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
                 <TextView
@@ -199,58 +189,7 @@
         </LinearLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
+    <include android:id="@+id/bottom_navigation_layout"
+        layout="@layout/bottom_navigation" />
 
-   <!-- <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-        <FrameLayout
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintBottom_toTopOf="@+id/bottomNavigationView">
-        </FrameLayout>
-
-
-
-    <com.google.android.material.bottomnavigation.BottomNavigationView
-            android:id="@+id/bottomNavigationView"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:menu="@menu/bottom_nav_menu"
-            android:background="?android:attr/windowBackground" />
-
-
-    </androidx.constraintlayout.widget.ConstraintLayout>-->
-
-     <androidx.coordinatorlayout.widget.CoordinatorLayout
-         android:layout_width="match_parent"
-         android:layout_height="80dp"
-         app:layout_constraintBottom_toBottomOf="parent"
-         app:layout_constraintEnd_toEndOf="parent"
-         app:layout_constraintStart_toStartOf="parent">
-
-         <FrameLayout
-             android:id="@+id/frame_layout"
-             android:layout_width="0dp"
-             android:layout_height="0dp"
-             app:layout_constraintEnd_toEndOf="parent"
-             app:layout_constraintStart_toStartOf="parent"
-             app:layout_constraintBottom_toTopOf="@+id/bottomNavigationView">
-         </FrameLayout>
-
-         <com.google.android.material.bottomnavigation.BottomNavigationView
-             android:id="@+id/bottomNavigationView"
-             android:layout_width="match_parent"
-             android:layout_height="50dp"
-             android:layout_gravity="bottom"
-             android:backgroundTint="@color/white"
-             app:menu="@menu/bottom_nav_menu"
-             app:labelVisibilityMode="unlabeled"
-             app:itemIconTint="@drawable/color_nav"/>
-     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

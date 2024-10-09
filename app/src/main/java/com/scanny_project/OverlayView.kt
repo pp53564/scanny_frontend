@@ -39,9 +39,9 @@ class OverlayView(context: Context?, attrs: AttributeSet?) : View(context, attrs
     }
 
     private fun initPaints() {
-        textBackgroundPaint.color = Color.BLACK
+       /* textBackgroundPaint.color = Color.BLACK
         textBackgroundPaint.style = Paint.Style.FILL
-        textBackgroundPaint.textSize = 50f
+        textBackgroundPaint.textSize = 50f*/
 
         textPaint.color = Color.WHITE
         textPaint.style = Paint.Style.FILL
@@ -68,9 +68,12 @@ class OverlayView(context: Context?, attrs: AttributeSet?) : View(context, attrs
             canvas.drawRect(drawableRect, boxPaint)
 
             // Create text to display alongside detected objects
-            val drawableText =
+           /* val drawableText =
                 result.categories[0].label + " " +
-                        String.format("%.2f", result.categories[0].score)
+                        String.format("%.2f", result.categories[0].score)*/
+
+            val drawableText =
+                result.categories[0].label
 
             // Draw rect behind display text
             textBackgroundPaint.getTextBounds(drawableText, 0, drawableText.length, bounds)

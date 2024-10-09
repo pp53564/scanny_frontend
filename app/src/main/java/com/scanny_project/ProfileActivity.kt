@@ -25,8 +25,8 @@ class ProfileActivity : AppCompatActivity() {
                     true
                 }
                 R.id.profile -> true
-                R.id.settings -> {
-                    startActivity(Intent(applicationContext, ProfileActivity::class.java))
+                R.id.camera -> {
+                    startActivity(Intent(applicationContext, CameraActivity::class.java))
                     true
                 }
                 else -> false
