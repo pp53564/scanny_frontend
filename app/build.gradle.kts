@@ -74,4 +74,5 @@ dependencies {
     implementation("org.tensorflow:tensorflow-lite-support:0.4.0")
 
     implementation("androidx.coordinatorlayout:coordinatorlayout:1.2.0")
+
 }

@@ -31,7 +31,7 @@
         </RelativeLayout>
 
 
-        <androidx.appcompat.widget.LinearLayoutCompat
+     <!--   <androidx.appcompat.widget.LinearLayoutCompat
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
@@ -54,10 +54,10 @@
                 android:layout_centerVertical="true"
                 android:textColor="@color/dark_blue"
                 android:textSize="@dimen/bottom_sheet_text_size" />
-        </androidx.appcompat.widget.LinearLayoutCompat>
+        </androidx.appcompat.widget.LinearLayoutCompat>-->
 
 
-        <RelativeLayout
+     <!--   <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
@@ -107,7 +107,7 @@
                     android:contentDescription="@string/bottom_sheet_button_plus"
                     android:src="@drawable/plus" />
             </LinearLayout>
-        </RelativeLayout>
+        </RelativeLayout>-->
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -161,7 +161,7 @@
             </LinearLayout>
         </RelativeLayout>
 
-        <RelativeLayout
+      <!--  <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
@@ -209,9 +209,9 @@
                     android:contentDescription="@string/alt_bottom_sheet_thread_button_plus"
                     android:src="@drawable/plus"  />
             </LinearLayout>
-        </RelativeLayout>
+        </RelativeLayout>-->
 
-        <RelativeLayout
+      <!--  <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp">
@@ -233,9 +233,9 @@
                 android:layout_alignParentRight="true"
                 android:entries="@array/delegate_spinner_titles"/>
 
-        </RelativeLayout>
+        </RelativeLayout>-->
 
-        <RelativeLayout
+      <!--  <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp">
@@ -256,6 +256,6 @@
                 android:layout_alignParentRight="true"
                 android:entries="@array/models_spinner_titles"/>
 
-        </RelativeLayout>
+        </RelativeLayout>-->
     </androidx.appcompat.widget.LinearLayoutCompat>
 </androidx.core.widget.NestedScrollView>

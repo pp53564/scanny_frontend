@@ -1,8 +1,12 @@
 package com.scanny_project
 
+import android.app.ActivityOptions
 import android.content.Intent
+import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.annotation.RequiresApi
+import com.example.ui_ux_demo.R
 import com.example.ui_ux_demo.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
@@ -14,6 +18,13 @@ class MainActivity : AppCompatActivity() {
 
         binding.startButton.setOnClickListener {
             val intent = Intent(this, HomeActivity::class.java)
+           /* val options = ActivityOptions.makeCustomAnimation(
+                this,
+                R.anim.slide_in_right,  // Slide-in animation
+                R.anim.slide_out_left   // Slide-out animation
+            )
+*/
+            /*startActivity(intent, options.toBundle())*/
             startActivity(intent)
         }
 

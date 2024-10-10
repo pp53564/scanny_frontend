@@ -111,7 +111,7 @@ class CameraFragment: Fragment(), ObjectDetectorHelper.DetectorListener{
 
     private fun initBottomSheetControls() {
         // When clicked, lower detection score threshold floor
-        fragmentCameraBinding.bottomSheetLayout.thresholdMinus.setOnClickListener {
+        /*fragmentCameraBinding.bottomSheetLayout.thresholdMinus.setOnClickListener {
             if (objectDetectorHelper.threshold >= 0.1) {
                 objectDetectorHelper.threshold -= 0.1f
                 updateControlsUi()
@@ -124,7 +124,7 @@ class CameraFragment: Fragment(), ObjectDetectorHelper.DetectorListener{
                 objectDetectorHelper.threshold += 0.1f
                 updateControlsUi()
             }
-        }
+        }*/
 
         // When clicked, reduce the number of objects that can be detected at a time
         fragmentCameraBinding.bottomSheetLayout.maxResultsMinus.setOnClickListener {
@@ -143,7 +143,7 @@ class CameraFragment: Fragment(), ObjectDetectorHelper.DetectorListener{
         }
 
         // When clicked, decrease the number of threads used for detection
-        fragmentCameraBinding.bottomSheetLayout.threadsMinus.setOnClickListener {
+      /*  fragmentCameraBinding.bottomSheetLayout.threadsMinus.setOnClickListener {
             if (objectDetectorHelper.numThreads > 1) {
                 objectDetectorHelper.numThreads--
                 updateControlsUi()
@@ -183,17 +183,17 @@ class CameraFragment: Fragment(), ObjectDetectorHelper.DetectorListener{
 
                 override fun onNothingSelected(p0: AdapterView<*>?) {
                 }
-            }
+            }*/
     }
 
 
     private fun updateControlsUi() {
         fragmentCameraBinding.bottomSheetLayout.maxResultsValue.text =
             objectDetectorHelper.maxResults.toString()
-        fragmentCameraBinding.bottomSheetLayout.thresholdValue.text =
+       /* fragmentCameraBinding.bottomSheetLayout.thresholdValue.text =
             String.format("%.2f", objectDetectorHelper.threshold)
         fragmentCameraBinding.bottomSheetLayout.threadsValue.text =
-            objectDetectorHelper.numThreads.toString()
+            objectDetectorHelper.numThreads.toString()*/
 
         // Needs to be cleared instead of reinitialized because the GPU
         // delegate needs to be initialized on the thread using it when applicable
@@ -297,8 +297,8 @@ class CameraFragment: Fragment(), ObjectDetectorHelper.DetectorListener{
         imageWidth: Int
     ) {
         activity?.runOnUiThread {
-            fragmentCameraBinding.bottomSheetLayout.inferenceTimeVal.text =
-                String.format("%d ms", inferenceTime)
+          /*  fragmentCameraBinding.bottomSheetLayout.inferenceTimeVal.text =
+                String.format("%d ms", inferenceTime)*/
 
             // Pass necessary information to OverlayView for drawing on the canvas
             fragmentCameraBinding.overlay.setResults(

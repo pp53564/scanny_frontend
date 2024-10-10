@@ -16,6 +16,15 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.UI_UX_Demo"
         tools:targetApi="31">
+
+        <activity
+            android:name="com.scanny_project.SplashActivity"
+            android:exported="true" >
+        <intent-filter>
+            <action android:name="android.intent.action.MAIN" />
+            <category android:name="android.intent.category.LAUNCHER" />
+        </intent-filter>
+        </activity>
         <activity
             android:name="com.scanny_project.CameraActivity"
             android:exported="false" />
@@ -30,13 +39,7 @@
             android:label="@string/title_activity_profile"
             android:theme="@style/Theme.UI_UX_Demo" />
         <activity
-            android:name="com.scanny_project.MainActivity"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+            android:name="com.scanny_project.MainActivity">
         </activity>
     </application>
 

@@ -49,7 +49,7 @@
     <string name="label_confidence_threshold">Threshold</string>
     <string name="bottom_sheet_button_plus">Increasing with button plus</string>
     <string name="bottom_sheet_button_minus">Lowering value\n</string>
-    <string name="label_max_results">Max results</string>
+    <string name="label_max_results">Broj rezultata</string>
     <string name="alt_bottom_sheet_max_results_button_minus">Decreasing maxium detected results\n        button</string>
     <string name="alt_bottom_sheet_max_results_button_plus">Increasing maxium detected results\n        button</string>
     <string name="label_threads">Number of Threads</string>
