@@ -20,10 +20,14 @@ import androidx.fragment.app.Fragment
 import com.example.ui_ux_demo.databinding.FragmentCameraBinding
 import androidx.camera.lifecycle.ProcessCameraProvider
 import androidx.core.content.ContextCompat
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.Navigation
 import com.example.ui_ux_demo.R
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.scanny_project.ObjectDetectorHelper
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import org.tensorflow.lite.task.vision.detector.Detection
 import java.util.LinkedList
 import java.util.concurrent.ExecutorService
@@ -97,16 +101,23 @@ class CameraFragment: Fragment(), ObjectDetectorHelper.DetectorListener{
 
         objectDetectorHelper = ObjectDetectorHelper(
             context = requireContext(),
-            objectDetectorListener = this)
+            objectDetectorListener = this
+        )
+
+        Log.i("my_log", objectDetectorHelper.currentModel.toString())
 
         cameraExecutor = Executors.newSingleThreadExecutor()
 
+        // Using viewLifecycleOwner.lifecycleScope to ensure coroutine is tied to the fragment's lifecycle
         fragmentCameraBinding.viewFinder.post {
-            setUpCamera()
+            viewLifecycleOwner.lifecycleScope.launch(Dispatchers.IO) {
+                setUpCamera()  // Run camera setup on the IO dispatcher
+            }
         }
 
         initBottomSheetControls()
     }
+
 
 
     private fun initBottomSheetControls() {

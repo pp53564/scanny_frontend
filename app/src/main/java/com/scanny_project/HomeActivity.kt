@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
+import androidx.navigation.findNavController
 import androidx.navigation.ui.NavigationUI.setupWithNavController
 import androidx.navigation.ui.setupActionBarWithNavController
 import com.example.ui_ux_demo.R
@@ -40,6 +41,10 @@ class HomeActivity : AppCompatActivity() {
         binding.cvScanning.setOnClickListener {
             startActivity(Intent(this, CameraActivity::class.java))
         }
+      /*  binding.cvScanning.setOnClickListener {
+            val navController = findNavController(R.id.fragment_container)
+            navController.navigate(R.id.tutorialCamera1Fragment)
+        }*/
     }
 
     override fun onResume() {
