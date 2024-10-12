@@ -95,6 +95,12 @@
                     android:gravity="center"
                     android:orientation="horizontal">
 
+                    <com.skydoves.transformationlayout.TransformationLayout
+                        android:id="@+id/transformationLayout"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:transformation_duration="550">
+
                     <androidx.cardview.widget.CardView
                         android:id="@+id/cvScanning"
                         android:layout_width="150dp"
@@ -139,7 +145,13 @@
                         </LinearLayout>
 
                     </androidx.cardview.widget.CardView>
+                </com.skydoves.transformationlayout.TransformationLayout>
 
+                    <com.skydoves.transformationlayout.TransformationLayout
+                        android:id="@+id/transformationLayoutQuiz"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:transformation_duration="550">
                     <androidx.cardview.widget.CardView
                         android:layout_width="150dp"
                         android:layout_height="180dp"
@@ -183,6 +195,7 @@
                         </LinearLayout>
 
                     </androidx.cardview.widget.CardView>
+                    </com.skydoves.transformationlayout.TransformationLayout>
                 </LinearLayout>
             </ScrollView>
 

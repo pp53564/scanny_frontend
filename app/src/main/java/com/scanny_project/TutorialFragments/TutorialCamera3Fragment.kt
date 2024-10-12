@@ -9,6 +9,7 @@ import androidx.navigation.fragment.findNavController
 import com.example.ui_ux_demo.R
 import com.example.ui_ux_demo.databinding.FragmentTutorialCamera1Binding
 import com.example.ui_ux_demo.databinding.FragmentTutorialCamera2Binding
+import com.example.ui_ux_demo.databinding.FragmentTutorialCamera3Binding
 
 
 /**
@@ -16,9 +17,9 @@ import com.example.ui_ux_demo.databinding.FragmentTutorialCamera2Binding
  * Use the [TutorialCamera2Fragment.newInstance] factory method to
  * create an instance of this fragment.
  */
-class TutorialCamera2Fragment : Fragment() {
+class TutorialCamera3Fragment : Fragment() {
 
-    private lateinit var binding : FragmentTutorialCamera2Binding
+    private lateinit var binding : FragmentTutorialCamera3Binding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -29,21 +30,16 @@ class TutorialCamera2Fragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        binding = FragmentTutorialCamera2Binding.inflate(inflater, container, false)
+        binding = FragmentTutorialCamera3Binding.inflate(inflater, container, false)
         val root: View = binding.root
-        binding.skipTutorialbButton.setOnClickListener {
-            findNavController().navigate(
-                TutorialCamera2FragmentDirections.actionTutorialCamera2FragmentToPermissionsFragment()
-            )
-        }
         binding.btnTutorialNext.setOnClickListener {
             findNavController().navigate(
-                TutorialCamera2FragmentDirections.actionTutorialCamera2FragmentToTutorialCamera3Fragment()
+                TutorialCamera3FragmentDirections.actionTutorialCamera3FragmentToPermissionsFragment()
             )
         }
         binding.btnTutorialBack.setOnClickListener {
             findNavController().navigate(
-                TutorialCamera2FragmentDirections.actionTutorialCamera2FragmentToTutorialCamera1Fragment()
+                TutorialCamera3FragmentDirections.actionTutorialCamera3FragmentToTutorialCamera2Fragment()
             )
         }
         return root

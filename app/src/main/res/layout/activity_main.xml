@@ -15,7 +15,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/scanny_main_activity" />
+        app:srcCompat="@drawable/scanny_main_page_2" />
 
     <ImageView
         android:id="@+id/imageView2"

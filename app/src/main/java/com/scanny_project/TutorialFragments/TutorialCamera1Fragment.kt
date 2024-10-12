@@ -11,6 +11,7 @@ import androidx.navigation.fragment.findNavController
 import com.example.ui_ux_demo.R
 import com.example.ui_ux_demo.databinding.FragmentTutorialCamera1Binding
 import com.scanny_project.Camera.PermissionsFragmentDirections
+import com.skydoves.transformationlayout.TransformationAppCompatActivity
 
 
 /**
@@ -18,7 +19,7 @@ import com.scanny_project.Camera.PermissionsFragmentDirections
  * Use the [TutorialCamera1Fragment.newInstance] factory method to
  * create an instance of this fragment.
  */
-class TutorialCamera1Fragment : Fragment() {
+class TutorialCamera1Fragment : Fragment(){
     private lateinit var binding : FragmentTutorialCamera1Binding
 
     override fun onCreate(savedInstanceState: Bundle?) {
