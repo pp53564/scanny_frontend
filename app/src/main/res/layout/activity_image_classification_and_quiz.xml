@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.scanny_project.ImageClassificationAndQuizActivity">
+
+    <!-- ScrollView wrapping the entire content -->
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true">
+
+        <!-- Root LinearLayout that contains all elements -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <!-- LinearLayout that holds the title and image -->
+            <LinearLayout
+                android:id="@+id/relativeLayout2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginBottom="16dp">
+
+                <!-- Title TextView -->
+                <TextView
+                    android:id="@+id/textView8"
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
+                    android:gravity="center"
+                    android:text="Uslikaj stol."
+                    android:textColor="@color/dark_grey"
+                    android:textSize="24sp" />
+
+                <!-- ImageView placed below the TextView -->
+                <ImageView
+                    android:id="@+id/imageView"
+                    android:layout_width="match_parent"
+                    android:layout_height="400dp"
+                    android:layout_marginTop="10dp" />
+            </LinearLayout>
+
+            <!-- Other components below the image -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <!-- Classified label -->
+                <TextView
+                    android:id="@+id/classified"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10sp"
+                    android:text="Classified as:"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
+
+                <!-- Classified result -->
+                <TextView
+                    android:id="@+id/result"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text=""
+                    android:textColor="#C30000"
+                    android:textSize="27sp"
+                    android:textStyle="bold" />
+
+                <!-- Confidences label -->
+                <TextView
+                    android:id="@+id/confidencesText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="30sp"
+                    android:text="Confidences:"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
+
+                <!-- Confidence values -->
+                <TextView
+                    android:id="@+id/confidence"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text=""
+                    android:textColor="#000"
+                    android:textSize="22sp" />
+
+                <!-- Capture button -->
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/button"
+                    style="@android:style/Widget.Button"
+                    android:layout_width="200dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginBottom="10dp"
+                    android:background="@drawable/button_backgorund"
+                    android:elevation="20dp"
+                    android:text="Uslikaj!"
+                    android:textColor="@color/white"
+                    android:textSize="20sp" />
+            </LinearLayout>
+
+        </LinearLayout>
+    </ScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

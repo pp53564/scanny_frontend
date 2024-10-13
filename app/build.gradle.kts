@@ -44,9 +44,9 @@ android {
 }
 
 extra.set("ASSET_DIR", "$projectDir/src/main/assets")
-apply {
+/*apply {
     from("download_models.gradle")
-}
+}*/
 
 
 dependencies {

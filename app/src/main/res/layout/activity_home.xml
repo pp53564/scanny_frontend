@@ -159,7 +159,8 @@
                         android:layout_weight="1"
                         android:baselineAligned="false"
                         app:cardCornerRadius="15dp"
-                        app:cardElevation="4dp">
+                        app:cardElevation="4dp"
+                        android:id="@+id/cvQuiz">
 
                         <LinearLayout
                             android:layout_width="match_parent"
