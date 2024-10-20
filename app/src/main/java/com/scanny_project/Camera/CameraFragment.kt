@@ -104,8 +104,6 @@ class CameraFragment: Fragment(), ObjectDetectorHelper.DetectorListener{
             objectDetectorListener = this
         )
 
-        Log.i("my_log", objectDetectorHelper.currentModel.toString())
-
         cameraExecutor = Executors.newSingleThreadExecutor()
 
         // Using viewLifecycleOwner.lifecycleScope to ensure coroutine is tied to the fragment's lifecycle

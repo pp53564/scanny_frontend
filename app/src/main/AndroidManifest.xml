@@ -41,7 +41,7 @@
             android:exported="false"
             android:label="@string/title_activity_profile"
             android:theme="@style/Theme.UI_UX_Demo" />
-        <activity android:name="com.scanny_project.MainActivity"></activity>
+        <activity android:name="com.scanny_project.MainActivity"/>
     </application>
 
 </manifest>
