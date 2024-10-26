@@ -1,4 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/nav_graph_image_class" />
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph_image_class"
+    app:startDestination="@id/tutorialImageClass1Fragment">
+    <fragment
+        android:id="@+id/tutorialImageClass1Fragment"
+        android:name="com.scanny_project.TutorialFragments.TutorialImageClass1Fragment"
+        android:label="fragment_tutorial_image_class1"
+        tools:layout="@layout/fragment_tutorial_image_class1" >
+        <action
+            android:id="@+id/action_tutorialImageClass1Fragment_to_imageClassificationAndQuizActivity"
+            app:destination="@id/imageClassificationAndQuizActivity" />
+    </fragment>
+    <activity
+        android:id="@+id/imageClassificationAndQuizActivity"
+        android:name="com.scanny_project.ImageClassificationAndQuizActivity"
+        android:label="activity_image_classification_and_quiz"
+        tools:layout="@layout/activity_image_classification_and_quiz" />
+</navigation>

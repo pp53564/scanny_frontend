@@ -68,7 +68,7 @@
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/scanny_tutorial_2" />
+            app:srcCompat="@drawable/scanny_tutorial_camera_2" />
 
         <LinearLayout
             android:layout_width="416dp"

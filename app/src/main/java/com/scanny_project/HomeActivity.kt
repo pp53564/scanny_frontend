@@ -53,10 +53,16 @@ class HomeActivity : AppCompatActivity() {
         binding.cvQuiz.setOnClickListener {
             TransformationCompat.startActivity(transformationLayoutQuiz, Intent(this, ImageClassificationAndQuizActivity::class.java))
         }
-      /*  binding.cvScanning.setOnClickListener {
-            val navController = findNavController(R.id.fragment_container)
-            navController.navigate(R.id.tutorialCamera1Fragment)
-        }*/
+
+//        binding.cvQuiz.setOnClickListener {
+//            val navController = findNavController(R.id.nav_graph_image_class)
+//            navController.navigate(R.id.tutorialImageClass1Fragment)
+//        }
+
+//       binding.cvScanning.setOnClickListener {
+//            val navController = findNavController(R.id.fragment_container)
+//            navController.navigate(R.id.tutorialCamera1Fragment)
+//        }
     }
 
     override fun onResume() {

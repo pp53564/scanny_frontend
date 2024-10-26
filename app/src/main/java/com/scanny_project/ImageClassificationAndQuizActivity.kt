@@ -1,20 +1,28 @@
 package com.scanny_project
 
 import android.Manifest
+import android.app.Dialog
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.Bitmap
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.media.ThumbnailUtils
 import android.os.Bundle
 import android.provider.MediaStore
 import android.util.Log
+import android.view.LayoutInflater
 import android.view.View
+import android.view.Window
 import android.widget.ImageView
+import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.constraintlayout.widget.ConstraintSet
+import com.example.ui_ux_demo.R
 import com.example.ui_ux_demo.databinding.ActivityImageClassificationAndQuizBinding
 import org.tensorflow.lite.task.vision.classifier.Classifications
 import kotlin.math.min
@@ -41,6 +49,11 @@ class ImageClassificationAndQuizActivity : AppCompatActivity(), ImageClassifierH
         binding.buttonTakePicture.setOnClickListener {
             openCamera()
         }
+//        binding.imButtonBack.setOnClickListener {
+//            Log.i("clicked", "clicked")
+//            val intent = Intent(this, HomeActivity::class.java)
+//            startActivity(intent)
+//        }
 
         cameraLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
             if (result.resultCode == RESULT_OK) {
@@ -110,14 +123,22 @@ class ImageClassificationAndQuizActivity : AppCompatActivity(), ImageClassifierH
     override fun onResults(results: List<Classifications>?, inferenceTime: Long) {
         binding.classified.visibility = View.VISIBLE
         binding.confidencesText.visibility = View.VISIBLE
+        binding.resultReaction.visibility = View.VISIBLE
+        binding.myCardView.visibility = View.VISIBLE
 
         if (results != null && results.isNotEmpty()) {
             val classifications = results[0]
-
             if (classifications.categories.isNotEmpty()) {
                 val topResult = classifications.categories.maxByOrNull { it.score }
                 topResult?.let {
-                    // Display the label and confidence
+                    if(it.label.contains(binding.tvThingForPicture.text)) {
+                        binding.resultReaction.text = "BRAVO!!"
+                        showImageDialog(true)
+
+                    } else {
+                        binding.resultReaction.text = ":("
+                        showImageDialog(false)
+                    }
                     binding.result.text = "${it.label}"
                     binding.confidence.text = "${it.score * 100}%"
                     Log.i("PETRA", "Label: ${it.label}, Confidence: ${it.score}")
@@ -128,5 +149,34 @@ class ImageClassificationAndQuizActivity : AppCompatActivity(), ImageClassifierH
             }
         }
     }
+
+    private fun showImageDialog(correct: Boolean) {
+        val dialog = Dialog(this)
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
+        dialog.setCancelable(true)
+        dialog.setContentView(R.layout.dialog_image)
+        dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+
+        // Now retrieve and set up the views
+        val textView = dialog.findViewById<TextView>(R.id.dialogMessage)
+        textView.text = if (correct) {
+            "Bravo! Dobro obavljeno!"
+        } else {
+            "Ops! Nije dobro."
+        }
+
+        val image = dialog.findViewById<ImageView>(R.id.dialogImageView)
+        image.setImageResource(if (correct) R.drawable.scanny_happy else R.drawable.scanny)
+
+        dialog.show()
+        dialog.window?.decorView?.postDelayed({
+            if (dialog.isShowing) {
+                dialog.dismiss()
+            }
+        }, 3000)
+    }
+
+
+
 
 }

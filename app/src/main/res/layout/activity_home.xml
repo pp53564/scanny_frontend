@@ -6,19 +6,14 @@
     android:layout_height="match_parent"
     tools:context="com.scanny_project.HomeActivity">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/scrollView2"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
         <LinearLayout
-            android:id="@+id/linearLayout"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -62,7 +57,7 @@
                     android:layout_width="370dp"
                     android:layout_height="323dp"
                     android:layout_gravity="center"
-                    app:srcCompat="@drawable/scanny" />
+                    app:srcCompat="@drawable/scanny_mac" />
 
             </LinearLayout>
 
@@ -83,23 +78,19 @@
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
-            <ScrollView
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_margin="5dp"
+                android:gravity="center"
+                android:orientation="horizontal">
 
-                <LinearLayout
-                    android:layout_width="match_parent"
+                <com.skydoves.transformationlayout.TransformationLayout
+                    android:id="@+id/transformationLayout"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical"
-                    android:layout_margin="5dp"
-                    android:gravity="center"
-                    android:orientation="horizontal">
-
-                    <com.skydoves.transformationlayout.TransformationLayout
-                        android:id="@+id/transformationLayout"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        app:transformation_duration="550">
+                    app:transformation_duration="550">
 
                     <androidx.cardview.widget.CardView
                         android:id="@+id/cvScanning"
@@ -147,20 +138,21 @@
                     </androidx.cardview.widget.CardView>
                 </com.skydoves.transformationlayout.TransformationLayout>
 
-                    <com.skydoves.transformationlayout.TransformationLayout
-                        android:id="@+id/transformationLayoutQuiz"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        app:transformation_duration="550">
+                <com.skydoves.transformationlayout.TransformationLayout
+                    android:id="@+id/transformationLayoutQuiz"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:transformation_duration="550">
+
                     <androidx.cardview.widget.CardView
+                        android:id="@+id/cvQuiz"
                         android:layout_width="150dp"
                         android:layout_height="180dp"
                         android:layout_margin="10dp"
                         android:layout_weight="1"
                         android:baselineAligned="false"
                         app:cardCornerRadius="15dp"
-                        app:cardElevation="4dp"
-                        android:id="@+id/cvQuiz">
+                        app:cardElevation="4dp">
 
                         <LinearLayout
                             android:layout_width="match_parent"
@@ -196,14 +188,13 @@
                         </LinearLayout>
 
                     </androidx.cardview.widget.CardView>
-                    </com.skydoves.transformationlayout.TransformationLayout>
-                </LinearLayout>
-            </ScrollView>
-
+                </com.skydoves.transformationlayout.TransformationLayout>
+            </LinearLayout>
         </LinearLayout>
+    </ScrollView>
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
-    <include android:id="@+id/bottom_navigation_layout"
+    <include
+        android:id="@+id/bottom_navigation_layout"
         layout="@layout/bottom_navigation" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

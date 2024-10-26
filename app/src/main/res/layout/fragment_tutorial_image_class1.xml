@@ -1,12 +1,9 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.scanny_project.TutorialFragments.TutorialCamera1Fragment"
-    android:id="@+id/tutorialCamera1Fragment">
-
-
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context="com.scanny_project.TutorialFragments.TutorialImageClass1Fragment">
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">

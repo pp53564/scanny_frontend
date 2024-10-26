@@ -13,12 +13,6 @@ import com.example.ui_ux_demo.databinding.FragmentTutorialCamera1Binding
 import com.scanny_project.Camera.PermissionsFragmentDirections
 import com.skydoves.transformationlayout.TransformationAppCompatActivity
 
-
-/**
- * A simple [Fragment] subclass.
- * Use the [TutorialCamera1Fragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class TutorialCamera1Fragment : Fragment(){
     private lateinit var binding : FragmentTutorialCamera1Binding
 

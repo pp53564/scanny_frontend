@@ -73,8 +73,8 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="taken_image">taken image</string>
-    <string name="question">Uslikaj stol.</string>
-    <string name="classification">Klasificirano kao:</string>
+    <string name="question">Kao zadatak uslikaj:</string>
+    <string name="classification">Scanny kaže:</string>
     <string name="confidences">Postotak:</string>
     <string name="TAKE_PICTURE">Uslikaj!</string>
 </resources>
