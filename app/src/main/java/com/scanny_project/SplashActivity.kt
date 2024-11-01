@@ -9,6 +9,7 @@ import android.os.Handler
 import android.os.Looper
 import androidx.core.app.ActivityCompat
 import com.example.ui_ux_demo.R
+import com.scanny_project.ui.login.LoginActivity
 
 class SplashActivity : AppCompatActivity() {
     private val splashTimeOut: Long = 3000
@@ -36,12 +37,14 @@ class SplashActivity : AppCompatActivity() {
                   )
                   startActivity(Intent(this, MainActivity::class.java), options.toBundle())*/
 
-                startActivity(Intent(this, MainActivity::class.java))
+//                startActivity(Intent(this, MainActivity::class.java))
+                startActivity(Intent(this, LoginActivity::class.java))
                 finish()
             }, splashTimeOut)
         } else {
-            val mainIntent = Intent(this@SplashActivity, MainActivity::class.java)
-            startActivity(mainIntent)
+//            val mainIntent = Intent(this@SplashActivity, MainActivity::class.java)
+            startActivity(Intent(this, LoginActivity::class.java))
+//            startActivity(mainIntent)
             finish()
         }
     }
