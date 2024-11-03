@@ -2,11 +2,6 @@ package com.scanny_project.data
 
 import com.scanny_project.data.model.LoggedInUser
 
-/**
- * Class that requests authentication and user information from the remote data source and
- * maintains an in-memory cache of login status and user credentials information.
- */
-
 class LoginRepository(val dataSource: LoginDataSource) {
 
     // in-memory cache of the loggedInUser object
@@ -28,7 +23,6 @@ class LoginRepository(val dataSource: LoginDataSource) {
     }
 
     suspend fun login(username: String, password: String): Result<LoggedInUser> {
-        // handle login
         val result = dataSource.login(username, password)
 
         if (result is Result.Success) {
@@ -37,6 +31,9 @@ class LoginRepository(val dataSource: LoginDataSource) {
 
         return result
     }
+//    suspend fun getProtectedResource(): String {
+//        return dataSource.getProtectedResource()
+//    }
 
     private fun setLoggedInUser(loggedInUser: LoggedInUser) {
         this.user = loggedInUser

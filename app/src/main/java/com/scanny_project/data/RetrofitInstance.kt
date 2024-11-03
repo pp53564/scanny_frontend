@@ -1,5 +1,6 @@
 package com.scanny_project.data
 
+import com.google.gson.GsonBuilder
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
@@ -16,6 +17,7 @@ object RetrofitInstance {
     private val httpClient = OkHttpClient.Builder()
         .addInterceptor(loggingInterceptor)
         .build()
+
 
     val userService: UserService by lazy {
         Retrofit.Builder()

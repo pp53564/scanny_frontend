@@ -1,16 +1,22 @@
 package com.scanny_project.ui.login
 
+import android.app.Application
+import android.content.Context
+import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import android.util.Patterns
 import androidx.lifecycle.viewModelScope
 import com.example.ui_ux_demo.R
 import com.scanny_project.data.LoginRepository
 import com.scanny_project.data.Result
+import com.scanny_project.data.SessionManager
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class LoginViewModel(private val loginRepository: LoginRepository) : ViewModel() {
+@HiltViewModel
+class LoginViewModel @Inject constructor(private val loginRepository: LoginRepository, private val sessionManager: SessionManager) : ViewModel(){
 
     private val _loginForm = MutableLiveData<LoginFormState>()
     val loginFormState: LiveData<LoginFormState> = _loginForm
@@ -18,32 +24,30 @@ class LoginViewModel(private val loginRepository: LoginRepository) : ViewModel()
     private val _loginResult = MutableLiveData<LoginResult>()
     val loginResult: LiveData<LoginResult> = _loginResult
 
-//    suspend fun login(username: String, password: String) {
-//        // can be launched in a separate asynchronous job
-//        val result = loginRepository.login(username, password)
-//
-//        if (result is Result.Success) {
-//            _loginResult.value =
-//                LoginResult(success = LoggedInUserView(displayName = result.data.displayName))
-//        } else {
-//            _loginResult.value = LoginResult(error = R.string.login_failed)
-//        }
-//    }
+    private val _protectedResourceResult = MutableLiveData<String>()
+    val protectedResourceResult: LiveData<String> = _protectedResourceResult
 
 
     fun login(username: String, password: String) {
-        // Launch a coroutine in the ViewModel scope
         viewModelScope.launch {
             val result = loginRepository.login(username, password)
 
             if (result is Result.Success) {
+                sessionManager.authToken = result.data.token
                 _loginResult.value =
-                    LoginResult(success = LoggedInUserView(displayName = result.data.displayName))
+                    LoginResult(success = LoggedInUserView(displayUserName = result.data.displayName))
             } else {
                 _loginResult.value = LoginResult(error = R.string.login_failed)
             }
         }
     }
+//    fun getProtectedResource() {
+//        viewModelScope.launch {
+//            val result = loginRepository.getProtectedResource()
+//            _protectedResourceResult.value = result
+//        }
+//    }
+
 
     fun loginDataChanged(username: String, password: String) {
       if (!isPasswordValid(password)) {
@@ -54,8 +58,8 @@ class LoginViewModel(private val loginRepository: LoginRepository) : ViewModel()
     }
 
 
-    // A placeholder password validation check
     private fun isPasswordValid(password: String): Boolean {
         return password.length > 5
     }
+
 }

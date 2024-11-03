@@ -1,22 +1,30 @@
 package com.scanny_project.data
 
 import android.util.Log
+import androidx.lifecycle.viewModelScope
 import com.scanny_project.data.model.LoggedInUser
+import kotlinx.coroutines.launch
 import java.io.IOException
+import javax.inject.Inject
 
-class LoginDataSource {
+class LoginDataSource @Inject constructor(
+    private val userService: UserService
+) {
 
     suspend fun login(username: String, password: String): Result<LoggedInUser> {
         return try {
             Log.d("LoginDataSource", "Starting login network request")
             val createUserRequest = CreateUserRequest(username, password)
-            val response = RetrofitInstance.userService.createOrLoginUser(createUserRequest)
+            val response = userService.createOrLoginUser(createUserRequest)
 
             Log.d("LoginDataSource", "Received response with code: ${response.code()}")
 
             if (response.isSuccessful && response.body() != null) {
-                val userDTO = response.body()!!
-                val loggedInUser = LoggedInUser(userDTO.id.toString(), userDTO.username)
+                val authResponse = response.body()!!
+                val loggedInUser = LoggedInUser(
+                    displayName = username,
+                    token = authResponse.token
+                )
                 Log.d("LoginDataSource", "Login network request successful")
                 Result.Success(loggedInUser)
             } else {
@@ -29,6 +37,20 @@ class LoginDataSource {
             Result.Error(IOException("Error logging in", e))
         }
     }
+
+//    suspend fun getProtectedResource(): String {
+//        return try {
+//            val response = userService.getProtectedResource()
+//            if (response.isSuccessful) {
+//                response.body() ?: "No content"
+//            } else {
+//                "Failed to fetch protected resource: ${response.message()}"
+//            }
+//        } catch (e: Exception) {
+//            "Error fetching protected resource: ${e.message}"
+//        }
+//    }
+
     fun logout() {
         // TODO: revoke authentication
     }

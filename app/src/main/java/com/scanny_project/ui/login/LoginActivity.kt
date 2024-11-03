@@ -13,14 +13,16 @@ import android.view.View
 import android.view.inputmethod.EditorInfo
 import android.widget.EditText
 import android.widget.Toast
-import com.example.ui_ux_demo.R
+import androidx.activity.viewModels
 import com.example.ui_ux_demo.databinding.ActivityLoginBinding
 import com.scanny_project.MainActivity
+import dagger.hilt.android.AndroidEntryPoint
 
-
+@AndroidEntryPoint
 class LoginActivity : AppCompatActivity() {
 
-    private lateinit var loginViewModel: LoginViewModel
+//    private lateinit var loginViewModel: LoginViewModel
+private val loginViewModel: LoginViewModel by viewModels()
     private lateinit var binding: ActivityLoginBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -34,8 +36,8 @@ class LoginActivity : AppCompatActivity() {
         val login = binding.login
         val loading = binding.loading
 
-        loginViewModel = ViewModelProvider(this, LoginViewModelFactory())
-            .get(LoginViewModel::class.java)
+//        loginViewModel = ViewModelProvider(this, LoginViewModelFactory())
+//            .get(LoginViewModel::class.java)
 
         loginViewModel.loginFormState.observe(this@LoginActivity, Observer {
             val loginState = it ?: return@Observer
@@ -98,14 +100,18 @@ class LoginActivity : AppCompatActivity() {
     }
 
     private fun updateUiWithUser(model: LoggedInUserView) {
-        val welcome = getString(R.string.welcome)
-        val displayName = model.displayName
-        // TODO : initiate successful logged in experience
+        val displayName = model.displayUserName
         Toast.makeText(
             applicationContext,
-            "$welcome $displayName",
+            "Bok $displayName",
             Toast.LENGTH_LONG
         ).show()
+        val sharedPref = getSharedPreferences("MyAppPrefs", MODE_PRIVATE)
+        with(sharedPref.edit()) {
+            putString("username", model.displayUserName)
+            apply()
+        }
+
     }
 
     private fun showLoginFailed(@StringRes errorString: Int) {
