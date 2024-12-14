@@ -27,4 +27,14 @@ object RetrofitInstance {
             .build()
             .create(UserService::class.java)
     }
+
+    val lectureService: LectureService by lazy {
+        Retrofit.Builder()
+            .baseUrl(BASE_URL)
+            .client(httpClient)
+            .addConverterFactory(GsonConverterFactory.create(GsonBuilder().create()))
+            .build()
+            .create(LectureService::class.java)
+    }
+
 }

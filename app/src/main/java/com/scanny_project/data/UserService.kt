@@ -11,6 +11,4 @@ interface UserService {
     @POST("users")
     suspend fun createOrLoginUser(@Body createUserRequest: CreateUserRequest): Response<AuthenticationResponse>
 
-    @GET("protected")
-    suspend fun getProtectedResource(): Response<String>
 }

@@ -57,7 +57,8 @@ class HomeActivity : AppCompatActivity() {
             TransformationCompat.startActivity(transformationLayout, Intent(this, CameraActivity::class.java))
         }
         binding.cvQuiz.setOnClickListener {
-            TransformationCompat.startActivity(transformationLayoutQuiz, Intent(this, ImageClassificationAndQuizActivity::class.java))
+         TransformationCompat.startActivity(transformationLayoutQuiz, Intent(this, LecturesListActivity::class.java))
+//            startActivity(Intent(this, QuestionsListActivity::class.java))
         }
 
         Log.d("HomeActivity", "Token: ${sessionManager.authToken}")

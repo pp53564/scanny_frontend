@@ -13,12 +13,12 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical" >
+            android:orientation="vertical">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="@color/dark_blue"
+                android:background="@drawable/bottom_rounded_background"
                 android:gravity="center"
                 android:orientation="vertical">
 
@@ -61,26 +61,9 @@
 
             </LinearLayout>
 
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
-
-                <ImageView
-                    android:id="@+id/imageView4"
-                    android:layout_width="415dp"
-                    android:layout_height="78dp"
-                    android:scaleType="centerCrop"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.0"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:srcCompat="@drawable/arc_2" />
-
-            </androidx.constraintlayout.widget.ConstraintLayout>
-
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_gravity="center_vertical"
                 android:layout_margin="5dp"
                 android:gravity="center"
@@ -90,14 +73,15 @@
                     android:id="@+id/transformationLayout"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_weight="1"
                     app:transformation_duration="550">
 
                     <androidx.cardview.widget.CardView
                         android:id="@+id/cvScanning"
                         android:layout_width="150dp"
                         android:layout_height="180dp"
+                        android:layout_gravity="center"
                         android:layout_margin="10dp"
-                        android:layout_weight="1"
                         android:baselineAligned="false"
                         app:cardCornerRadius="15dp"
                         app:cardElevation="4dp">
@@ -142,14 +126,15 @@
                     android:id="@+id/transformationLayoutQuiz"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_weight="1"
                     app:transformation_duration="550">
 
                     <androidx.cardview.widget.CardView
                         android:id="@+id/cvQuiz"
                         android:layout_width="150dp"
                         android:layout_height="180dp"
+                        android:layout_gravity="center"
                         android:layout_margin="10dp"
-                        android:layout_weight="1"
                         android:baselineAligned="false"
                         app:cardCornerRadius="15dp"
                         app:cardElevation="4dp">

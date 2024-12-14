@@ -41,6 +41,9 @@ class ImageClassificationAndQuizActivity : AppCompatActivity(), ImageClassifierH
 
         imageView = binding.imageView
 
+        val keyword = intent.getStringExtra("QUESTION_KEYWORD") ?: "unknown"
+        binding.tvThingForPicture.text = keyword
+
         imageClassifierHelper = ImageClassifierHelper(
             context = this,
             imageClassifierListener = this,

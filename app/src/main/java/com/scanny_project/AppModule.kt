@@ -52,6 +52,13 @@ object AppModule {
 
     @Provides
     @Singleton
+    fun provideLectureService(retrofit: Retrofit): LectureService {
+        return retrofit.create(LectureService::class.java)
+    }
+
+
+    @Provides
+    @Singleton
     fun provideLoginDataSource(userService: UserService): LoginDataSource {
         return LoginDataSource(userService)
     }

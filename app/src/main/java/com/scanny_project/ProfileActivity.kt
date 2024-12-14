@@ -24,6 +24,11 @@ class ProfileActivity : AppCompatActivity() {
         binding = ActivityProfileBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        val sharedPref = getSharedPreferences("MyAppPrefs", MODE_PRIVATE)
+        val username = sharedPref.getString("username", "User")
+
+//        binding.tvUsername.text = username
+
         navigation = binding.root.findViewById(R.id.bottomNavigationView)
 
         navigation.setOnItemSelectedListener { item ->

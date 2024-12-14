@@ -1,5 +1,5 @@
 plugins {
-    id("com.android.application")
+    id("com.android.application") version "8.1.3"
     id("org.jetbrains.kotlin.android")
     id("androidx.navigation.safeargs.kotlin")
     id("de.undercouch.download") version "5.3.0"
@@ -58,6 +58,7 @@ dependencies {
     implementation("androidx.lifecycle:lifecycle-livedata-ktx:2.8.7")
     implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.8.7")
     implementation("androidx.test:runner:1.6.1")
+    implementation("androidx.activity:activity:1.8.0")
     val camerax_version = "1.3.4"
     implementation("androidx.camera:camera-core:$camerax_version")
     implementation("androidx.camera:camera-camera2:$camerax_version")
@@ -93,10 +94,10 @@ dependencies {
     implementation ("com.google.dagger:hilt-android:2.51.1")
     kapt("com.google.dagger:hilt-android-compiler:2.51.1")
 
-    // Update this to a valid security-crypto version
     implementation("androidx.security:security-crypto:1.1.0-alpha06")
-
-    // Replace security-identity-credential with the correct version or remove it if not needed
     implementation("androidx.security:security-identity-credential:1.0.0-alpha03")
+
+    implementation("androidx.core:core-splashscreen:1.0.1")
+
 
 }

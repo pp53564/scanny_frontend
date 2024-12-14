@@ -41,12 +41,6 @@ class LoginViewModel @Inject constructor(private val loginRepository: LoginRepos
             }
         }
     }
-//    fun getProtectedResource() {
-//        viewModelScope.launch {
-//            val result = loginRepository.getProtectedResource()
-//            _protectedResourceResult.value = result
-//        }
-//    }
 
 
     fun loginDataChanged(username: String, password: String) {
