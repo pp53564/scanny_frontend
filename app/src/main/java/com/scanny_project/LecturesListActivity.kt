@@ -10,7 +10,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.ui_ux_demo.databinding.ActivityLecturesListBinding
 import com.scanny_project.data.LectureRepository
 import com.scanny_project.data.Result
-import com.scanny_project.data.model.LectureDTO
+import com.scanny_project.data.model.UserLectureDTO
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -28,24 +28,19 @@ class LecturesListActivity : AppCompatActivity() {
         binding = ActivityLecturesListBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        // Fetch lectures and set up the RecyclerView
         lifecycleScope.launch {
-            val lecturesResult = lectureRepository.getAllLectures()
+            val lecturesResult = lectureRepository.getAllUserLectures()
             if (lecturesResult is Result.Success) {
                 val lectures = lecturesResult.data
-                Log.i("LecturesListActivity", "Lectures: $lectures")
-
                 setupRecyclerView(lectures)
             } else {
-                // Handle error scenario (e.g., show a Toast or a message)
                 Log.e("LecturesListActivity", "Failed to fetch lectures")
             }
         }
     }
 
-    private fun setupRecyclerView(lectures: List<LectureDTO>) {
+    private fun setupRecyclerView(lectures: List<UserLectureDTO>) {
         val adapter = LecturesAdapter(lectures) { selectedLecture ->
-            // On lecture click, launch QuestionsListActivity with the selected lecture ID
             val intent = Intent(this, QuestionsListActivity::class.java).apply {
                 putExtra("LECTURE_ID", selectedLecture.id)
             }

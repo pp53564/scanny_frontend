@@ -2,6 +2,9 @@ package com.scanny_project.data
 
 import com.scanny_project.data.model.LectureDTO
 import com.scanny_project.data.model.QuestionDTO
+import com.scanny_project.data.model.UserLectureDTO
+import com.scanny_project.data.model.UserQuestionDTO
+import com.scanny_project.data.services.LectureService
 import java.io.IOException
 import javax.inject.Inject
 import javax.inject.Singleton
@@ -22,10 +25,34 @@ class LectureRepository @Inject constructor(
             Result.Error(IOException("Error fetching lectures", e))
         }
     }
+    suspend fun getAllUserLectures(): Result<List<UserLectureDTO>> {
+        return try {
+            val response = lectureService.getAllUserLectures()
+            if (response.isSuccessful) {
+                Result.Success(response.body() ?: emptyList())
+            } else {
+                Result.Error(IOException("Failed to fetch lectures: ${response.message()}"))
+            }
+        } catch (e: Exception) {
+            Result.Error(IOException("Error fetching lectures", e))
+        }
+    }
 
     suspend fun getQuestionsByLecture(lectureId: Long): Result<List<QuestionDTO>> {
         return try {
             val response = lectureService.getQuestionsByLecture(lectureId)
+            if (response.isSuccessful) {
+                Result.Success(response.body() ?: emptyList())
+            } else {
+                Result.Error(IOException("Failed to fetch questions: ${response.message()}"))
+            }
+        } catch (e: Exception) {
+            Result.Error(IOException("Error fetching questions", e))
+        }
+    }
+    suspend fun getUserQuestionsByLecture(lectureId: Long): Result<List<UserQuestionDTO>> {
+        return try {
+            val response = lectureService.getUserQuestionsByLecture(lectureId)
             if (response.isSuccessful) {
                 Result.Success(response.body() ?: emptyList())
             } else {

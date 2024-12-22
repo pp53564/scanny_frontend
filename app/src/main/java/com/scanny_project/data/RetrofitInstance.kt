@@ -1,6 +1,8 @@
 package com.scanny_project.data
 
 import com.google.gson.GsonBuilder
+import com.scanny_project.data.services.LectureService
+import com.scanny_project.data.services.UserService
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit

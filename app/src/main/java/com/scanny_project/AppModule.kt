@@ -3,6 +3,9 @@ package com.scanny_project
 import com.scanny_project.data.*
 import com.scanny_project.data.LoginRepository
 import com.scanny_project.data.SessionManager
+import com.scanny_project.data.services.LectureService
+import com.scanny_project.data.services.UserQuestionAttemptService
+import com.scanny_project.data.services.UserService
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -66,8 +69,15 @@ object AppModule {
     @Provides
     @Singleton
     fun provideLoginRepository(
-        dataSource: LoginDataSource
+        dataSource: LoginDataSource,
+        sessionManager: SessionManager
     ): LoginRepository {
-        return LoginRepository(dataSource)
+        return LoginRepository(dataSource, sessionManager)
+    }
+
+    @Provides
+    @Singleton
+    fun provideAttemptsService(retrofit: Retrofit): UserQuestionAttemptService {
+        return retrofit.create(UserQuestionAttemptService::class.java)
     }
 }

@@ -1,9 +1,8 @@
 package com.scanny_project.data
 
 import android.util.Log
-import androidx.lifecycle.viewModelScope
 import com.scanny_project.data.model.LoggedInUser
-import kotlinx.coroutines.launch
+import com.scanny_project.data.services.UserService
 import java.io.IOException
 import javax.inject.Inject
 
@@ -23,7 +22,8 @@ class LoginDataSource @Inject constructor(
                 val authResponse = response.body()!!
                 val loggedInUser = LoggedInUser(
                     displayName = username,
-                    token = authResponse.token
+                    token = authResponse.token,
+                    id = authResponse.id
                 )
                 Log.d("LoginDataSource", "Login network request successful")
                 Result.Success(loggedInUser)
