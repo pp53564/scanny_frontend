@@ -24,13 +24,14 @@
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent">
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="10dp">
 
                     <TextView
                         android:id="@+id/tvUsername"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Bok, Petra"
+                        android:text="@string/hello"
                         android:textColor="@color/white"
                         android:textSize="20sp"
                         android:textStyle="bold"
@@ -107,14 +108,15 @@
                                     app:layout_constraintEnd_toEndOf="parent"
                                     app:layout_constraintStart_toStartOf="parent"
                                     app:layout_constraintTop_toTopOf="parent"
-                                    app:srcCompat="@drawable/scanner2" />
+                                    app:srcCompat="@drawable/scanner2"
+                                    android:contentDescription="scanner image"/>
                             </androidx.constraintlayout.widget.ConstraintLayout>
 
                             <TextView
                                 android:id="@+id/tvScanner"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:text="Skenirajmo"
+                                android:text="@string/lets_scan"
                                 android:textAlignment="center"
                                 android:textStyle="bold" />
                         </LinearLayout>
@@ -160,14 +162,15 @@
                                     app:layout_constraintEnd_toEndOf="parent"
                                     app:layout_constraintStart_toStartOf="parent"
                                     app:layout_constraintTop_toTopOf="parent"
-                                    app:srcCompat="@drawable/bulb" />
+                                    app:srcCompat="@drawable/bulb"
+                                    android:contentDescription="bulb logo"/>
                             </androidx.constraintlayout.widget.ConstraintLayout>
 
                             <TextView
                                 android:id="@+id/tvQuiz"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:text="Odigrajmo kviz"
+                                android:text="@string/lets_play_quiz"
                                 android:textAlignment="center"
                                 android:textStyle="bold" />
                         </LinearLayout>

@@ -28,6 +28,11 @@ class QuestionsListActivity : AppCompatActivity() {
         binding = ActivityQuestionsListBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        binding.buttonBackLayout.imButtonBack.setOnClickListener {
+            val intent = Intent(this, LecturesListActivity::class.java)
+            startActivity(intent)
+        }
+
         val lectureId = intent.getLongExtra("LECTURE_ID", -1)
         if (lectureId == -1L) {
             finish()
@@ -42,9 +47,6 @@ class QuestionsListActivity : AppCompatActivity() {
                 val adapter = QuestionsAdapter(questions) { selectedQuestion ->
                     val intent = Intent(this@QuestionsListActivity, ImageClassificationAndQuizActivity::class.java)
                     intent.putExtra("QUESTION_KEYWORD", selectedQuestion.subject)
-                    intent.putExtra("QUESTION_ID", selectedQuestion.id)
-//                    intent.putExtra("QUESTION_ATTEMPT_COUNT", selectedQuestion.attemptCount)
-//                    intent.putExtra("QUESTION_SUCCEEDED", selectedQuestion.succeeded)
                     startActivity(intent)
                 }
 

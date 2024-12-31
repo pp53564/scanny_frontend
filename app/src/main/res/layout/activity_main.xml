@@ -5,18 +5,19 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/dark_blue"
+    android:background="@drawable/background_gradient"
     tools:context="com.scanny_project.MainActivity">
 
     <ImageView
         android:id="@+id/imageView"
-        android:layout_width="283dp"
-        android:layout_height="372dp"
-        android:layout_marginTop="60dp"
+        android:layout_width="271dp"
+        android:layout_height="340dp"
+        android:layout_marginTop="72dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/scanny_main_page_2"/>
+        app:srcCompat="@drawable/scanny_main_page_2"
+        android:contentDescription="scanny image"/>
 
     <LinearLayout
         android:id="@+id/view"
@@ -36,7 +37,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="32dp"
             android:layout_marginBottom="32dp"
-            android:text="Dobrodošli\n u Scanny"
+            android:text="@string/welcome_to_scanny"
             android:textAlignment="center"
             android:textColor="@color/black"
             android:textSize="37dp"
@@ -46,22 +47,31 @@
             android:id="@+id/textView2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="32dp"
+            android:layout_marginLeft="10sp"
+            android:layout_marginTop="20dp"
+            android:layout_marginRight="10sp"
             android:gravity="center_horizontal"
-            android:text="Opis ide ovdje"
+            android:text="@string/app_description"
             android:textSize="20sp" />
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/startButton"
             style="@android:style/Widget.Button"
-            android:layout_width="200dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="32dp"
-            android:background="@drawable/button_backgorund"
+            android:background="@drawable/button_gradient"
+            android:drawableLeft="@drawable/baseline_arrow_outward_24"
             android:elevation="20dp"
-            android:text="Počnimo!"
+            android:text="@string/lets_start"
             android:textColor="@color/white"
-            android:textSize="20sp" />
+            android:drawablePadding="8dp"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"
+            android:textSize="20sp"
+            android:textStyle="bold" />
 
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

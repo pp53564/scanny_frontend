@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="rectangle">
+
+    <!-- This gradient can be any color combination you like -->
+    <gradient
+        android:startColor="#FF8A80"
+    android:centerColor="#FF80AB"
+    android:endColor="#EA80FC"
+    android:angle="270" />
+
+    <!-- Adjust corners or create your wavy effect with a path.
+         For simplicity, we’re just showing a top-left and top-right corner.
+         A full "wavy" effect typically requires an .svg shape or vector path. -->
+    <corners
+        android:topLeftRadius="0dp"
+        android:topRightRadius="0dp"
+        android:bottomLeftRadius="64dp"
+        android:bottomRightRadius="64dp" />
+
+</shape>

@@ -34,7 +34,7 @@ class HomeActivity : AppCompatActivity() {
         val sharedPref = getSharedPreferences("MyAppPrefs", MODE_PRIVATE)
         val username = sharedPref.getString("username", "User")
 
-        binding.tvUsername.text = username
+        binding.tvUsername.text = "Bok $username"
 
         navigation.setOnItemSelectedListener { item ->
             when(item.itemId) {

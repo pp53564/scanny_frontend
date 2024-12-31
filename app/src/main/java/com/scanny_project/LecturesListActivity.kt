@@ -28,6 +28,11 @@ class LecturesListActivity : AppCompatActivity() {
         binding = ActivityLecturesListBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        binding.buttonBackLayout.imButtonBack.setOnClickListener {
+            val intent = Intent(this, HomeActivity::class.java)
+            startActivity(intent)
+        }
+
         lifecycleScope.launch {
             val lecturesResult = lectureRepository.getAllUserLectures()
             if (lecturesResult is Result.Success) {

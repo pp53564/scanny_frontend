@@ -65,8 +65,7 @@ class ImageClassificationAndQuizActivity : AppCompatActivity(), ImageClassifierH
             openCamera()
         }
 
-        binding.imButtonBack.setOnClickListener {
-            Log.i("ImageQuizActivity", "Back button clicked")
+        binding.buttonBackLayout.imButtonBack.setOnClickListener {
             if (viewModel.attemptSent.value == false) {
                 viewModel.sendAttempt(currentQuestionId, succeeded = false, imageBitmap = null)
             }
@@ -87,7 +86,7 @@ class ImageClassificationAndQuizActivity : AppCompatActivity(), ImageClassifierH
                 val data = result.data
                 if (data != null && data.extras != null) {
                     var image = data.extras!!.get("data") as Bitmap
-                    val dimension = min(image.width, image.height)
+//                    val dimension = min(image.width, image.height)
                     imageView.setImageBitmap(image)
                     imageView.visibility = View.VISIBLE
 

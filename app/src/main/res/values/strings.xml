@@ -76,7 +76,7 @@
     <string name="task">Uslikaj:</string>
     <string name="classification">Scanny kaže:</string>
     <string name="confidences">Postotak:</string>
-    <string name="TAKE_PICTURE">Uslikaj!</string>
+    <string name="TAKE_PICTURE">Otvori kameru</string>
     <string name="title_activity_login">LoginActivity</string>
     <string name="prompt_email">Email</string>
     <string name="prompt_password">Lozinka</string>
@@ -84,14 +84,26 @@
     <string name="action_sign_in_short">Sign in</string>
     <string name="welcome">"Welcome !"</string>
     <string name="invalid_username">Not a valid username</string>
-    <string name="invalid_password">Password must be >5 characters</string>
-    <string name="login_failed">"Login failed"</string>
+    <string name="invalid_password">Lozinka mora biti najmanje 8 znakova</string>
+    <string name="login_failed">Neuspješno</string>
     <string name="username">Korisničko ime</string>
     <string name="instructions_title">Get Ready!</string>
     <string name="instructions_details">Take a clear photo of the object shown below. The system will try to identify it!</string>
     <string name="hint_take_picture">Hint: Ensure the object is well-lit and centered in the frame.</string>
     <string name="question">Pitanje</string>
     <string name="attempts_count">Broj pokušaja: 0</string>
+    <string name="lessons">Lekcije</string>
+    <string name="welcome_to_scanny">Dobrodošli\n u Scanny</string>
+    <string name="app_description">"Scanny je zabavna aplikacija za učenje jezika! Uz pomoć detekcije objekata, možete otkrivati nove riječi i proširivati svoje znanje na interaktivan i edukativan način. "</string>
+    <string name="lets_start">Počnimo!</string>
+    <string name="profile">Profil</string>
+    <string name="logout">Odjava</string>
+    <string name="questions">Pitanja</string>
+    <string name="question_subject">Predmet %1$d</string>
+    <string name="question_attempts">Broj pokušaja: %1$d</string>
+    <string name="hello">Bok</string>
+    <string name="lets_scan">Skenirajmo</string>
+    <string name="lets_play_quiz">Odigrajmo kviz</string>
 
 
 </resources>

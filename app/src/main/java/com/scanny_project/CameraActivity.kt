@@ -4,7 +4,6 @@ import android.content.Intent
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import com.example.ui_ux_demo.R
 import com.example.ui_ux_demo.databinding.ActivityCameraBinding
 
 class CameraActivity : AppCompatActivity() {
@@ -14,7 +13,7 @@ class CameraActivity : AppCompatActivity() {
         binding = ActivityCameraBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        binding.imButtonBack.setOnClickListener {
+        binding.buttonBackLayout.imButtonBack.setOnClickListener {
             val intent = Intent(this, HomeActivity::class.java)
             startActivity(intent)
         }

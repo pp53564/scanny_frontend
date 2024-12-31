@@ -38,19 +38,6 @@ class LoginDataSource @Inject constructor(
         }
     }
 
-//    suspend fun getProtectedResource(): String {
-//        return try {
-//            val response = userService.getProtectedResource()
-//            if (response.isSuccessful) {
-//                response.body() ?: "No content"
-//            } else {
-//                "Failed to fetch protected resource: ${response.message()}"
-//            }
-//        } catch (e: Exception) {
-//            "Error fetching protected resource: ${e.message}"
-//        }
-//    }
-
     fun logout() {
         // TODO: revoke authentication
     }

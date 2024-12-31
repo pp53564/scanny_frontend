@@ -30,10 +30,12 @@ class QuestionsAdapter(
     override fun onBindViewHolder(holder: QuestionViewHolder, position: Int) {
         val question = questions[position]
 
-//        holder.questionSubject.text = question.subject
-        holder.questionAttempts.text = "Broj pokušaja: ${question.attemptCount}"
-
+//        holder.questionSubject.text = "Predmet ${position + 1}"
+//        holder.questionAttempts.text = "Broj pokušaja: ${question.attemptCount}"
         val context = holder.itemView.context
+        holder.questionSubject.text = context.getString(R.string.question_subject, position + 1)
+        holder.questionAttempts.text = context.getString(R.string.question_attempts, question.attemptCount)
+
         if (question.succeeded) {
             holder.questionCard.strokeColor = context.getColor(R.color.light_green)
         } else {

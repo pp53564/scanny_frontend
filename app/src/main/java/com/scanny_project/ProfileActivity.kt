@@ -27,7 +27,12 @@ class ProfileActivity : AppCompatActivity() {
         val sharedPref = getSharedPreferences("MyAppPrefs", MODE_PRIVATE)
         val username = sharedPref.getString("username", "User")
 
-//        binding.tvUsername.text = username
+        binding.tvUsername!!.text = username
+
+        binding.buttonBackLayout!!.imButtonBack.setOnClickListener {
+            val intent = Intent(this, HomeActivity::class.java)
+            startActivity(intent)
+        }
 
         navigation = binding.root.findViewById(R.id.bottomNavigationView)
 
