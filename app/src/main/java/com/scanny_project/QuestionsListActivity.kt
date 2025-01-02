@@ -47,6 +47,7 @@ class QuestionsListActivity : AppCompatActivity() {
                 val adapter = QuestionsAdapter(questions) { selectedQuestion ->
                     val intent = Intent(this@QuestionsListActivity, ImageClassificationAndQuizActivity::class.java)
                     intent.putExtra("QUESTION_KEYWORD", selectedQuestion.subject)
+                    intent.putExtra("QUESTION_ID", selectedQuestion.id)
                     startActivity(intent)
                 }
 

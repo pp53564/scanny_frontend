@@ -12,6 +12,7 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 import com.scanny_project.data.Result
+import kotlinx.coroutines.GlobalScope
 
 @HiltViewModel
 class ImageQuizViewModel @Inject constructor(
@@ -32,7 +33,7 @@ class ImageQuizViewModel @Inject constructor(
         _attemptSent.value = true
         val userId = sessionManager.userId
 
-        viewModelScope.launch {
+        GlobalScope.launch {
             val result = attemptsRepository.recordAttempt(userId, questionId, succeeded, imageBitmap)
             if (result is Result.Success) {
                 Log.i("ImageQuizViewModel", "Attempt recorded successfully.")

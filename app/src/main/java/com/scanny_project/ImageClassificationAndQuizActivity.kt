@@ -49,6 +49,7 @@ class ImageClassificationAndQuizActivity : AppCompatActivity(), ImageClassifierH
         binding.tvThingForPicture.text = task
 
         currentQuestionId = intent.getLongExtra("QUESTION_ID", 0L)
+        Log.i("question_id", currentQuestionId.toString())
 
         imageClassifierHelper = ImageClassifierHelper(
             context = this,
@@ -180,11 +181,12 @@ class ImageClassificationAndQuizActivity : AppCompatActivity(), ImageClassifierH
         }, 3000)
     }
 
-    override fun onDestroy() {
-        super.onDestroy()
+    override fun onPause() {
+        super.onPause()
         if (viewModel.attemptSent.value == false) {
-            Log.i("ImageQuizActivity", "Sending final attempt before destroy")
+            Log.i("ImageQuizActivity", "Sending final attempt before pause")
             viewModel.sendAttempt(currentQuestionId, succeeded = false, imageBitmap = null)
         }
     }
+
 }

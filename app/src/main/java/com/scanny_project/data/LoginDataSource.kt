@@ -16,8 +16,6 @@ class LoginDataSource @Inject constructor(
             val createUserRequest = CreateUserRequest(username, password)
             val response = userService.createOrLoginUser(createUserRequest)
 
-            Log.d("LoginDataSource", "Received response with code: ${response.code()}")
-
             if (response.isSuccessful && response.body() != null) {
                 val authResponse = response.body()!!
                 val loggedInUser = LoggedInUser(
