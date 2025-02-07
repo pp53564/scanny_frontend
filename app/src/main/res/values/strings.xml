@@ -102,8 +102,12 @@
     <string name="question_subject">Predmet %1$d</string>
     <string name="question_attempts">Broj pokušaja: %1$d</string>
     <string name="hello">Bok</string>
-    <string name="lets_scan">Skenirajmo</string>
-    <string name="lets_play_quiz">Odigrajmo kviz</string>
+    <string name="lets_scan">Skeniraj</string>
+    <string name="lets_play_quiz">Kviz</string>
+    <string name="skip">Preskoči\n</string>
+    <string name="tutorial_desc_3">Čestitamo! Sada znaš kako koristiti Scanny aplikaciju. Spreman si za zabavno učenje jezika!</string>
+    <string name="tutorial_desc_2">Otvorit ćemo kameru i ti ćeš pokazivati predmete oko sebe. Ja ću ti pomoći prepoznati te predmete i naučit ćemo kako se zovu na drugim jezicima. Nije li to super?</string>
+    <string name="tutorial_desc_1">Hej! Ja sam Scanny, tvoj robot prijatelj. Spremni za učenje?</string>
 
 
 </resources>

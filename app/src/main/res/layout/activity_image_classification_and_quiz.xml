@@ -1,203 +1,190 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    tools:context="com.scanny_project.ImageClassificationAndQuizActivity">
 
     <include
         android:id="@+id/buttonBackLayout"
-        layout="@layout/back_button"
+        layout="@layout/back_button_just_arrow"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+<!--    <ImageView-->
+<!--        android:id="@+id/arcTop"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="220dp"-->
+<!--        android:scaleType="fitXY"-->
+<!--        android:adjustViewBounds="true"-->
+<!--        android:src="@drawable/arc_top"-->
+<!--        android:layout_alignParentTop="true" />-->
+
+    <LinearLayout
+        android:id="@+id/titleContainer"
+        android:layout_width="match_parent"
+        android:layout_height="220dp"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:layout_alignParentTop="true">
+
+        <TextView
+            android:id="@+id/titleText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Slikaj objekt!"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:textColor="@color/dark_blue"
+            android:layout_marginTop="40dp" />
+
+        <TextView
+            android:id="@+id/subTitleText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Otkrij što vidiš!"
+            android:textSize="18sp"
+            android:textColor="@color/dark_blue"
+            android:layout_marginTop="8dp" />
+    </LinearLayout>
+
     <ScrollView
+        android:id="@+id/scrollArea"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:fillViewport="true"
-        tools:context="com.scanny_project.ImageClassificationAndQuizActivity">
+        android:layout_below="@+id/titleContainer"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:padding="16dp"
+        android:overScrollMode="never">
 
-        <LinearLayout
+        <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:gravity="center"
-            android:padding="16dp">
+            android:layout_marginTop="60dp"
+            app:cardCornerRadius="24dp"
+            app:cardElevation="6dp"
+            app:cardUseCompatPadding="true"
+            android:layout_marginBottom="100dp">
 
-            <!--
-                 TOP SECTION: Displays the question and the object to identify.
-                 This section uses a ConstraintLayout to position the question
-                 and the object's name (tvThingForPicture) neatly.
-            -->
-
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/imageContainer"
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <!--
-                     The main question prompt:
-                     "Take a picture of the following object."
-                     The actual object name is shown below this TextView.
-                -->
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:background="@drawable/fancy_card_background"
+                android:gravity="center"
+                android:padding="20dp">
 
                 <TextView
                     android:id="@+id/tvQuestion"
-                    android:layout_width="0dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:text="@string/task"
-                    android:textColor="@color/dark_grey"
-                    android:textSize="28sp"
+                    android:text="Uslikaj objekt:"
+                    android:textSize="20sp"
                     android:textStyle="bold"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    android:textColor="@color/dark_blue" />
 
-                <!--
-                     The specific object the student must photograph:
-                     This text will be set dynamically from the code (e.g., "chair").
-                -->
                 <TextView
                     android:id="@+id/tvThingForPicture"
-                    android:layout_width="0dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:textColor="@color/dark_blue"
-                    android:textSize="28sp"
-                    android:textStyle="bold"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/tvQuestion" />
+                    android:layout_marginTop="6dp"
+                    android:textColor="@color/accentColor"
+                    android:textSize="22sp"
+                    android:textStyle="bold" />
 
-                <!--
-                     A CardView to display the captured image once the student takes a picture.
-                     Initially hidden (visibility="gone"), it becomes visible when an image is taken.
-                -->
                 <androidx.cardview.widget.CardView
                     android:id="@+id/myCardView"
-                    android:layout_width="300dp"
-                    android:layout_height="300dp"
-                    android:layout_marginTop="10dp"
+                    android:layout_width="280dp"
+                    android:layout_height="280dp"
+                    android:layout_marginTop="12dp"
                     app:cardCornerRadius="16dp"
                     app:cardUseCompatPadding="true"
                     android:elevation="4dp"
-                    android:visibility="gone"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/tvThingForPicture">
+                    android:visibility="gone">
 
-                    <!--
-                         The ImageView that will display the captured image.
-                         Initially hidden; it appears once an image is taken.
-                    -->
                     <ImageView
                         android:id="@+id/imageView"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:contentDescription="@string/taken_image"
                         android:scaleType="centerCrop"
                         android:visibility="gone" />
                 </androidx.cardview.widget.CardView>
 
-            </androidx.constraintlayout.widget.ConstraintLayout>
-
-            <!--
-                 BOTTOM SECTION: Shows the classification results and
-                 provides a button to take a picture.
-                 Everything here is arranged vertically.
-            -->
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:orientation="vertical"
-                android:paddingTop="20dp">
-
-                <!--
-                     "classified" label will appear when classification is done.
-                     Initially hidden, shown once the image is processed.
-                -->
                 <TextView
                     android:id="@+id/classified"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:text="@string/classification"
-                    android:textSize="20sp"
+                    android:layout_marginTop="14dp"
+                    android:text="Klasifikacija:"
+                    android:textSize="18sp"
                     android:textStyle="bold"
-                    android:visibility="gone" />
+                    android:visibility="gone"
+                    android:textColor="@color/dark_blue" />
 
-                <!-- The result (e.g., "chair") shown after classification -->
                 <TextView
                     android:id="@+id/result"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
                     android:textColor="@color/black"
-                    android:textSize="27sp"
+                    android:textSize="22sp"
                     android:textStyle="bold" />
 
-                <!--
-                     "Confidences" title: This appears when classification is done,
-                     explaining that the next text shows confidence in recognition.
-                -->
                 <TextView
                     android:id="@+id/confidencesText"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="30dp"
-                    android:text="@string/confidences"
-                    android:textSize="20sp"
+                    android:layout_marginTop="16dp"
+                    android:text="Vjerojatnosti:"
+                    android:textSize="18sp"
                     android:textStyle="bold"
                     android:visibility="gone" />
 
-                <!-- Confidence percentage -->
                 <TextView
                     android:id="@+id/confidence"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="#000"
-                    android:textSize="22sp" />
+                    android:textColor="@color/black"
+                    android:textSize="18sp"
+                    android:layout_marginTop="4dp" />
 
-                <!--
-                     Reaction text: "Bravo!!" or ":(" shown after classification to
-                     give feedback to the student on whether they got the correct object.
-                -->
                 <TextView
                     android:id="@+id/resultReaction"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="30dp"
-                    android:textSize="30sp"
+                    android:layout_marginTop="16dp"
+                    android:textSize="22sp"
                     android:textStyle="bold"
-                    android:visibility="gone" />
+                    android:visibility="gone"
+                    android:textColor="@color/accentColor" />
 
-                <!--
-                     The main action button: "Take Picture"
-                     The student uses this to open the camera and capture an image.
-                -->
-                <androidx.appcompat.widget.AppCompatButton
-                    android:id="@+id/buttonTakePicture"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="30dp"
-                    android:layout_marginBottom="10dp"
-                    android:background="@drawable/button_gradient"
-                    android:drawableLeft="@drawable/baseline_camera_alt_24"
-                    android:drawablePadding="8dp"
-                    android:elevation="6dp"
-                    android:paddingLeft="20dp"
-                    android:paddingRight="20dp"
-                    android:paddingTop="10dp"
-                    android:paddingBottom="10dp"
-                    android:text="@string/TAKE_PICTURE"
-                    android:textAllCaps="false"
-                    android:textColor="@android:color/white"
-                    android:textSize="18sp"
-                    android:textStyle="bold" />
             </LinearLayout>
-
-        </LinearLayout>
+        </androidx.cardview.widget.CardView>
     </ScrollView>
-</androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/buttonTakePicture"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="24dp"
+        android:background="@drawable/button_gradient"
+        android:drawableLeft="@drawable/baseline_camera_alt_24"
+        android:drawablePadding="8dp"
+        android:elevation="6dp"
+        android:paddingLeft="24dp"
+        android:paddingRight="24dp"
+        android:paddingTop="12dp"
+        android:paddingBottom="12dp"
+        android:text="Otvori kameru"
+        android:textAllCaps="false"
+        android:textColor="@android:color/white"
+        android:textSize="18sp"
+        android:textStyle="bold" />
+
+</RelativeLayout>

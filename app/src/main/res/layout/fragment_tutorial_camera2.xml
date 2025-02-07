@@ -1,10 +1,11 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/tutorialCamera2Fragment"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.scanny_project.TutorialFragments.TutorialCamera2Fragment">
-
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -15,31 +16,29 @@
             style="?android:attr/progressBarStyleHorizontal"
             android:layout_width="200dp"
             android:layout_height="wrap_content"
-            app:layout_constraintBottom_toBottomOf="@+id/imageView8"
+            android:progress="66"
+            android:progressTint="@color/dark_blue"
+            app:layout_constraintBottom_toTopOf="@+id/speechBubble"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.498"
+            app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.062"
-            android:progress="66"
-            android:progressTint="@color/dark_blue"/>
+            app:layout_constraintVertical_bias="0.05" />
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/btnTutorialBack"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:clickable="true"
-            android:contentDescription="Back arrow"
+            android:layout_margin="16dp"
             android:src="@drawable/baseline_arrow_back_ios_new_24"
             app:backgroundTint="@color/dark_blue"
-            app:elevation="15dp"
-            app:layout_constraintBottom_toBottomOf="@+id/imageView8"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.045"
+            app:elevation="10dp"
+            app:layout_constraintBottom_toBottomOf="@+id/ivScanny"
+            app:layout_constraintEnd_toStartOf="@+id/ivScanny"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/imageView8"
-            app:layout_constraintVertical_bias="0.573"
-            app:tint="@android:color/white" />
+            app:layout_constraintTop_toTopOf="@+id/ivScanny"
+            app:tint="@android:color/white"
+            android:contentDescription="back" />
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/btnTutorialNext"
@@ -47,56 +46,72 @@
             android:layout_height="wrap_content"
             android:clickable="true"
             android:contentDescription="Next arrow"
-            app:tint="@android:color/white"
             android:src="@drawable/next"
             app:backgroundTint="@color/dark_blue"
             app:elevation="15dp"
-            app:layout_constraintBottom_toBottomOf="@+id/imageView8"
+            app:layout_constraintBottom_toBottomOf="@+id/ivScanny"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.954"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/imageView8"
+            app:layout_constraintTop_toTopOf="@+id/ivScanny"
             app:layout_constraintVertical_bias="0.557"
+            app:tint="@android:color/white"
             />
 
-        <ImageView
-            android:id="@+id/imageView8"
-            android:layout_width="416dp"
-            android:layout_height="612dp"
-            android:layout_marginStart="32dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/scanny_tutorial_camera_2" />
-
-        <LinearLayout
-            android:layout_width="416dp"
-            android:layout_height="97dp"
-            android:gravity="center"
-            android:orientation="horizontal"
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/skipTutorialButton"
+            style="@android:style/Widget.Button"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="28dp"
+            android:background="@drawable/background_gradient"
+            android:elevation="20dp"
+            android:text="Preskoči"
+            android:textColor="@color/white"
+            android:textSize="20sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.6"
+            app:layout_constraintHorizontal_bias="0.502"
+            app:layout_constraintStart_toStartOf="parent" />
+
+
+        <ImageView
+            android:id="@+id/ivScanny"
+            android:layout_width="150dp"
+            android:layout_height="180dp"
+            android:layout_marginBottom="160dp"
+            android:scaleType="fitCenter"
+            android:src="@drawable/scanny_mac"
+            app:layout_constraintBottom_toTopOf="@+id/skipTutorialButton"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+
+        <FrameLayout
+            android:id="@+id/speechBubble"
+            android:layout_width="348dp"
+            android:layout_height="197dp"
+            app:layout_constraintBottom_toTopOf="@+id/ivScanny"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imageView8"
-            app:layout_constraintVertical_bias="0.0">
+            app:layout_constraintHorizontal_bias="0.5">
 
-            <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/skipTutorialbButton"
-                style="@android:style/Widget.Button"
-                android:layout_width="200dp"
+            <ImageView
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@drawable/button_backgorund"
-                android:elevation="20dp"
-                android:text="Preskoči"
-                android:textColor="@color/white"
-                android:textSize="20sp"
-                app:layout_constraintBottom_toBottomOf="@+id/view"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView2" />
-        </LinearLayout>
-    </androidx.constraintlayout.widget.ConstraintLayout>
+                android:adjustViewBounds="true"
+                android:scaleType="fitXY"
+                android:src="@drawable/speech_bubble_vector" />
 
+            <TextView
+                android:id="@+id/tvSpeech"
+                android:layout_width="305dp"
+                android:layout_height="101dp"
+                android:layout_margin="16dp"
+                android:text="@string/tutorial_desc_2"
+                android:textColor="@android:color/black"
+                android:textSize="16sp" />
+        </FrameLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </FrameLayout>

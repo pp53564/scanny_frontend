@@ -6,16 +6,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
-import com.example.ui_ux_demo.R
-import com.example.ui_ux_demo.databinding.FragmentTutorialCamera1Binding
 import com.example.ui_ux_demo.databinding.FragmentTutorialCamera2Binding
 
 
-/**
- * A simple [Fragment] subclass.
- * Use the [TutorialCamera2Fragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class TutorialCamera2Fragment : Fragment() {
 
     private lateinit var binding : FragmentTutorialCamera2Binding
@@ -31,7 +24,7 @@ class TutorialCamera2Fragment : Fragment() {
         // Inflate the layout for this fragment
         binding = FragmentTutorialCamera2Binding.inflate(inflater, container, false)
         val root: View = binding.root
-        binding.skipTutorialbButton.setOnClickListener {
+        binding.skipTutorialButton.setOnClickListener {
             findNavController().navigate(
                 TutorialCamera2FragmentDirections.actionTutorialCamera2FragmentToPermissionsFragment()
             )
