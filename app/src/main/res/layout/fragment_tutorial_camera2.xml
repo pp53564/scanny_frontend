@@ -29,16 +29,17 @@
             android:id="@+id/btnTutorialBack"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="16dp"
+            android:contentDescription="back"
             android:src="@drawable/baseline_arrow_back_ios_new_24"
             app:backgroundTint="@color/dark_blue"
             app:elevation="10dp"
             app:layout_constraintBottom_toBottomOf="@+id/ivScanny"
-            app:layout_constraintEnd_toStartOf="@+id/ivScanny"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.09"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@+id/ivScanny"
-            app:tint="@android:color/white"
-            android:contentDescription="back" />
+            app:layout_constraintVertical_bias="0.556"
+            app:tint="@android:color/white" />
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/btnTutorialNext"
@@ -48,10 +49,10 @@
             android:contentDescription="Next arrow"
             android:src="@drawable/next"
             app:backgroundTint="@color/dark_blue"
-            app:elevation="15dp"
+            app:elevation="10dp"
             app:layout_constraintBottom_toBottomOf="@+id/ivScanny"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.954"
+            app:layout_constraintHorizontal_bias="0.9"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@+id/ivScanny"
             app:layout_constraintVertical_bias="0.557"
@@ -71,7 +72,7 @@
             android:textSize="20sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.502"
+            app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent" />
 
 
@@ -80,8 +81,9 @@
             android:layout_width="150dp"
             android:layout_height="180dp"
             android:layout_marginBottom="160dp"
+            android:foregroundGravity="center_horizontal"
             android:scaleType="fitCenter"
-            android:src="@drawable/scanny_mac"
+            android:src="@drawable/scanny_tutorial_2"
             app:layout_constraintBottom_toTopOf="@+id/skipTutorialButton"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />

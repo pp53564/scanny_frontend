@@ -1,18 +1,22 @@
 package com.scanny_project
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import androidx.appcompat.app.AppCompatActivity
+import androidx.navigation.Navigation.findNavController
+import androidx.navigation.findNavController
 import com.example.ui_ux_demo.R
 import com.example.ui_ux_demo.databinding.ActivityHomeBinding
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.scanny_project.TutorialFragments.TutorialCamera1Fragment
 import com.scanny_project.data.SessionManager
-import com.skydoves.transformationlayout.TransformationCompat
 import com.skydoves.transformationlayout.TransformationLayout
 import com.skydoves.transformationlayout.onTransformationStartContainer
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
+
+
 @AndroidEntryPoint
 class HomeActivity : AppCompatActivity() {
     private lateinit var binding : ActivityHomeBinding
@@ -28,8 +32,8 @@ class HomeActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         navigation = binding.root.findViewById(R.id.bottomNavigationView)
-        transformationLayout = binding.transformationLayout
-        transformationLayoutQuiz = binding.transformationLayoutQuiz
+//        transformationLayout = binding.transformationLayout
+//        transformationLayoutQuiz = binding.transformationLayoutQuiz
 
         val sharedPref = getSharedPreferences("MyAppPrefs", MODE_PRIVATE)
         val username = sharedPref.getString("username", "User")
@@ -53,13 +57,20 @@ class HomeActivity : AppCompatActivity() {
 
 
         binding.cvScanning.setOnClickListener {
-            /*startActivity(Intent(this, CameraActivity::class.java))*/
-            TransformationCompat.startActivity(transformationLayout, Intent(this, CameraActivity::class.java))
+            startActivity(Intent(this, CameraActivity::class.java))
+//            TransformationCompat.startActivity(transformationLayout, Intent(this, CameraActivity::class.java))
         }
         binding.cvQuiz.setOnClickListener {
-         TransformationCompat.startActivity(transformationLayoutQuiz, Intent(this, LecturesListActivity::class.java))
-//            startActivity(Intent(this, QuestionsListActivity::class.java))
+//         TransformationCompat.startActivity(transformationLayoutQuiz, Intent(this, LecturesListActivity::class.java))
+            startActivity(Intent(this, LecturesListActivity::class.java))
         }
+
+        binding.cvTutorial.setOnClickListener {
+//            val navController = findNavController(R.id.fragment_container_tutorial)
+//            navController.navigate(R.id.tutorialCamera1Fragment)
+            startActivity(Intent(this, TutorialActivity::class.java))
+        }
+
 
         Log.d("HomeActivity", "Token: ${sessionManager.authToken}")
 

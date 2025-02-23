@@ -54,10 +54,10 @@ class CameraFragment: Fragment(), ObjectDetectorHelper.DetectorListener{
 
     override fun onResume() {
         super.onResume()
-        if (!PermissionsFragment.hasPermissions(requireContext())) {
-            Navigation.findNavController(requireActivity(), R.id.fragment_container)
-                .navigate(CameraFragmentDirections.actionCameraToPermissions())
-        }
+//        if (!PermissionsFragment.hasPermissions(requireContext())) {
+//            Navigation.findNavController(requireActivity(), R.id.fragment_container)
+//                .navigate(CameraFragmentDirections.actionCameraToPermissions())
+//        }
     }
 
     override fun onDestroyView() {

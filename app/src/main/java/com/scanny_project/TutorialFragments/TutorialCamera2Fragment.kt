@@ -26,7 +26,7 @@ class TutorialCamera2Fragment : Fragment() {
         val root: View = binding.root
         binding.skipTutorialButton.setOnClickListener {
             findNavController().navigate(
-                TutorialCamera2FragmentDirections.actionTutorialCamera2FragmentToPermissionsFragment()
+                TutorialCamera2FragmentDirections.actionTutorialCamera2FragmentToHomeActivity()
             )
         }
         binding.btnTutorialNext.setOnClickListener {

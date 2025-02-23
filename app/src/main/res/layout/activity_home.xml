@@ -6,6 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.scanny_project.HomeActivity">
+
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -16,7 +17,6 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <!-- TOP WAVE -->
             <FrameLayout
                 android:layout_width="match_parent"
                 android:layout_height="340dp">
@@ -28,7 +28,6 @@
                     android:scaleType="fitXY"
                     android:src="@drawable/wave_top" />
 
-                <!-- The text & Scanny in front of wave -->
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
@@ -66,16 +65,14 @@
                 </LinearLayout>
             </FrameLayout>
 
-            <!-- MIDDLE AREA (Cards for “Skeniraj” and “Kviz”) -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:orientation="horizontal"
                 android:padding="16dp">
-
-                <!-- Card #1: Skeniraj -->
                 <androidx.cardview.widget.CardView
+                    android:id="@+id/cvScanning"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_margin="8dp"
@@ -112,9 +109,8 @@
                             android:textStyle="bold" />
                     </LinearLayout>
                 </androidx.cardview.widget.CardView>
-
-                <!-- Card #2: Kviz -->
                 <androidx.cardview.widget.CardView
+                    android:id="@+id/cvQuiz"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_margin="8dp"
@@ -146,6 +142,51 @@
                             android:layout_height="wrap_content"
                             android:layout_marginTop="8dp"
                             android:text="@string/lets_play_quiz"
+                            android:textColor="@color/dark_blue"
+                            android:textSize="18sp"
+                            android:textStyle="bold" />
+                    </LinearLayout>
+                </androidx.cardview.widget.CardView>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:padding="16dp">
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/cvTutorial"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="8dp"
+                    android:layout_weight="1"
+                    android:clickable="true"
+                    android:focusable="true"
+                    app:cardCornerRadius="24dp"
+                    app:cardElevation="6dp"
+                    app:cardUseCompatPadding="true">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:gravity="center"
+                        android:padding="16dp"
+                        android:background="@drawable/fancy_card_background">
+
+                        <ImageView
+                            android:id="@+id/ivTutorial"
+                            android:layout_width="64dp"
+                            android:layout_height="64dp"
+                            android:contentDescription="@string/lets_scan"
+                            app:srcCompat="@drawable/scanner2" />
+
+                        <TextView
+                            android:id="@+id/tvTutorial"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="8dp"
+                            android:text="@string/start_tutorial"
                             android:textColor="@color/dark_blue"
                             android:textSize="18sp"
                             android:textStyle="bold" />

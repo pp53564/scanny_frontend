@@ -53,7 +53,7 @@ class LoginViewModel @Inject constructor(private val loginRepository: LoginRepos
 
 
     private fun isPasswordValid(password: String): Boolean {
-        return password.length > 5
+        return password.length > 8
     }
 
 }

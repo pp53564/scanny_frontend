@@ -108,6 +108,7 @@
     <string name="tutorial_desc_3">Čestitamo! Sada znaš kako koristiti Scanny aplikaciju. Spreman si za zabavno učenje jezika!</string>
     <string name="tutorial_desc_2">Otvorit ćemo kameru i ti ćeš pokazivati predmete oko sebe. Ja ću ti pomoći prepoznati te predmete i naučit ćemo kako se zovu na drugim jezicima. Nije li to super?</string>
     <string name="tutorial_desc_1">Hej! Ja sam Scanny, tvoj robot prijatelj. Spremni za učenje?</string>
+    <string name="start_tutorial">Pomoć</string>
 
 
 </resources>

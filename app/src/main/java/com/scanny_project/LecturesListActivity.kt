@@ -36,7 +36,7 @@ class LecturesListActivity : AppCompatActivity() {
         lifecycleScope.launch {
             val lecturesResult = lectureRepository.getAllUserLectures()
             Log.i("petra", lecturesResult.toString())
-            if (lecturesResult is Result.Success) {
+            if (lecturesResult is Result.Success<List<UserLectureDTO>>) {
                 val lectures = lecturesResult.data
                 setupRecyclerView(lectures)
             } else {

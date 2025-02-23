@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph_tutorial"
+    app:startDestination="@id/tutorialCamera1Fragment">
+<fragment
+    android:id="@+id/tutorialCamera1Fragment"
+    android:name="com.scanny_project.TutorialFragments.TutorialCamera1Fragment"
+    android:label="fragment_tutorial_camera1" >
+    <action
+        android:id="@+id/action_tutorialCamera1Fragment_to_tutorialCamera2Fragment"
+        app:destination="@id/tutorialCamera2Fragment"
+        app:enterAnim="@anim/slide_in_right" />
+    <action
+        android:id="@+id/action_tutorialCamera1Fragment_to_homeActivity"
+        app:destination="@id/homeActivity" />
+</fragment>
+<fragment
+    android:id="@+id/tutorialCamera2Fragment"
+    android:name="com.scanny_project.TutorialFragments.TutorialCamera2Fragment"
+    android:label="fragment_tutorial_camera2"
+    tools:layout="@layout/fragment_tutorial_camera2" >
+    <action
+        android:id="@+id/action_tutorialCamera2Fragment_to_tutorialCamera3Fragment"
+        app:destination="@id/tutorialCamera3Fragment"
+        app:enterAnim="@anim/slide_in_right" />
+    <action
+        android:id="@+id/action_tutorialCamera2Fragment_to_tutorialCamera1Fragment"
+        app:destination="@id/tutorialCamera1Fragment"
+        app:enterAnim="@anim/slide_in_left" />
+    <action
+        android:id="@+id/action_tutorialCamera2Fragment_to_homeActivity"
+        app:destination="@id/homeActivity" />
+</fragment>
+<fragment
+    android:id="@+id/tutorialCamera3Fragment"
+    android:name="com.scanny_project.TutorialFragments.TutorialCamera3Fragment"
+    android:label="fragment_tutorial_camera3"
+    tools:layout="@layout/fragment_tutorial_camera3" >
+    <action
+        android:id="@+id/action_tutorialCamera3Fragment_to_tutorialCamera2Fragment"
+        app:destination="@id/tutorialCamera2Fragment"
+        app:enterAnim="@anim/slide_in_left" />
+    <action
+        android:id="@+id/action_tutorialCamera3Fragment_to_homeActivity"
+        app:destination="@id/homeActivity" />
+</fragment>
+<activity
+    android:id="@+id/homeActivity"
+    android:name="com.scanny_project.HomeActivity"
+    android:label="activity_home"
+    tools:layout="@layout/activity_home" />
+
+</navigation>

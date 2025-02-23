@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.ui_ux_demo.databinding.ActivityQuestionsListBinding
 import com.scanny_project.data.LectureRepository
 import com.scanny_project.data.Result
+import com.scanny_project.data.model.UserQuestionDTO
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -41,7 +42,7 @@ class QuestionsListActivity : AppCompatActivity() {
 
         lifecycleScope.launch {
             val questionsResult = lectureRepository.getUserQuestionsByLecture(lectureId)
-            if (questionsResult is Result.Success) {
+            if (questionsResult is Result.Success<List<UserQuestionDTO>>) {
                 val questions = questionsResult.data
 
                 val adapter = QuestionsAdapter(questions) { selectedQuestion ->

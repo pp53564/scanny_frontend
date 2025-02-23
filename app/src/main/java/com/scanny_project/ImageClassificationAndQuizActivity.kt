@@ -28,14 +28,13 @@ import org.tensorflow.lite.task.vision.classifier.Classifications
 import kotlin.math.min
 
 @AndroidEntryPoint
-class ImageClassificationAndQuizActivity : AppCompatActivity(), ImageClassifierHelper.ClassifierListener {
+class ImageClassificationAndQuizActivity : AppCompatActivity(){
 
     private lateinit var cameraLauncher: ActivityResultLauncher<Intent>
     private lateinit var binding: ActivityImageClassificationAndQuizBinding
     private lateinit var imageView: ImageView
-    private lateinit var imageClassifierHelper: ImageClassifierHelper
+//    private lateinit var imageClassifierHelper: ImageClassifierHelper
     private var currentQuestionId: Long = 0L
-
     private val viewModel: ImageQuizViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -51,15 +50,31 @@ class ImageClassificationAndQuizActivity : AppCompatActivity(), ImageClassifierH
         currentQuestionId = intent.getLongExtra("QUESTION_ID", 0L)
         Log.i("question_id", currentQuestionId.toString())
 
-        imageClassifierHelper = ImageClassifierHelper(
-            context = this,
-            imageClassifierListener = this,
-            threshold = 0.2f,
-        )
+//        imageClassifierHelper = ImageClassifierHelper(
+//            context = this,
+//            imageClassifierListener = this,
+//            threshold = 0.2f,
+//        )
 
         setupListeners()
         setupCameraLauncher()
+        observeViewModel()
     }
+
+    private fun observeViewModel() {
+        // Observing attemptSent just for logs
+        viewModel.attemptSent.observe(this) { sent ->
+            Log.i("ImageQuizActivity", "Attempt sent: $sent")
+        }
+
+        viewModel.attemptResponse.observe(this) { response ->
+            response?.let {
+                // Show a dialog based on "correct" or not
+                handleResult(it.correct, it.confidenceScore, it.matchedLabel)
+            }
+        }
+    }
+
 
     private fun setupListeners() {
         binding.buttonTakePicture.setOnClickListener {
@@ -68,17 +83,13 @@ class ImageClassificationAndQuizActivity : AppCompatActivity(), ImageClassifierH
 
         binding.buttonBackLayout.imButtonBack.setOnClickListener {
             if (viewModel.attemptSent.value == false) {
-                viewModel.sendAttempt(currentQuestionId, succeeded = false, imageBitmap = null)
+                viewModel.sendAttempt(currentQuestionId, imageBitmap = null)
             }
             val intent = Intent(this, LecturesListActivity::class.java)
             startActivity(intent)
             finish()
         }
 
-        // Observe ViewModel LiveData for any changes
-        viewModel.attemptSent.observe(this) { sent ->
-            Log.i("ImageQuizActivity", "Attempt sent: $sent")
-        }
     }
 
     private fun setupCameraLauncher() {
@@ -87,7 +98,6 @@ class ImageClassificationAndQuizActivity : AppCompatActivity(), ImageClassifierH
                 val data = result.data
                 if (data != null && data.extras != null) {
                     var image = data.extras!!.get("data") as Bitmap
-//                    val dimension = min(image.width, image.height)
                     imageView.setImageBitmap(image)
                     imageView.visibility = View.VISIBLE
 
@@ -100,7 +110,11 @@ class ImageClassificationAndQuizActivity : AppCompatActivity(), ImageClassifierH
                     binding.buttonTakePicture.visibility = View.GONE
 
                     image = Bitmap.createScaledBitmap(image, 224, 224, false)
-                    classifyImage(image)
+                    val capturedBitmap = Bitmap.createScaledBitmap(image, 224, 224, false)
+                    viewModel.sendAttempt(
+                        questionId = currentQuestionId,
+                        imageBitmap = capturedBitmap
+                    )
                 }
             }
         }
@@ -115,45 +129,63 @@ class ImageClassificationAndQuizActivity : AppCompatActivity(), ImageClassifierH
         }
     }
 
-    private fun classifyImage(image: Bitmap) {
-        val resizedImage = Bitmap.createScaledBitmap(image, 224, 224, false)
-        imageClassifierHelper.classify(resizedImage, 0)
-    }
+//    private fun classifyImage(image: Bitmap) {
+//        val resizedImage = Bitmap.createScaledBitmap(image, 224, 224, false)
+//
+//    }
 
-    override fun onError(error: String) {
-        Toast.makeText(this, error, Toast.LENGTH_SHORT).show()
-    }
+//    override fun onError(error: String) {
+//        Toast.makeText(this, error, Toast.LENGTH_SHORT).show()
+//    }
 
-    override fun onResults(results: List<Classifications>?, inferenceTime: Long) {
+//    override fun onResults(results: List<Classifications>?, inferenceTime: Long) {
+//        binding.classified.visibility = View.VISIBLE
+//        binding.confidencesText.visibility = View.VISIBLE
+//        binding.resultReaction.visibility = View.VISIBLE
+//        binding.myCardView.visibility = View.VISIBLE
+//
+//        var succeeded = false
+//        if (!results.isNullOrEmpty()) {
+//            val classifications = results[0]
+//            if (classifications.categories.isNotEmpty()) {
+//                val topResult = classifications.categories.maxByOrNull { it.score }
+//                topResult?.let {
+//                    if (it.label.contains(binding.tvThingForPicture.text)) {
+//                        binding.resultReaction.text = "BRAVO! Točan odgovor."
+//                        showImageDialog(true)
+//                        succeeded = true
+//                    } else {
+//                        binding.resultReaction.text = "Pokušaj ponovo."
+//                        showImageDialog(false)
+//                    }
+//                    binding.result.text = "${it.label}"
+//                    binding.confidence.text = "${it.score * 100}%"
+//                    Log.i("ImageQuizActivity", "Label: ${it.label}, Confidence: ${it.score}")
+//                }
+//            } else {
+//                binding.result.text = "Nema rezultata"
+//                Log.i("ImageQuizActivity", "No classifications received.")
+//            }
+//        }
+//        viewModel.sendAttempt(currentQuestionId, succeeded, (binding.imageView.drawable as? BitmapDrawable)?.bitmap)
+//    }
+
+    private fun handleResult(correct: Boolean, confidenceScore: Float, matchedLabel: String) {
         binding.classified.visibility = View.VISIBLE
         binding.confidencesText.visibility = View.VISIBLE
         binding.resultReaction.visibility = View.VISIBLE
         binding.myCardView.visibility = View.VISIBLE
-
-        var succeeded = false
-        if (!results.isNullOrEmpty()) {
-            val classifications = results[0]
-            if (classifications.categories.isNotEmpty()) {
-                val topResult = classifications.categories.maxByOrNull { it.score }
-                topResult?.let {
-                    if (it.label.contains(binding.tvThingForPicture.text)) {
-                        binding.resultReaction.text = "BRAVO!!"
-                        showImageDialog(true)
-                        succeeded = true
-                    } else {
-                        binding.resultReaction.text = ":("
-                        showImageDialog(false)
-                    }
-                    binding.result.text = "${it.label}"
-                    binding.confidence.text = "${it.score * 100}%"
-                    Log.i("ImageQuizActivity", "Label: ${it.label}, Confidence: ${it.score}")
-                }
-            } else {
-                binding.result.text = "Nema rezultata"
-                Log.i("ImageQuizActivity", "No classifications received.")
-            }
+        if (correct) {
+            binding.resultReaction.text = "BRAVO! Točan odgovor."
+            showImageDialog(true)
+        } else {
+            binding.resultReaction.text = "Pokušaj ponovo."
+            showImageDialog(false)
         }
-        viewModel.sendAttempt(currentQuestionId, succeeded, (binding.imageView.drawable as? BitmapDrawable)?.bitmap)
+        //ovo napravi ako nije tocno sto je prvo bilo gore:
+        binding.result.text = "${matchedLabel}"
+        binding.confidence.text = "${confidenceScore * 100}%"
+
     }
 
     private fun showImageDialog(correct: Boolean) {
@@ -167,11 +199,11 @@ class ImageClassificationAndQuizActivity : AppCompatActivity(), ImageClassifierH
         textView.text = if (correct) {
             "Bravo! Dobro obavljeno!"
         } else {
-            "Ops! Nije dobro."
+            "Ops! Nije dobro. Pokušaj ponovo."
         }
 
         val image = dialog.findViewById<ImageView>(R.id.dialogImageView)
-        image.setImageResource(if (correct) R.drawable.scanny_happy else R.drawable.scanny)
+        image.setImageResource(if (correct) R.drawable.scanny_happy else R.drawable.scanny_sad)
 
         dialog.show()
         dialog.window?.decorView?.postDelayed({
@@ -183,10 +215,10 @@ class ImageClassificationAndQuizActivity : AppCompatActivity(), ImageClassifierH
 
     override fun onPause() {
         super.onPause()
-        if (viewModel.attemptSent.value == false) {
-            Log.i("ImageQuizActivity", "Sending final attempt before pause")
-            viewModel.sendAttempt(currentQuestionId, succeeded = false, imageBitmap = null)
-        }
+//        if (viewModel.attemptSent.value == false) {
+//            Log.i("ImageQuizActivity", "Sending final attempt before pause")
+//            viewModel.sendAttempt(currentQuestionId, imageBitmap = null)
+//        }
     }
 
 }

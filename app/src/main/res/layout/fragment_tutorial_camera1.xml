@@ -8,6 +8,17 @@
     android:layout_height="match_parent"
     tools:context="com.scanny_project.TutorialFragments.TutorialCamera1Fragment">
 
+<!--    <androidx.fragment.app.FragmentContainerView-->
+<!--        android:id="@+id/fragment_container_tutorial"-->
+<!--        android:name="androidx.navigation.fragment.NavHostFragment"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="match_parent"-->
+<!--        android:layout_marginTop="60dp"-->
+<!--        android:background="@android:color/transparent"-->
+<!--        android:keepScreenOn="true"-->
+<!--        app:defaultNavHost="true"-->
+<!--        app:navGraph="@navigation/nav_graph_tutorial" />-->
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -37,7 +48,7 @@
             app:elevation="15dp"
             app:layout_constraintBottom_toBottomOf="@+id/ivScanny"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.954"
+            app:layout_constraintHorizontal_bias="0.9"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@+id/ivScanny"
             app:layout_constraintVertical_bias="0.557"
@@ -52,12 +63,12 @@
             android:layout_marginBottom="28dp"
             android:background="@drawable/background_gradient"
             android:elevation="20dp"
-            android:text="@string/skip"
+            android:text="Preskoči"
             android:textColor="@color/white"
             android:textSize="20sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.502"
+            app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent" />
 
         <ImageView

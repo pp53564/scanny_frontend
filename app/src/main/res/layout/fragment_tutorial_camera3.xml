@@ -1,7 +1,6 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/tutorialCamera3Fragment"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -30,15 +29,17 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="16dp"
+            android:contentDescription="back"
             android:src="@drawable/baseline_arrow_back_ios_new_24"
             app:backgroundTint="@color/dark_blue"
             app:elevation="10dp"
             app:layout_constraintBottom_toBottomOf="@+id/ivScanny"
-            app:layout_constraintEnd_toStartOf="@+id/ivScanny"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.1"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@+id/ivScanny"
-            app:tint="@android:color/white"
-            android:contentDescription="back" />
+            app:layout_constraintVertical_bias="0.557"
+            app:tint="@android:color/white" />
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/btnTutorialNext"
@@ -48,36 +49,22 @@
             android:contentDescription="Next arrow"
             android:src="@drawable/next"
             app:backgroundTint="@color/dark_blue"
-            app:elevation="15dp"
+            app:elevation="10dp"
             app:layout_constraintBottom_toBottomOf="@+id/ivScanny"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.954"
+            app:layout_constraintHorizontal_bias="0.9"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@+id/ivScanny"
-            app:tint="@android:color/white" />
-
-<!--        <androidx.appcompat.widget.AppCompatButton-->
-<!--            android:id="@+id/skipTutorialButton"-->
-<!--            style="@android:style/Widget.Button"-->
-<!--            android:layout_width="200dp"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:layout_marginBottom="28dp"-->
-<!--            android:background="@drawable/background_gradient"-->
-<!--            android:elevation="20dp"-->
-<!--            android:text="Preskoči"-->
-<!--            android:textColor="@color/white"-->
-<!--            android:textSize="20sp"-->
-<!--            app:layout_constraintBottom_toBottomOf="parent"-->
-<!--            app:layout_constraintEnd_toEndOf="parent"-->
-<!--            app:layout_constraintHorizontal_bias="0.502"-->
-<!--            app:layout_constraintStart_toStartOf="parent" />-->
+            app:layout_constraintVertical_bias="0.557"
+            app:tint="@android:color/white"
+            />
 
         <ImageView
             android:id="@+id/ivScanny"
             android:layout_width="150dp"
             android:layout_height="180dp"
             android:scaleType="fitCenter"
-            android:src="@drawable/scanny_mac"
+            android:src="@drawable/scanny_tutorial_3"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

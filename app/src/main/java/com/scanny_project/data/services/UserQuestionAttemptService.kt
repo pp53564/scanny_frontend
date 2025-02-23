@@ -1,5 +1,6 @@
 package com.scanny_project.data.services
 
+import com.scanny_project.data.model.AttemptResponse
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
 import retrofit2.Response
@@ -12,7 +13,6 @@ interface UserQuestionAttemptService {
     suspend fun recordAttempt(
         @Part("userId") userId: RequestBody,
         @Part("questionId") questionId: RequestBody,
-        @Part("succeeded") succeeded: RequestBody,
-        @Part correctImage: MultipartBody.Part? = null
-    ): Response<String>
+        @Part correctImage: MultipartBody.Part
+    ): Response<AttemptResponse>
 }

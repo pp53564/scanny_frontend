@@ -7,21 +7,14 @@
     android:layout_height="match_parent"
     tools:context="com.scanny_project.ImageClassificationAndQuizActivity">
 
+    <!-- Top "Back Button" include -->
     <include
         android:id="@+id/buttonBackLayout"
         layout="@layout/back_button_just_arrow"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-<!--    <ImageView-->
-<!--        android:id="@+id/arcTop"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="220dp"-->
-<!--        android:scaleType="fitXY"-->
-<!--        android:adjustViewBounds="true"-->
-<!--        android:src="@drawable/arc_top"-->
-<!--        android:layout_alignParentTop="true" />-->
-
+    <!-- Title container at the top -->
     <LinearLayout
         android:id="@+id/titleContainer"
         android:layout_width="match_parent"
@@ -50,69 +43,96 @@
             android:layout_marginTop="8dp" />
     </LinearLayout>
 
+    <!-- Scroll area below the title container -->
     <ScrollView
         android:id="@+id/scrollArea"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@+id/titleContainer"
-        android:layout_alignParentBottom="true"
         android:layout_alignParentStart="true"
         android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
         android:padding="16dp"
         android:overScrollMode="never">
 
-        <androidx.cardview.widget.CardView
+        <!--
+             A vertical LinearLayout to hold:
+             (1) The top CardView (question & image)
+             (2) Classification TextViews layout (below)
+        -->
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/imageContainer"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="60dp"
-            app:cardCornerRadius="24dp"
-            app:cardElevation="6dp"
-            app:cardUseCompatPadding="true"
-            android:layout_marginBottom="100dp">
+            android:orientation="vertical">
 
-            <LinearLayout
+            <!-- 1) CardView for question + image container -->
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cardView2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:background="@drawable/fancy_card_background"
+                app:cardCornerRadius="24dp"
+                app:cardElevation="6dp"
+                app:cardUseCompatPadding="true"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/fancy_card_background"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:padding="20dp">
+
+                    <TextView
+                        android:id="@+id/tvQuestion"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Uslikaj objekt:"
+                        android:textColor="@color/dark_blue"
+                        android:textSize="20sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/tvThingForPicture"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="6dp"
+                        android:textColor="@color/accentColor"
+                        android:textSize="22sp"
+                        android:textStyle="bold" />
+
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/myCardView"
+                        android:layout_width="280dp"
+                        android:layout_height="280dp"
+                        android:layout_marginTop="12dp"
+                        android:elevation="4dp"
+                        android:visibility="gone"
+                        app:cardCornerRadius="16dp"
+                        app:cardUseCompatPadding="true">
+
+                        <ImageView
+                            android:id="@+id/imageView"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:scaleType="centerCrop"
+                            android:visibility="gone" />
+                    </androidx.cardview.widget.CardView>
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <!-- 2) Classification TextViews BELOW the image container -->
+            <LinearLayout
+                android:id="@+id/linearLayout2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:gravity="center"
-                android:padding="20dp">
-
-                <TextView
-                    android:id="@+id/tvQuestion"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Uslikaj objekt:"
-                    android:textSize="20sp"
-                    android:textStyle="bold"
-                    android:textColor="@color/dark_blue" />
-
-                <TextView
-                    android:id="@+id/tvThingForPicture"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="6dp"
-                    android:textColor="@color/accentColor"
-                    android:textSize="22sp"
-                    android:textStyle="bold" />
-
-                <androidx.cardview.widget.CardView
-                    android:id="@+id/myCardView"
-                    android:layout_width="280dp"
-                    android:layout_height="280dp"
-                    android:layout_marginTop="12dp"
-                    app:cardCornerRadius="16dp"
-                    app:cardUseCompatPadding="true"
-                    android:elevation="4dp"
-                    android:visibility="gone">
-
-                    <ImageView
-                        android:id="@+id/imageView"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:scaleType="centerCrop"
-                        android:visibility="gone" />
-                </androidx.cardview.widget.CardView>
+                android:orientation="vertical"
+                android:padding="20dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/cardView2"
+                tools:layout_editor_absoluteX="0dp">
 
                 <TextView
                     android:id="@+id/classified"
@@ -120,10 +140,10 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="14dp"
                     android:text="Klasifikacija:"
+                    android:textColor="@color/dark_blue"
                     android:textSize="18sp"
                     android:textStyle="bold"
-                    android:visibility="gone"
-                    android:textColor="@color/dark_blue" />
+                    android:visibility="gone" />
 
                 <TextView
                     android:id="@+id/result"
@@ -148,24 +168,25 @@
                     android:id="@+id/confidence"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
                     android:textColor="@color/black"
-                    android:textSize="18sp"
-                    android:layout_marginTop="4dp" />
+                    android:textSize="18sp" />
 
                 <TextView
                     android:id="@+id/resultReaction"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
+                    android:textColor="@color/accentColor"
                     android:textSize="22sp"
                     android:textStyle="bold"
-                    android:visibility="gone"
-                    android:textColor="@color/accentColor" />
-
+                    android:visibility="gone" />
             </LinearLayout>
-        </androidx.cardview.widget.CardView>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
 
+    <!-- "Otvori kameru" button anchored at bottom center -->
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/buttonTakePicture"
         android:layout_width="wrap_content"
