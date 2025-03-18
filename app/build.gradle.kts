@@ -96,5 +96,6 @@ dependencies {
 
     implementation("androidx.core:core-splashscreen:1.0.1")
 
+    implementation("com.google.mlkit:translate:17.0.3")
 
 }

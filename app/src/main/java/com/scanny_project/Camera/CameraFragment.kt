@@ -3,6 +3,7 @@ package com.scanny_project.Camera
 import android.annotation.SuppressLint
 import android.content.res.Configuration
 import android.graphics.Bitmap
+import android.graphics.RectF
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -24,7 +25,11 @@ import androidx.lifecycle.lifecycleScope
 import androidx.navigation.Navigation
 import com.example.ui_ux_demo.R
 import com.google.android.material.bottomsheet.BottomSheetBehavior
+import com.google.mlkit.nl.translate.Translator
 import com.scanny_project.ObjectDetectorHelper
+import com.scanny_project.OverlayView
+import com.scanny_project.data.model.CustomDetection
+import com.scanny_project.utils.TranslatorHelper
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -49,6 +54,7 @@ class CameraFragment: Fragment(), ObjectDetectorHelper.DetectorListener{
     private var imageAnalyzer: ImageAnalysis? = null
     private var camera: Camera? = null
     private var cameraProvider: ProcessCameraProvider? = null
+    private var translator: Translator? = null
 
     private lateinit var cameraExecutor: ExecutorService
 
@@ -92,6 +98,7 @@ class CameraFragment: Fragment(), ObjectDetectorHelper.DetectorListener{
             }
         })
 
+
         return fragmentCameraBinding.root
     }
 
@@ -104,12 +111,14 @@ class CameraFragment: Fragment(), ObjectDetectorHelper.DetectorListener{
             objectDetectorListener = this
         )
 
+        Log.i("petra4", translator.toString())
+
         cameraExecutor = Executors.newSingleThreadExecutor()
 
         // Using viewLifecycleOwner.lifecycleScope to ensure coroutine is tied to the fragment's lifecycle
         fragmentCameraBinding.viewFinder.post {
             viewLifecycleOwner.lifecycleScope.launch(Dispatchers.IO) {
-                setUpCamera()  // Run camera setup on the IO dispatcher
+                    setUpCamera()
             }
         }
 
@@ -300,30 +309,77 @@ class CameraFragment: Fragment(), ObjectDetectorHelper.DetectorListener{
     // Update UI after objects have been detected. Extracts original image height/width
     // to scale and place bounding boxes properly through OverlayView
     override fun onResults(
-        results: MutableList<Detection>?,
+        detections: MutableList<Detection>?,
         inferenceTime: Long,
         imageHeight: Int,
         imageWidth: Int
     ) {
+        if(translator == null) {
+            return
+        }
+
         activity?.runOnUiThread {
-          /*  fragmentCameraBinding.bottomSheetLayout.inferenceTimeVal.text =
-                String.format("%d ms", inferenceTime)*/
+            val rawDetections = detections ?: return@runOnUiThread
 
-            // Pass necessary information to OverlayView for drawing on the canvas
-            fragmentCameraBinding.overlay.setResults(
-                results ?: LinkedList<Detection>(),
-                imageHeight,
-                imageWidth
-            )
+            val translatedDetections = mutableListOf<CustomDetection>()
+            var pendingTranslations = rawDetections.size
 
-            // Force a redraw
-            fragmentCameraBinding.overlay.invalidate()
+            for (det in rawDetections) {
+                val boundingBox = det.boundingBox
+                val score = det.categories[0].score
+                val label = det.categories[0].label
+
+                translator?.translate(label)
+                    ?.addOnSuccessListener { translated ->
+                        val rectF = RectF(
+                            boundingBox.left.toFloat(),
+                            boundingBox.top.toFloat(),
+                            boundingBox.right.toFloat(),
+                            boundingBox.bottom.toFloat()
+                        )
+                        translatedDetections.add(
+                            CustomDetection(rectF, translated, score)
+                        )
+
+                        pendingTranslations--
+                        if (pendingTranslations == 0) {
+                            fragmentCameraBinding.overlay.setTranslatedResults(
+                                translatedDetections,
+                                imageHeight,
+                                imageWidth
+                            )
+                        }
+                    }?.addOnFailureListener {
+                    val rectF = RectF(
+                        boundingBox.left.toFloat(),
+                        boundingBox.top.toFloat(),
+                        boundingBox.right.toFloat(),
+                        boundingBox.bottom.toFloat()
+                    )
+                    translatedDetections.add(
+                        CustomDetection(rectF, label, score)
+                    )
+
+                    pendingTranslations--
+                    if (pendingTranslations == 0) {
+                        fragmentCameraBinding.overlay.setTranslatedResults(
+                            translatedDetections,
+                            imageHeight,
+                            imageWidth
+                        )
+                    }
+                }
+            }
         }
     }
 
+    public fun setTranslator(translator: Translator) {
+        this.translator = translator
+    }
     override fun onError(error: String) {
         activity?.runOnUiThread {
             Toast.makeText(requireContext(), error, Toast.LENGTH_SHORT).show()
         }
     }
+
 }

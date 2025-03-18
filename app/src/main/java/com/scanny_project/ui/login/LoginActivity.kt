@@ -58,7 +58,8 @@ private val loginViewModel: LoginViewModel by viewModels()
                 startActivity(Intent(this, MainActivity::class.java))
             }
             setResult(Activity.RESULT_OK)
-
+            //samo za test OVO OBRISI POSLIJE
+            startActivity(Intent(this, MainActivity::class.java))
         })
 
         username.afterTextChanged {

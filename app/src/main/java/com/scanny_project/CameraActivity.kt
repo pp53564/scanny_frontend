@@ -4,7 +4,12 @@ import android.content.Intent
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
+import com.example.ui_ux_demo.R
 import com.example.ui_ux_demo.databinding.ActivityCameraBinding
+import com.google.mlkit.nl.translate.TranslateLanguage
+import com.scanny_project.Camera.CameraFragment
+import com.scanny_project.utils.TranslatorHelper
 
 class CameraActivity : AppCompatActivity() {
     private lateinit var binding: ActivityCameraBinding
@@ -17,6 +22,31 @@ class CameraActivity : AppCompatActivity() {
             val intent = Intent(this, HomeActivity::class.java)
             startActivity(intent)
         }
+//        val overlayView = findViewById<OverlayView>(R.id.overlay)
+//        TranslatorHelper.initializeTranslator(TranslateLanguage.ITALIAN) { translator ->
+//            overlayView.setTranslator(translator)
+//        }
+
+         val selectedLangCode = intent.getStringExtra("SELECTED_LANGUAGE")?: "en"
+        Log.i("petra1", selectedLangCode)
+
+        val fragment = CameraFragment().apply {
+            arguments = Bundle().apply {
+                putString("SELECTED_LANGUAGE", selectedLangCode)
+            }
+        }
+
+        TranslatorHelper.initializeTranslator(selectedLangCode) { translator ->
+            lifecycle.addObserver(translator)
+//            val overlayView = findViewById<OverlayView>(R.id.overlay)
+//            overlayView.setCustomTranslator(translator)
+            fragment.setTranslator(translator)
+        }
+
+        supportFragmentManager.beginTransaction()
+            .replace(R.id.fragment_container, fragment)
+            .addToBackStack(null)
+            .commit()
     }
 
     override fun onBackPressed() {

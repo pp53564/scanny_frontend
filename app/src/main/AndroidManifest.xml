@@ -22,6 +22,9 @@
         android:theme="@style/Theme.UI_UX_Demo"
         tools:targetApi="31">
         <activity
+            android:name="com.scanny_project.SelectLanguageActivity"
+            android:exported="false" />
+        <activity
             android:name="com.scanny_project.TutorialActivity"
             android:exported="false" />
         <activity

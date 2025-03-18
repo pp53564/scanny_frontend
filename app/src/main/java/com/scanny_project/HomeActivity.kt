@@ -57,7 +57,7 @@ class HomeActivity : AppCompatActivity() {
 
 
         binding.cvScanning.setOnClickListener {
-            startActivity(Intent(this, CameraActivity::class.java))
+            startActivity(Intent(this, SelectLanguageActivity::class.java))
 //            TransformationCompat.startActivity(transformationLayout, Intent(this, CameraActivity::class.java))
         }
         binding.cvQuiz.setOnClickListener {
