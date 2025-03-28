@@ -30,7 +30,7 @@ class QuestionsListActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         binding.buttonBackLayout.imButtonBack.setOnClickListener {
-            val intent = Intent(this, LecturesListActivity::class.java)
+            val intent = Intent(this, SelectLanguageActivityForImageClassification::class.java)
             startActivity(intent)
         }
 
@@ -47,7 +47,7 @@ class QuestionsListActivity : AppCompatActivity() {
 
                 val adapter = QuestionsAdapter(questions) { selectedQuestion ->
                     val intent = Intent(this@QuestionsListActivity, ImageClassificationAndQuizActivity::class.java)
-                    intent.putExtra("QUESTION_KEYWORD", selectedQuestion.subject)
+                    intent.putExtra("QUESTION_KEYWORD", selectedQuestion.localizedSubject)
                     intent.putExtra("QUESTION_ID", selectedQuestion.id)
                     startActivity(intent)
                 }

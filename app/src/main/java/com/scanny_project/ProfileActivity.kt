@@ -55,6 +55,10 @@ class ProfileActivity : AppCompatActivity() {
           logoutUser()
         }
 
+        binding.ivNextStats.setOnClickListener{
+            startActivity(Intent(this, StatsActivity::class.java))
+        }
+
     }
 
     private fun logoutUser() {

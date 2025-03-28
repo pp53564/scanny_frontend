@@ -45,18 +45,25 @@ class OverlayView(context: Context?, attrs: AttributeSet?) : View(context, attrs
     }
 
     private fun initPaints() {
-       /* textBackgroundPaint.color = Color.BLACK
+        // Semi-transparent black background for text
+        textBackgroundPaint.color = Color.argb(160, 0, 0, 0)
         textBackgroundPaint.style = Paint.Style.FILL
-        textBackgroundPaint.textSize = 50f*/
+        textBackgroundPaint.isAntiAlias = true
+//        textBackgroundPaint.textSize = 62f
 
-//        textPaint.color = Color.WHITE
-        textPaint.style = Paint.Style.FILL
-        textPaint.textSize = 50f
+        // White text on top of the black background
+        textPaint.color = Color.WHITE
+//        textPaint.style = Paint.Style.FILL
+        textPaint.isAntiAlias = true
+        textPaint.textSize = 62f
 
+        // Dark-blue bounding box with a moderate stroke width
         boxPaint.color = ContextCompat.getColor(context!!, R.color.dark_blue)
-        boxPaint.strokeWidth = 8F
+        boxPaint.strokeWidth = 6f
         boxPaint.style = Paint.Style.STROKE
+        boxPaint.isAntiAlias = true
     }
+
 
     fun setTranslatedResults(
         detectionResults: List<CustomDetection>,
@@ -77,7 +84,10 @@ class OverlayView(context: Context?, attrs: AttributeSet?) : View(context, attrs
             val bottom = boundingBox.bottom * scaleFactor
             val left = boundingBox.left * scaleFactor
             val right = boundingBox.right * scaleFactor
-            canvas.drawRect(result.boundingBox, boxPaint)
+
+            val drawableRect = RectF(left, top, right, bottom)
+            canvas.drawRect(drawableRect, boxPaint)
+//            canvas.drawRect(result.boundingBox, boxPaint)
             // measure text
             textBackgroundPaint.getTextBounds(result.label, 0, result.label.length, bounds)
             val textWidth = bounds.width()

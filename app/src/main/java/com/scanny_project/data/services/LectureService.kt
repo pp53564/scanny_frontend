@@ -14,6 +14,9 @@ interface LectureService {
     @GET("api/lectures/user")
     suspend fun getAllUserLectures(): Response<List<UserLectureDTO>>
 
+    @GET("api/lectures/user/{selectedLangCode}")
+    suspend fun getAllUserLanguageLectures(@Path("selectedLangCode") selectedLangCode: String?): Response<List<UserLectureDTO>>
+
     @GET("api/questions/lecture/{lectureId}")
     suspend fun getQuestionsByLecture(@Path("lectureId") lectureId: Long): Response<List<QuestionDTO>>
 

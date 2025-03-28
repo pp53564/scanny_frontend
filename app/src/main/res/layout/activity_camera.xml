@@ -26,7 +26,7 @@
 
         <include
             android:id="@+id/buttonBackLayout"
-            layout="@layout/back_button"
+            layout="@layout/back_button_just_arrow"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 

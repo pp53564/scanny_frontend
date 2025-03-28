@@ -8,9 +8,7 @@ import com.example.ui_ux_demo.R
 import com.example.ui_ux_demo.databinding.ActivitySelectLanguageBinding
 import com.scanny_project.utils.LanguageAdapter
 
-data class LanguageOption(val code: String, val name: String, val flagResId: Int)
-
-class SelectLanguageActivity : AppCompatActivity() {
+class SelectLanguageActivityForImageClassification : AppCompatActivity() {
     private lateinit var binding: ActivitySelectLanguageBinding
     private val languages = listOf(
         LanguageOption("hr", "Hrvatski", R.drawable.hr),
@@ -32,10 +30,11 @@ class SelectLanguageActivity : AppCompatActivity() {
         binding.recyclerLanguages.layoutManager = GridLayoutManager(this, 2)
 
         val adapter = LanguageAdapter(languages) { selectedLanguage ->
-            val intent = Intent(this, CameraActivity::class.java)
+            val intent = Intent(this, LecturesListActivity::class.java)
             intent.putExtra("SELECTED_LANGUAGE", selectedLanguage.code)
             startActivity(intent)
         }
+
         binding.recyclerLanguages.adapter = adapter
 
     }

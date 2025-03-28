@@ -28,25 +28,26 @@ class LecturesListActivity : AppCompatActivity() {
         binding = ActivityLecturesListBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        val selectedLangCode = intent.getStringExtra("SELECTED_LANGUAGE").toString()
+
         binding.buttonBackLayout.imButtonBack.setOnClickListener {
             val intent = Intent(this, HomeActivity::class.java)
             startActivity(intent)
         }
 
         lifecycleScope.launch {
-            val lecturesResult = lectureRepository.getAllUserLectures()
-            Log.i("petra", lecturesResult.toString())
+            val lecturesResult = lectureRepository.getAllUserLanguageLectures(selectedLangCode)
             if (lecturesResult is Result.Success<List<UserLectureDTO>>) {
                 val lectures = lecturesResult.data
-                setupRecyclerView(lectures)
+                setupRecyclerView(lectures, selectedLangCode)
             } else {
                 Log.e("LecturesListActivity", "Failed to fetch lectures")
             }
         }
     }
 
-    private fun setupRecyclerView(lectures: List<UserLectureDTO>) {
-        val adapter = LecturesAdapter(lectures) { selectedLecture ->
+    private fun setupRecyclerView(lectures: List<UserLectureDTO>, selectedLangCode: String) {
+        val adapter = LecturesAdapter(lectures, selectedLangCode) { selectedLecture ->
             val intent = Intent(this, QuestionsListActivity::class.java).apply {
                 putExtra("LECTURE_ID", selectedLecture.id)
             }

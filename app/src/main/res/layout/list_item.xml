@@ -25,5 +25,15 @@
             android:text="Lecture Title"
             android:textColor="@android:color/darker_gray"
             android:textSize="18sp" />
+<!--        <ImageView-->
+<!--            android:id="@+id/flagIcon"-->
+<!--            android:layout_width="32dp"-->
+<!--            android:layout_height="32dp"-->
+<!--            android:layout_gravity="top|end"-->
+<!--            android:layout_margin="8dp"-->
+<!--            android:background="@drawable/circle_background"-->
+<!--            android:padding="4dp"-->
+<!--            android:scaleType="centerCrop"-->
+<!--            android:src="@drawable/france_flag" />-->
     </LinearLayout>
 </com.google.android.material.card.MaterialCardView>

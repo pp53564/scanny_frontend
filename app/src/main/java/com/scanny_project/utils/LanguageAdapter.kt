@@ -31,13 +31,8 @@ class LanguageAdapter(
         RecyclerView.ViewHolder(binding.root) {
 
         fun bind(item: LanguageOption) {
-            Log.i("petra", item.name + item.flagResId)
             binding.languageName.text = item.name
             binding.flagImage.setImageResource(item.flagResId)
-
-            // Round rectangle background or shape
-            // If you want to style it in item_language_option.xml
-
             binding.root.setOnClickListener {
                 onLanguageClicked(item)
             }

@@ -38,6 +38,19 @@ class LectureRepository @Inject constructor(
         }
     }
 
+    suspend fun getAllUserLanguageLectures(selectedLangCode: String?): Result<List<UserLectureDTO>> {
+        return try {
+            val response = lectureService.getAllUserLanguageLectures(selectedLangCode)
+            if (response.isSuccessful) {
+                Result.Success(response.body() ?: emptyList())
+            } else {
+                Result.Error(IOException("Failed to fetch lectures: ${response.message()}"))
+            }
+        } catch (e: Exception) {
+            Result.Error(IOException("Error fetching lectures", e))
+        }
+    }
+
     suspend fun getQuestionsByLecture(lectureId: Long): Result<List<QuestionDTO>> {
         return try {
             val response = lectureService.getQuestionsByLecture(lectureId)

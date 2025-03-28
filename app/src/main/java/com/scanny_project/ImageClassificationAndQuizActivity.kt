@@ -85,7 +85,7 @@ class ImageClassificationAndQuizActivity : AppCompatActivity(){
             if (viewModel.attemptSent.value == false) {
                 viewModel.sendAttempt(currentQuestionId, imageBitmap = null)
             }
-            val intent = Intent(this, LecturesListActivity::class.java)
+            val intent = Intent(this, SelectLanguageActivityForImageClassification::class.java)
             startActivity(intent)
             finish()
         }

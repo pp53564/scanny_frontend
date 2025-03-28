@@ -62,7 +62,7 @@ class HomeActivity : AppCompatActivity() {
         }
         binding.cvQuiz.setOnClickListener {
 //         TransformationCompat.startActivity(transformationLayoutQuiz, Intent(this, LecturesListActivity::class.java))
-            startActivity(Intent(this, LecturesListActivity::class.java))
+            startActivity(Intent(this, SelectLanguageActivityForImageClassification::class.java))
         }
 
         binding.cvTutorial.setOnClickListener {
