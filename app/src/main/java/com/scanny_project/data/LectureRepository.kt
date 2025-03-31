@@ -75,4 +75,16 @@ class LectureRepository @Inject constructor(
             Result.Error(IOException("Error fetching questions", e))
         }
     }
+    suspend fun getUserQuestionsByLectureAndLang(lectureId: Long, selectedLangCode: String): Result<List<UserQuestionDTO>> {
+        return try {
+            val response = lectureService.getUserQuestionsByLectureAndLang(lectureId, selectedLangCode)
+            if (response.isSuccessful) {
+                Result.Success(response.body() ?: emptyList())
+            } else {
+                Result.Error(IOException("Failed to fetch questions: ${response.message()}"))
+            }
+        } catch (e: Exception) {
+            Result.Error(IOException("Error fetching questions", e))
+        }
+    }
 }

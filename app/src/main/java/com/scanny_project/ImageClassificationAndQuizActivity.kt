@@ -36,6 +36,7 @@ class ImageClassificationAndQuizActivity : AppCompatActivity(){
 //    private lateinit var imageClassifierHelper: ImageClassifierHelper
     private var currentQuestionId: Long = 0L
     private val viewModel: ImageQuizViewModel by viewModels()
+    private lateinit var langCode: String
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -45,6 +46,7 @@ class ImageClassificationAndQuizActivity : AppCompatActivity(){
         imageView = binding.imageView
 
         val task = intent.getStringExtra("QUESTION_KEYWORD") ?: "unknown"
+        langCode = intent.getStringExtra("SELECTED_LANGUAGE").toString()
         binding.tvThingForPicture.text = task
 
         currentQuestionId = intent.getLongExtra("QUESTION_ID", 0L)
@@ -83,7 +85,7 @@ class ImageClassificationAndQuizActivity : AppCompatActivity(){
 
         binding.buttonBackLayout.imButtonBack.setOnClickListener {
             if (viewModel.attemptSent.value == false) {
-                viewModel.sendAttempt(currentQuestionId, imageBitmap = null)
+                viewModel.sendAttempt(currentQuestionId, imageBitmap = null, langCode)
             }
             val intent = Intent(this, SelectLanguageActivityForImageClassification::class.java)
             startActivity(intent)
@@ -113,7 +115,8 @@ class ImageClassificationAndQuizActivity : AppCompatActivity(){
                     val capturedBitmap = Bitmap.createScaledBitmap(image, 224, 224, false)
                     viewModel.sendAttempt(
                         questionId = currentQuestionId,
-                        imageBitmap = capturedBitmap
+                        imageBitmap = capturedBitmap,
+                        langCode = langCode
                     )
                 }
             }

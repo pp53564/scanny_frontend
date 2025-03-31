@@ -4,6 +4,7 @@ import com.scanny_project.data.*
 import com.scanny_project.data.LoginRepository
 import com.scanny_project.data.SessionManager
 import com.scanny_project.data.services.LectureService
+import com.scanny_project.data.services.StatsService
 import com.scanny_project.data.services.UserQuestionAttemptService
 import com.scanny_project.data.services.UserService
 import dagger.Module
@@ -30,10 +31,10 @@ object AppModule {
     @Singleton
     fun provideOkHttpClient(authInterceptor: AuthInterceptor): OkHttpClient {
         return OkHttpClient.Builder()
-//            .addInterceptor(authInterceptor)
-//            .addInterceptor(HttpLoggingInterceptor().apply {
-//                level = HttpLoggingInterceptor.Level.BODY
-//            })
+            .addInterceptor(authInterceptor)
+            .addInterceptor(HttpLoggingInterceptor().apply {
+                level = HttpLoggingInterceptor.Level.BODY
+            })
             .build()
     }
 
@@ -58,6 +59,12 @@ object AppModule {
     @Singleton
     fun provideLectureService(retrofit: Retrofit): LectureService {
         return retrofit.create(LectureService::class.java)
+    }
+
+    @Provides
+    @Singleton
+    fun provideStatsService(retrofit: Retrofit): StatsService {
+        return retrofit.create(StatsService::class.java)
     }
 
 

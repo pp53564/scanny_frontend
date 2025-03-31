@@ -217,11 +217,11 @@
                         app:srcCompat="@drawable/btn_5" />
 
                     <TextView
-                        android:id="@+id/tvStats"
+                        android:id="@+id/tvChnagePassword"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="16dp"
-                        android:text="Statiska"
+                        android:text="Promijeni lozinku->todo"
                         android:textColor="@color/dark_blue"
                         android:textSize="20sp"
                         android:textStyle="bold"
@@ -230,7 +230,7 @@
                         app:layout_constraintTop_toTopOf="@+id/ivStats" />
 
                     <ImageView
-                        android:id="@+id/ivNextStats"
+                        android:id="@+id/ivNextChnagePassword"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         app:layout_constraintBottom_toBottomOf="parent"

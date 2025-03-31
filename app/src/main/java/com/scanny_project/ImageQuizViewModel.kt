@@ -30,14 +30,13 @@ class ImageQuizViewModel @Inject constructor(
         _attemptSent.value = false
     }
 
-    fun sendAttempt(questionId: Long, imageBitmap: Bitmap?) {
+    fun sendAttempt(questionId: Long, imageBitmap: Bitmap?, langCode: String) {
         if (_attemptSent.value == true) return
 
         _attemptSent.value = true
-        val userId = sessionManager.userId
 
         GlobalScope.launch {
-            val result = attemptsRepository.recordAttempt(userId, questionId, imageBitmap)
+            val result = attemptsRepository.recordAttempt(questionId, imageBitmap, langCode)
             if (result is Result.Success) {
                 _attemptResponse.postValue(result.data)
                 Log.i("ImageQuizViewModel", "Attempt recorded successfully.")

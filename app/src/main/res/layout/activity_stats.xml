@@ -6,51 +6,10 @@
     android:padding="16dp"
     android:fillViewport="true">
 
-    <LinearLayout
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/statsRecyclerView"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:gravity="center_horizontal">
-
-        <!-- 🟢 Overall Progress Section -->
-        <TextView
-            android:id="@+id/overallProgressText"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Overall Progress: 80%"
-            android:textSize="18sp"
-            android:textStyle="bold"
-            android:layout_marginBottom="8dp" />
-
-        <ProgressBar
-            android:id="@+id/overallProgressBar"
-            style="?android:attr/progressBarStyleHorizontal"
-            android:layout_width="match_parent"
-            android:layout_height="16dp"
-            android:progress="80"
-            android:progressTint="@color/dark_blue"
-            android:layout_marginBottom="24dp" />
-
-        <!-- 📊 Accuracy Chart (MPAndroidChart BarChart) -->
-<!--        <com.github.mikephil.charting.charts.BarChart-->
-<!--            android:id="@+id/barChart"-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="300dp"-->
-<!--            android:layout_marginBottom="24dp" />-->
-
-        <!-- 📚 Lecture Progress List (RecyclerView) -->
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Lectures Progress"
-            android:textSize="18sp"
-            android:textStyle="bold"
-            android:layout_marginBottom="8dp" />
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/lectureProgressRecycler"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
-
-    </LinearLayout>
+        android:layout_height="match_parent"
+        android:layout_marginTop="16dp"
+        />
 </ScrollView>

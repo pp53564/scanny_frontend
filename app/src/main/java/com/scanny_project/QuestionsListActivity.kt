@@ -35,13 +35,18 @@ class QuestionsListActivity : AppCompatActivity() {
         }
 
         val lectureId = intent.getLongExtra("LECTURE_ID", -1)
+        val selectedLangCode = intent.getStringExtra("SELECTED_LANGUAGE")
         if (lectureId == -1L) {
             finish()
             return
         }
 
         lifecycleScope.launch {
-            val questionsResult = lectureRepository.getUserQuestionsByLecture(lectureId)
+            val questionsResult = selectedLangCode?.let {
+                lectureRepository.getUserQuestionsByLectureAndLang(lectureId,
+                    it
+                )
+            }
             if (questionsResult is Result.Success<List<UserQuestionDTO>>) {
                 val questions = questionsResult.data
 
@@ -49,6 +54,7 @@ class QuestionsListActivity : AppCompatActivity() {
                     val intent = Intent(this@QuestionsListActivity, ImageClassificationAndQuizActivity::class.java)
                     intent.putExtra("QUESTION_KEYWORD", selectedQuestion.localizedSubject)
                     intent.putExtra("QUESTION_ID", selectedQuestion.id)
+                    intent.putExtra("SELECTED_LANGUAGE", selectedLangCode)
                     startActivity(intent)
                 }
 

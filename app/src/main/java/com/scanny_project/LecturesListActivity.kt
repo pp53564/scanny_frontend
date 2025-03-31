@@ -31,7 +31,7 @@ class LecturesListActivity : AppCompatActivity() {
         val selectedLangCode = intent.getStringExtra("SELECTED_LANGUAGE").toString()
 
         binding.buttonBackLayout.imButtonBack.setOnClickListener {
-            val intent = Intent(this, HomeActivity::class.java)
+            val intent = Intent(this, SelectLanguageActivityForImageClassification::class.java)
             startActivity(intent)
         }
 
@@ -50,6 +50,7 @@ class LecturesListActivity : AppCompatActivity() {
         val adapter = LecturesAdapter(lectures, selectedLangCode) { selectedLecture ->
             val intent = Intent(this, QuestionsListActivity::class.java).apply {
                 putExtra("LECTURE_ID", selectedLecture.id)
+                putExtra("SELECTED_LANGUAGE", selectedLangCode)
             }
             startActivity(intent)
         }

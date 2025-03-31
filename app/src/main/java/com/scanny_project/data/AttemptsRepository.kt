@@ -3,6 +3,8 @@ package com.scanny_project.data
 import android.graphics.Bitmap
 import android.util.Log
 import com.scanny_project.data.model.AttemptResponse
+import com.scanny_project.data.model.StatsPerUserAndLanguageDTO
+import com.scanny_project.data.services.StatsService
 import com.scanny_project.data.services.UserQuestionAttemptService
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
@@ -10,6 +12,7 @@ import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
 import okhttp3.RequestBody.Companion.toRequestBody
+import retrofit2.Response
 import java.io.File
 import java.io.FileOutputStream
 import javax.inject.Inject
@@ -17,19 +20,20 @@ import javax.inject.Singleton
 
 @Singleton
 class AttemptsRepository @Inject constructor(
-    private val attemptsApi: UserQuestionAttemptService
+    private val attemptsApi: UserQuestionAttemptService,
+    private val statsService: StatsService
 ) {
     suspend fun recordAttempt(
-        userId: Long,
         questionId: Long,
-        imageBitmap: Bitmap?
+        imageBitmap: Bitmap?,
+        langCode: String,
     ): Result<AttemptResponse> {
         return withContext(Dispatchers.IO) {
             try {
-                val userIdBody =
-                    userId.toString().toRequestBody("text/plain".toMediaTypeOrNull())
                 val questionIdBody =
                     questionId.toString().toRequestBody("text/plain".toMediaTypeOrNull())
+                val langCodeBody =
+                    langCode.toString().toRequestBody("text/plain".toMediaTypeOrNull())
 
                     val file = File.createTempFile("attempt_image", ".jpg")
                     val outputStream = FileOutputStream(file)
@@ -42,9 +46,9 @@ class AttemptsRepository @Inject constructor(
                         MultipartBody.Part.createFormData("correctImage", file.name, requestFile)
 
                 val response = attemptsApi.recordAttempt(
-                    userId = userIdBody,
                     questionId = questionIdBody,
-                    correctImage = imagePart
+                    correctImage = imagePart,
+                    langCode = langCodeBody,
                 )
 
                 if (response.isSuccessful) {
@@ -60,4 +64,19 @@ class AttemptsRepository @Inject constructor(
             }
         }
     }
+
+    suspend fun getAllUserLanguageLectures(): Result<Response<List<StatsPerUserAndLanguageDTO>>> {
+        return withContext(Dispatchers.IO) {
+            try {
+                val statsList = statsService.getUserLanguagesStats()
+                Log.i("AttemptsRepository", "getAllUserLanguageLectures: Success")
+                Log.i("AttemptsRepository", statsList.toString())
+                Result.Success(statsList)
+            } catch (e: Exception) {
+                Log.e("AttemptsRepository", "getAllUserLanguageLectures: Exception - ${e.message}", e)
+                Result.Error(e)
+            }
+        }
+    }
+
 }

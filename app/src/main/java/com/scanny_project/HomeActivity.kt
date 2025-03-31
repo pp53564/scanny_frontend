@@ -71,6 +71,10 @@ class HomeActivity : AppCompatActivity() {
             startActivity(Intent(this, TutorialActivity::class.java))
         }
 
+        binding.cvStats.setOnClickListener {
+            startActivity(Intent(this, StatsActivity::class.java))
+        }
+
 
         Log.d("HomeActivity", "Token: ${sessionManager.authToken}")
 

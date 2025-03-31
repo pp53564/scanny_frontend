@@ -11,8 +11,8 @@ interface UserQuestionAttemptService {
     @Multipart
     @POST("api/attempts/attempt")
     suspend fun recordAttempt(
-        @Part("userId") userId: RequestBody,
         @Part("questionId") questionId: RequestBody,
-        @Part correctImage: MultipartBody.Part
+        @Part correctImage: MultipartBody.Part,
+        @Part("langCode") langCode: RequestBody
     ): Response<AttemptResponse>
 }
