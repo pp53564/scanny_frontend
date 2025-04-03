@@ -40,11 +40,8 @@ import java.util.concurrent.Executors
 
 class CameraFragment: Fragment(), ObjectDetectorHelper.DetectorListener{
     private lateinit var bottomSheetBehavior: BottomSheetBehavior<View>
-
     private val TAG = "ObjectDetection"
-
     private var _fragmentCameraBinding: FragmentCameraBinding? = null
-
     private val fragmentCameraBinding
        get() = _fragmentCameraBinding!!
 
@@ -94,7 +91,6 @@ class CameraFragment: Fragment(), ObjectDetectorHelper.DetectorListener{
             }
 
             override fun onSlide(bottomSheet: View, slideOffset: Float) {
-                // You can also handle sliding events if necessary
             }
         })
 
@@ -110,8 +106,6 @@ class CameraFragment: Fragment(), ObjectDetectorHelper.DetectorListener{
             context = requireContext(),
             objectDetectorListener = this
         )
-
-        Log.i("petra4", translator.toString())
 
         cameraExecutor = Executors.newSingleThreadExecutor()
 
@@ -154,7 +148,7 @@ class CameraFragment: Fragment(), ObjectDetectorHelper.DetectorListener{
 
         // When clicked, increase the number of objects that can be detected at a time
         fragmentCameraBinding.bottomSheetLayout.maxResultsPlus.setOnClickListener {
-            if (objectDetectorHelper.maxResults < 5) {
+            if (objectDetectorHelper.maxResults < 3) {
                 objectDetectorHelper.maxResults++
                 updateControlsUi()
             }

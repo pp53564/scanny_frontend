@@ -109,8 +109,9 @@
     <string name="tutorial_desc_3">"Bonjour! Izaberi jezik na kojem želiš učiti. Skenirat ćemo stvari oko nas na tom jeziku. Jeeej! "</string>
     <string name="tutorial_desc_2">Otvorit ćemo kameru i ti ćeš pokazivati predmete oko sebe. Ja ću ti pomoći prepoznati te predmete i naučit ćemo kako se zovu na drugim jezicima. Nije li to super?</string>
     <string name="tutorial_desc_1">Hej! Ja sam Scanny, tvoj robot prijatelj. Spremni za učenje?</string>
-    <string name="start_tutorial">Pomoć</string>
+    <string name="start_tutorial">Info</string>
     <string name="stats">Statistika</string>
+    <string name="stats_title">Statistika</string>
 
 
 </resources>

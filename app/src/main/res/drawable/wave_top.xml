@@ -1,10 +1,8 @@
 <vector xmlns:android="http://schemas.android.com/apk/res/android"
     android:height="860dp"
     android:width="860dp"
-    android:viewportWidth="360"
-    android:viewportHeight="220">
-
-    <!-- Wave path: adjust fillColor to one of your new colors -->
+    android:viewportWidth="300"
+    android:viewportHeight="180">
     <path
         android:fillColor="@color/dark_blue"
         android:pathData="M0,0h360v100c0,0 -120,80 -280,0S0,150,0,100z" />

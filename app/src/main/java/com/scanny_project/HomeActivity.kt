@@ -4,13 +4,11 @@ import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
-import androidx.navigation.Navigation.findNavController
-import androidx.navigation.findNavController
 import com.example.ui_ux_demo.R
 import com.example.ui_ux_demo.databinding.ActivityHomeBinding
 import com.google.android.material.bottomnavigation.BottomNavigationView
-import com.scanny_project.TutorialFragments.TutorialCamera1Fragment
 import com.scanny_project.data.SessionManager
+import com.scanny_project.stats.StatsActivity
 import com.skydoves.transformationlayout.TransformationLayout
 import com.skydoves.transformationlayout.onTransformationStartContainer
 import dagger.hilt.android.AndroidEntryPoint
@@ -38,7 +36,7 @@ class HomeActivity : AppCompatActivity() {
         val sharedPref = getSharedPreferences("MyAppPrefs", MODE_PRIVATE)
         val username = sharedPref.getString("username", "User")
 
-        binding.tvUsername.text = "Bok $username"
+//        binding.tvUsername.text = "Bok $username"
 
         navigation.setOnItemSelectedListener { item ->
             when(item.itemId) {

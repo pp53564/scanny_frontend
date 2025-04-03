@@ -11,11 +11,11 @@ import com.scanny_project.utils.LanguageAdapter
 class SelectLanguageActivityForImageClassification : AppCompatActivity() {
     private lateinit var binding: ActivitySelectLanguageBinding
     private val languages = listOf(
-        LanguageOption("hr", "Hrvatski", R.drawable.hr),
-        LanguageOption("en", "Engleski", R.drawable.uk_flag),
-        LanguageOption("it", "Talijanski", R.drawable.italy_flag),
-        LanguageOption("de", "Njemački", R.drawable.german_flag),
-        LanguageOption("fr", "Francuski", R.drawable.france_flag),
+        LanguageOption("hr", "Hrvatski", R.drawable.flag_hr),
+        LanguageOption("en", "Engleski", R.drawable.flag_en),
+        LanguageOption("it", "Talijanski", R.drawable.flag_it),
+        LanguageOption("de", "Njemački", R.drawable.flag_de),
+        LanguageOption("fr", "Francuski", R.drawable.flag_fr),
     )
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
