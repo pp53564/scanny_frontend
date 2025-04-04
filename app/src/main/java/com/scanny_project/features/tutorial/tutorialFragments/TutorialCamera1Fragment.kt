@@ -1,0 +1,37 @@
+package com.scanny_project.features.tutorial.tutorialFragments
+
+import android.os.Bundle
+import androidx.fragment.app.Fragment
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import androidx.navigation.fragment.findNavController
+import com.example.ui_ux_demo.databinding.FragmentTutorialCamera1Binding
+
+class TutorialCamera1Fragment : Fragment(){
+    private lateinit var binding : FragmentTutorialCamera1Binding
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+    }
+
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View {
+        // Inflate the layout for this fragment
+        binding = FragmentTutorialCamera1Binding.inflate(inflater, container, false)
+        val root: View = binding.root
+        binding.skipTutorialButton.setOnClickListener {
+            findNavController().navigate(
+                TutorialCamera1FragmentDirections.actionTutorialCamera1FragmentToHomeActivity()
+            )
+        }
+        binding.btnTutorialNext.setOnClickListener {
+            findNavController().navigate(
+                TutorialCamera1FragmentDirections.actionTutorialCamera1FragmentToTutorialCamera2Fragment()
+            )
+        }
+        return root
+    }
+}

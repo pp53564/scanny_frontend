@@ -29,12 +29,12 @@
             android:layout_gravity="bottom"
             android:background="@drawable/bottom_nav_background"
             app:menu="@menu/bottom_nav_menu"
-            app:itemIconSize="28dp"
+            app:itemIconSize="40dp"
             app:itemTextAppearanceActive="@style/BottomNavTextStyle"
             app:itemTextAppearanceInactive="@style/BottomNavTextStyle"
             app:labelVisibilityMode="unlabeled"
             app:itemIconTint="@drawable/color_nav"
-            android:elevation="8dp"/>
+            android:elevation="12dp"/>
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

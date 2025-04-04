@@ -5,50 +5,47 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.scanny_project.ImageClassificationAndQuizActivity">
+    tools:context="com.scanny_project.features.quiz.ImageClassificationAndQuizActivity">
 
-    <!-- Top "Back Button" include -->
     <include
         android:id="@+id/buttonBackLayout"
         layout="@layout/back_button_just_arrow"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <!-- Title container at the top -->
-    <LinearLayout
-        android:id="@+id/titleContainer"
-        android:layout_width="match_parent"
-        android:layout_height="220dp"
-        android:gravity="center"
-        android:orientation="vertical"
-        android:layout_alignParentTop="true">
+<!--    <LinearLayout-->
+<!--        android:id="@+id/titleContainer"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="220dp"-->
+<!--        android:gravity="center"-->
+<!--        android:orientation="vertical"-->
+<!--        android:layout_alignParentTop="true">-->
 
-        <TextView
-            android:id="@+id/titleText"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Slikaj objekt!"
-            android:textSize="24sp"
-            android:textStyle="bold"
-            android:textColor="@color/dark_blue"
-            android:layout_marginTop="40dp" />
+<!--        <TextView-->
+<!--            android:id="@+id/titleText"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:text="Slikaj objekt!"-->
+<!--            android:textSize="24sp"-->
+<!--            android:textStyle="bold"-->
+<!--            android:textColor="@color/dark_blue"-->
+<!--            android:layout_marginTop="40dp" />-->
 
-        <TextView
-            android:id="@+id/subTitleText"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Otkrij što vidiš!"
-            android:textSize="18sp"
-            android:textColor="@color/dark_blue"
-            android:layout_marginTop="8dp" />
-    </LinearLayout>
+<!--        <TextView-->
+<!--            android:id="@+id/subTitleText"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:text="Otkrij što vidiš!"-->
+<!--            android:textSize="18sp"-->
+<!--            android:textColor="@color/dark_blue"-->
+<!--            android:layout_marginTop="8dp" />-->
+<!--    </LinearLayout>-->
 
-    <!-- Scroll area below the title container -->
     <ScrollView
         android:id="@+id/scrollArea"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@+id/titleContainer"
+        android:layout_below="@+id/buttonBackLayout"
         android:layout_alignParentStart="true"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"

@@ -1,11 +1,9 @@
 package com.scanny_project.utils
 
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.ui_ux_demo.databinding.ItemLanguageOptionBinding
-import com.scanny_project.LanguageOption
 
 class LanguageAdapter(
     private val items: List<LanguageOption>,

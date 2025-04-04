@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.scanny_project.HomeActivity">
+    tools:context="com.scanny_project.features.home.HomeActivity">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -25,6 +25,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:adjustViewBounds="true"
+                    android:contentDescription="@string/scanny_home"
                     android:scaleType="fitXY"
                     android:src="@drawable/wave_top" />
 
@@ -101,7 +102,6 @@
                             android:textColor="@color/white"
                             android:textAlignment="center"
                             android:gravity="center"
-                            android:lineHeight="24sp"
                             android:letterSpacing="0"
                             android:textSize="18sp"
                             android:textStyle="bold" />
@@ -144,7 +144,6 @@
                             android:text="@string/lets_play_quiz"
                             android:textColor="@color/white"
                             android:gravity="center"
-                            android:lineHeight="24sp"
                             android:letterSpacing="0"
                             android:textSize="18sp"
                             android:textStyle="bold"/>

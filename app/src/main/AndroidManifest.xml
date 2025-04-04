@@ -22,29 +22,29 @@
         android:theme="@style/Theme.UI_UX_Demo"
         tools:targetApi="31">
         <activity
-            android:name="com.scanny_project.stats.StatsActivity"
+            android:name="com.scanny_project.features.stats.StatsActivity"
             android:exported="false" />
         <activity
-            android:name="com.scanny_project.SelectLanguageActivityForImageClassification"
+            android:name="com.scanny_project.features.language.SelectLanguageActivityForImageClassification"
             android:exported="false" />
         <activity
-            android:name="com.scanny_project.SelectLanguageActivity"
+            android:name="com.scanny_project.features.language.SelectLanguageActivity"
             android:exported="false" />
         <activity
-            android:name="com.scanny_project.TutorialActivity"
+            android:name="com.scanny_project.features.tutorial.TutorialActivity"
             android:exported="false" />
         <activity
-            android:name="com.scanny_project.QuestionsListActivity"
+            android:name="com.scanny_project.features.questions.QuestionsListActivity"
             android:exported="false" />
         <activity
-            android:name="com.scanny_project.LecturesListActivity"
+            android:name="com.scanny_project.features.lectures.LecturesListActivity"
             android:exported="false" />
         <activity
-            android:name="com.scanny_project.ui.login.LoginActivity"
+            android:name="com.scanny_project.features.login.LoginActivity"
             android:exported="false"
             android:label="@string/title_activity_login" />
         <activity
-            android:name="com.scanny_project.ImageClassificationAndQuizActivity"
+            android:name="com.scanny_project.features.quiz.ImageClassificationAndQuizActivity"
             android:exported="false" />
         <activity
             android:name="com.scanny_project.SplashActivity"
@@ -56,19 +56,19 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.scanny_project.CameraActivity"
+            android:name="com.scanny_project.features.camera.CameraActivity"
             android:exported="false" />
         <activity
-            android:name="com.scanny_project.HomeActivity"
+            android:name="com.scanny_project.features.home.HomeActivity"
             android:exported="false"
             android:label="@string/title_activity_home"
             android:theme="@style/Theme.UI_UX_Demo" />
         <activity
-            android:name="com.scanny_project.ProfileActivity"
+            android:name="com.scanny_project.features.profile.ProfileActivity"
             android:exported="false"
             android:label="@string/title_activity_profile"
             android:theme="@style/Theme.UI_UX_Demo" />
-        <activity android:name="com.scanny_project.MainActivity" />
+        <activity android:name="com.scanny_project.features.home.MainActivity" />
     </application>
 
 </manifest>

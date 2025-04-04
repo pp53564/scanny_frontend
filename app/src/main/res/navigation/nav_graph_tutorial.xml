@@ -6,7 +6,7 @@
     app:startDestination="@id/tutorialCamera1Fragment">
 <fragment
     android:id="@+id/tutorialCamera1Fragment"
-    android:name="com.scanny_project.TutorialFragments.TutorialCamera1Fragment"
+    android:name="com.scanny_project.features.tutorial.tutorialFragments.TutorialCamera1Fragment"
     android:label="fragment_tutorial_camera1" >
     <action
         android:id="@+id/action_tutorialCamera1Fragment_to_tutorialCamera2Fragment"
@@ -18,7 +18,7 @@
 </fragment>
 <fragment
     android:id="@+id/tutorialCamera2Fragment"
-    android:name="com.scanny_project.TutorialFragments.TutorialCamera2Fragment"
+    android:name="com.scanny_project.features.tutorial.tutorialFragments.TutorialCamera2Fragment"
     android:label="fragment_tutorial_camera2"
     tools:layout="@layout/fragment_tutorial_camera2" >
     <action
@@ -35,7 +35,7 @@
 </fragment>
 <fragment
     android:id="@+id/tutorialCamera3Fragment"
-    android:name="com.scanny_project.TutorialFragments.TutorialCamera3Fragment"
+    android:name="com.scanny_project.features.tutorial.tutorialFragments.TutorialCamera3Fragment"
     android:label="fragment_tutorial_camera3"
     tools:layout="@layout/fragment_tutorial_camera3" >
     <action
@@ -50,7 +50,7 @@
 </fragment>
 <fragment
             android:id="@+id/tutorialCamera4Fragment"
-            android:name="com.scanny_project.TutorialFragments.TutorialCamera4Fragment"
+            android:name="com.scanny_project.features.tutorial.tutorialFragments.TutorialCamera4Fragment"
             android:label="fragment_tutorial_camera4"
             tools:layout="@layout/fragment_tutorial_camera4" >
             <action
@@ -63,7 +63,7 @@
         </fragment>
 <activity
     android:id="@+id/homeActivity"
-    android:name="com.scanny_project.HomeActivity"
+    android:name="com.scanny_project.features.home.HomeActivity"
     android:label="activity_home"
     tools:layout="@layout/activity_home" />
 </navigation>

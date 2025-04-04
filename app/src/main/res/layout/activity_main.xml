@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.scanny_project.MainActivity">
+    tools:context="com.scanny_project.features.home.MainActivity">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -29,6 +29,7 @@
                     android:layout_height="wrap_content"
                     android:scaleType="fitXY"
                     android:adjustViewBounds="true"
+                    android:contentDescription="@string/scanny_main"
                     android:src="@drawable/wave_top" />
 
                 <LinearLayout
@@ -62,7 +63,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Dobrodošli"
+                    android:text="@string/welcome_hr"
                     android:textSize="28sp"
                     android:textStyle="bold"
                     android:textColor="@android:color/black" />
@@ -70,7 +71,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="u Scanny"
+                    android:text="@string/to_scanny"
                     android:textSize="24sp"
                     android:textStyle="bold"
                     android:textColor="@android:color/black"
@@ -81,7 +82,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
                     android:gravity="center"
-                    android:text="Scanny je zabavna aplikacija za učenje jezika. Uz pomoć detekcije objekata možete otkrivati nove riječi i proširivati svoje znanje."
+                    android:text="@string/scanny_description"
                     android:textSize="16sp"
                     android:textColor="@android:color/black" />
 
@@ -92,7 +93,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="32dp"
                     android:background="@drawable/bg_button_pink_gradient"
-                    android:drawableLeft="@drawable/baseline_arrow_outward_24"
+                    android:drawableStart="@drawable/baseline_arrow_outward_24"
                     android:elevation="20dp"
                     android:text="@string/lets_start"
                     android:textColor="@color/white"

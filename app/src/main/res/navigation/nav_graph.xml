@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     app:startDestination="@id/permissions_fragment"
     android:id="@+id/nav_graph">
     <fragment
         android:id="@+id/permissions_fragment"
-        android:name="com.scanny_project.Camera.PermissionsFragment"
+        android:name="com.scanny_project.features.camera.PermissionsFragment"
         android:label="PermissionsFragment" >
         <action
             android:id="@+id/action_permissions_to_camera"
@@ -17,7 +16,7 @@
     </fragment>
     <fragment
         android:id="@+id/camera_fragment"
-        android:name="com.scanny_project.Camera.CameraFragment"
+        android:name="com.scanny_project.features.camera.CameraFragment"
         android:label="CameraFragment" >
         <action
             android:id="@+id/action_camera_to_permissions"

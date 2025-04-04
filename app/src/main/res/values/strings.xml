@@ -112,6 +112,24 @@
     <string name="start_tutorial">Info</string>
     <string name="stats">Statistika</string>
     <string name="stats_title">Statistika</string>
+    <string name="default_title">Naslov</string>
+    <string name="selectLanguage">Odaberi jezik</string>
+    <string name="home">Home</string>
+    <string name="camera">Camera</string>
+    <string name="correct_answer">Bravo! Dobro obavljeno!</string>
+    <string name="wrong_answer">Ops! Nije dobro. Pokušaj ponovo.</string>
+    <string name="back_button_description">back button</string>
+    <string name="scanny_home">home scanny</string>
+    <string name="scanny_main">scanny on main screen</string>
+    <string name="welcome_hr">Dobrodošli</string>
+    <string name="to_scanny">u Scanny</string>
+    <string name="scanny_description">Scanny je zabavna aplikacija za učenje jezika. Uz pomoć detekcije objekata možete otkrivati nove riječi i proširivati svoje znanje.</string>
+    <string name="lang_rank">Rank: %1$d / %2$d</string>
+    <string name="correct_answers">Točni odgovori: %1$d</string>
+    <string name="next_arrow_desc">Next arrow</string>
+    <string name="scanny_tutorial_1">scanny tutorial 1</string>
+    <string name="skip_hr">Preskoči</string>
+    <string name="one">1</string>
 
 
 </resources>

@@ -9,7 +9,8 @@ import android.os.Handler
 import android.os.Looper
 import com.example.ui_ux_demo.R
 import com.scanny_project.data.SessionManager
-import com.scanny_project.ui.login.LoginActivity
+import com.scanny_project.features.home.HomeActivity
+import com.scanny_project.features.login.LoginActivity
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 

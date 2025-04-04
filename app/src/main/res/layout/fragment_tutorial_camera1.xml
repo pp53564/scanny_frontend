@@ -6,7 +6,7 @@
     android:id="@+id/tutorialCamera1Fragment"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.scanny_project.TutorialFragments.TutorialCamera1Fragment">
+    tools:context="com.scanny_project.features.tutorial.tutorialFragments.TutorialCamera1Fragment">
 
 <!--    <androidx.fragment.app.FragmentContainerView-->
 <!--        android:id="@+id/fragment_container_tutorial"-->

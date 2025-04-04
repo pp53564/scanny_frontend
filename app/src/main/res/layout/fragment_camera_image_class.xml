@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.scanny_project.CameraImageClass.CameraImageClassFragment">
+    tools:context="com.scanny_project.features.cameraImageClassification.CameraImageClassFragment">
 
     <androidx.camera.view.PreviewView
         android:id="@+id/view_finder"
@@ -11,7 +11,7 @@
         android:layout_height="match_parent"
         app:scaleType="fillStart"/>
 
-    <com.scanny_project.OverlayView
+    <com.scanny_project.features.camera.OverlayView
         android:id="@+id/overlay"
         android:layout_height="match_parent"
         android:layout_width="match_parent" />
