@@ -7,8 +7,7 @@ import com.scanny_project.data.model.LoggedInUser
 class LoginRepository(private val dataSource: LoginDataSource, private val sessionManager: SessionManager) {
 
     // in-memory cache of the loggedInUser object
-    var user: LoggedInUser? = null
-        private set
+    private var user: LoggedInUser? = null
 
     val isLoggedIn: Boolean
         get() = user != null

@@ -7,7 +7,6 @@
     tools:context="com.scanny_project.features.camera.CameraActivity">
 
     <RelativeLayout
-        android:id="@+id/relativeLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
@@ -29,6 +28,19 @@
             layout="@layout/back_button_just_arrow"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
+
+        <ProgressBar
+            android:id="@+id/languageDownloadProgress"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone" />
+
+        <TextView
+            android:id="@+id/languageDownloadMessage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Downloading language model..."
+            android:visibility="gone" />
 
 
     </RelativeLayout>

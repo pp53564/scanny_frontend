@@ -14,12 +14,12 @@ import org.tensorflow.lite.task.vision.classifier.Classifications
 import org.tensorflow.lite.task.vision.classifier.ImageClassifier
 
 class ImageClassifierHelper(
-    var threshold: Float = 0.5f,
-    var numThreads: Int = 2,
-    var maxResults: Int = 3,
-    var currentDelegate: Int = 0,
+    private var threshold: Float = 0.5f,
+    private var numThreads: Int = 2,
+    private var maxResults: Int = 3,
+    private var currentDelegate: Int = 0,
     val context: Context,
-    val imageClassifierListener: ClassifierListener?
+    private val imageClassifierListener: ClassifierListener?
 ) {
     private var imageClassifier: ImageClassifier? = null
 
@@ -102,15 +102,18 @@ class ImageClassifierHelper(
     // Receive the device rotation (Surface.x values range from 0->3) and return EXIF orientation
     // http://jpegclub.org/exif_orientation.html
     private fun getOrientationFromRotation(rotation: Int) : ImageProcessingOptions.Orientation {
-        when (rotation) {
+        return when (rotation) {
             Surface.ROTATION_270 ->
-                return ImageProcessingOptions.Orientation.BOTTOM_RIGHT
+                ImageProcessingOptions.Orientation.BOTTOM_RIGHT
+
             Surface.ROTATION_180 ->
-                return ImageProcessingOptions.Orientation.RIGHT_BOTTOM
+                ImageProcessingOptions.Orientation.RIGHT_BOTTOM
+
             Surface.ROTATION_90 ->
-                return ImageProcessingOptions.Orientation.TOP_LEFT
+                ImageProcessingOptions.Orientation.TOP_LEFT
+
             else ->
-                return ImageProcessingOptions.Orientation.RIGHT_TOP
+                ImageProcessingOptions.Orientation.RIGHT_TOP
         }
     }
 

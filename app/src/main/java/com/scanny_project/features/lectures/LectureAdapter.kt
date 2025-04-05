@@ -33,7 +33,7 @@ class LecturesAdapter(
         if (lecture.allQuestionsSucceeded) {
             holder.lectureCard.strokeColor = context.getColor(R.color.light_green)
         } else {
-            holder.lectureCard.strokeColor = context.getColor(R.color.light_red)
+            holder.lectureCard.strokeColor = context.getColor(R.color.blue_gray)
         }
         holder.itemView.setOnClickListener {
             onLectureClick(lecture)

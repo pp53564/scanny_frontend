@@ -40,6 +40,5 @@ class LoginDataSource @Inject constructor(
 
     fun logout() {
         // TODO: revoke authentication
-
     }
 }

@@ -29,7 +29,7 @@
             android:id="@+id/btnTutorialBack"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:contentDescription="back"
+            android:contentDescription="@string/back_button_description"
             android:src="@drawable/baseline_arrow_back_ios_new_24"
             app:backgroundTint="@color/dark_blue"
             app:elevation="10dp"
@@ -46,7 +46,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:clickable="true"
-            android:contentDescription="Next arrow"
+            android:contentDescription="@string/next_arrow_desc"
             android:src="@drawable/next"
             app:backgroundTint="@color/dark_blue"
             app:elevation="10dp"
@@ -67,7 +67,7 @@
             android:layout_marginBottom="28dp"
             android:background="@drawable/background_gradient"
             android:elevation="20dp"
-            android:text="Preskoči"
+            android:text="@string/skip_hr"
             android:textColor="@color/white"
             android:textSize="20sp"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -86,7 +86,8 @@
             android:src="@drawable/scanny_tutorial_2"
             app:layout_constraintBottom_toTopOf="@+id/skipTutorialButton"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintStart_toStartOf="parent"
+            android:contentDescription="@string/scanny_tutorial"/>
 
 
         <FrameLayout
@@ -103,7 +104,8 @@
                 android:layout_height="wrap_content"
                 android:adjustViewBounds="true"
                 android:scaleType="fitXY"
-                android:src="@drawable/speech_bubble_vector" />
+                android:src="@drawable/speech_bubble_vector"
+                android:contentDescription="@string/speech_bubble"/>
 
             <TextView
                 android:id="@+id/tvSpeech"

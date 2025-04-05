@@ -29,7 +29,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="16dp"
-            android:contentDescription="back"
+            android:contentDescription="@string/back_button_description"
             android:src="@drawable/baseline_arrow_back_ios_new_24"
             app:backgroundTint="@color/dark_blue"
             app:elevation="10dp"
@@ -46,7 +46,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:clickable="true"
-            android:contentDescription="Next arrow"
+            android:contentDescription="@string/next_arrow_desc"
             android:src="@drawable/next"
             app:backgroundTint="@color/dark_blue"
             app:elevation="10dp"
@@ -68,7 +68,8 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            android:contentDescription="@string/scanny_tutorial"/>
 
         <FrameLayout
             android:id="@+id/speechBubble"
@@ -84,7 +85,8 @@
                 android:layout_height="wrap_content"
                 android:adjustViewBounds="true"
                 android:scaleType="fitXY"
-                android:src="@drawable/speech_bubble_vector" />
+                android:src="@drawable/speech_bubble_vector"
+                android:contentDescription="@string/speech_bubble" />
 
             <TextView
                 android:id="@+id/tvSpeech"

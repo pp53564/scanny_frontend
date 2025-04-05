@@ -39,7 +39,7 @@ class QuestionsAdapter(
         if (question.succeeded) {
             holder.questionCard.strokeColor = context.getColor(R.color.light_green)
         } else {
-            holder.questionCard.strokeColor = context.getColor(R.color.light_red)
+            holder.questionCard.strokeColor = context.getColor(R.color.blue_gray)
         }
 
         holder.itemView.setOnClickListener {

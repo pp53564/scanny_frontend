@@ -44,7 +44,8 @@
                         android:layout_height="228dp"
                         android:layout_marginTop="24dp"
                         android:scaleType="fitCenter"
-                        android:src="@drawable/scanny_main_page_2" />
+                        android:src="@drawable/scanny_main_page_2"
+                        android:contentDescription="@string/scanny_main" />
 
                 </LinearLayout>
             </FrameLayout>

@@ -47,7 +47,6 @@ class ImageClassificationAndQuizActivity : AppCompatActivity(){
         binding.tvThingForPicture.text = task
 
         currentQuestionId = intent.getLongExtra("QUESTION_ID", 0L)
-        Log.i("question_id", currentQuestionId.toString())
 
 //        imageClassifierHelper = ImageClassifierHelper(
 //            context = this,
@@ -69,7 +68,9 @@ class ImageClassificationAndQuizActivity : AppCompatActivity(){
         viewModel.attemptResponse.observe(this) { response ->
             response?.let {
                 // Show a dialog based on "correct" or not
-                handleResult(it.correct, it.confidenceScore, it.matchedLabel)
+                if (it.matchedLabel.isNotBlank() && it.confidenceScore > 0f) {
+                    handleResult(it.correct, it.confidenceScore, it.matchedLabel)
+                }
             }
         }
     }
@@ -176,10 +177,10 @@ class ImageClassificationAndQuizActivity : AppCompatActivity(){
         binding.resultReaction.visibility = View.VISIBLE
         binding.myCardView.visibility = View.VISIBLE
         if (correct) {
-            binding.resultReaction.text = "BRAVO! Točan odgovor."
+            binding.resultReaction.text = getString(R.string.correct_answer)
             showImageDialog(true)
         } else {
-            binding.resultReaction.text = "Pokušaj ponovo."
+            binding.resultReaction.text = getString(R.string.wrong_answer)
             showImageDialog(false)
         }
         //ovo napravi ako nije tocno sto je prvo bilo gore:
@@ -214,12 +215,12 @@ class ImageClassificationAndQuizActivity : AppCompatActivity(){
         }, 3000)
     }
 
-    override fun onPause() {
-        super.onPause()
-//        if (viewModel.attemptSent.value == false) {
-//            Log.i("ImageQuizActivity", "Sending final attempt before pause")
-//            viewModel.sendAttempt(currentQuestionId, imageBitmap = null)
-//        }
-    }
+//    override fun onPause() {
+//        super.onPause()
+////        if (viewModel.attemptSent.value == false) {
+////            Log.i("ImageQuizActivity", "Sending final attempt before pause")
+////            viewModel.sendAttempt(currentQuestionId, imageBitmap = null)
+////        }
+//    }
 
 }

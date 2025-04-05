@@ -24,13 +24,13 @@ class TutorialImageClass1Fragment : Fragment() {
         val root: View = binding.root
         val navController = findNavController()
 
-        binding.skipTutorialbButton.setOnClickListener {
-            navController.navigate(R.id.action_tutorialImageClass1Fragment_to_imageClassificationAndQuizActivity)
-        }
-
-        binding.btnTutorialNext.setOnClickListener {
-            navController.navigate(R.id.action_tutorialImageClass1Fragment_to_imageClassificationAndQuizActivity)
-        }
+//        binding.skipTutorialbButton.setOnClickListener {
+//            navController.navigate(R.id.action_tutorialImageClass1Fragment_to_imageClassificationAndQuizActivity)
+//        }
+//
+//        binding.btnTutorialNext.setOnClickListener {
+//            navController.navigate(R.id.action_tutorialImageClass1Fragment_to_imageClassificationAndQuizActivity)
+//        }
 
         return root
     }

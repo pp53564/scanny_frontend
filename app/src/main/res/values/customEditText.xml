@@ -1,5 +1,2 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources><style name="CustomEditTextStyle" parent="Widget.AppCompat.EditText">
-    <item name="colorControlActivated">@color/black</item>
-</style>
-</resources>
+<resources></resources>

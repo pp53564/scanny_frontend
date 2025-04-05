@@ -26,14 +26,10 @@ object TranslatorHelper {
 
         translator!!.downloadModelIfNeeded(conditions)
             .addOnSuccessListener {
-                // Model downloaded successfully. Okay to start translating.
-                // (Set a flag, unhide the translation UI, etc.)
                 param(translator!!)
                 Log.d("MLKit", "Language model downloaded successfully!")
             }
             .addOnFailureListener { exception ->
-                // Model couldn’t be downloaded or other internal error.
-                // ...
                 Log.e("MLKit", "Failed to download language model: ${exception.message}")
             }
     }

@@ -33,7 +33,7 @@ import java.util.concurrent.Executors
 
 class CameraFragment: Fragment(), ObjectDetectorHelper.DetectorListener{
     private lateinit var bottomSheetBehavior: BottomSheetBehavior<View>
-    private val TAG = "ObjectDetection"
+    private val tag = "ObjectDetection"
     private var _fragmentCameraBinding: FragmentCameraBinding? = null
     private val fragmentCameraBinding
        get() = _fragmentCameraBinding!!
@@ -48,13 +48,13 @@ class CameraFragment: Fragment(), ObjectDetectorHelper.DetectorListener{
 
     private lateinit var cameraExecutor: ExecutorService
 
-    override fun onResume() {
-        super.onResume()
-//        if (!PermissionsFragment.hasPermissions(requireContext())) {
-//            Navigation.findNavController(requireActivity(), R.id.fragment_container)
-//                .navigate(CameraFragmentDirections.actionCameraToPermissions())
-//        }
-    }
+//    override fun onResume() {
+//        super.onResume()
+////        if (!PermissionsFragment.hasPermissions(requireContext())) {
+////            Navigation.findNavController(requireActivity(), R.id.fragment_container)
+////                .navigate(CameraFragmentDirections.actionCameraToPermissions())
+////        }
+//    }
 
     override fun onDestroyView() {
         _fragmentCameraBinding = null
@@ -187,8 +187,7 @@ class CameraFragment: Fragment(), ObjectDetectorHelper.DetectorListener{
 
 
     private fun updateControlsUi() {
-        fragmentCameraBinding.bottomSheetLayout.maxResultsValue.text =
-            objectDetectorHelper.maxResults.toString()
+        fragmentCameraBinding.bottomSheetLayout.maxResultsValue.text = objectDetectorHelper.maxResults.toString()
 
         // Needs to be cleared instead of reinitialized because the GPU
         // delegate needs to be initialized on the thread using it when applicable
@@ -247,9 +246,9 @@ class CameraFragment: Fragment(), ObjectDetectorHelper.DetectorListener{
 
         try {
             camera = cameraProvider.bindToLifecycle(this, cameraSelector, preview, imageAnalyzer)
-            preview?.setSurfaceProvider(fragmentCameraBinding.viewFinder.surfaceProvider)
+            preview?.surfaceProvider = fragmentCameraBinding.viewFinder.surfaceProvider
         } catch (exc: Exception) {
-            Log.e(TAG, "Use case binding failed", exc)
+            Log.e(tag, "Use case binding failed", exc)
         }
     }
 

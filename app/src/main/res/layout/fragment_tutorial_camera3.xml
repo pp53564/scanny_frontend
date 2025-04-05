@@ -1,4 +1,5 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/tutorialCamera4Fragment"
@@ -29,16 +30,16 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="16dp"
-            android:contentDescription="back"
+            android:contentDescription="@string/back_button_description"
             android:src="@drawable/baseline_arrow_back_ios_new_24"
             app:backgroundTint="@color/dark_blue"
             app:elevation="10dp"
             app:layout_constraintBottom_toBottomOf="@+id/ivScanny"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.1"
+            app:layout_constraintHorizontal_bias="0.09"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@+id/ivScanny"
-            app:layout_constraintVertical_bias="0.557"
+            app:layout_constraintVertical_bias="0.556"
             app:tint="@android:color/white" />
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -46,7 +47,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:clickable="true"
-            android:contentDescription="Next arrow"
+            android:contentDescription="@string/next_arrow_desc"
             android:src="@drawable/next"
             app:backgroundTint="@color/dark_blue"
             app:elevation="10dp"
@@ -67,7 +68,7 @@
             android:layout_marginBottom="28dp"
             android:background="@drawable/background_gradient"
             android:elevation="20dp"
-            android:text="Preskoči"
+            android:text="@string/skip_hr"
             android:textColor="@color/white"
             android:textSize="20sp"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -77,14 +78,16 @@
 
         <ImageView
             android:id="@+id/ivScanny"
-            android:layout_width="250dp"
-            android:layout_height="280dp"
+            android:layout_width="150dp"
+            android:layout_height="180dp"
+            android:layout_marginBottom="160dp"
+            android:contentDescription="@string/scanny_tutorial"
+            android:foregroundGravity="center_horizontal"
             android:scaleType="fitCenter"
             android:src="@drawable/scanny_franch"
-            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintBottom_toTopOf="@+id/skipTutorialButton"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintStart_toStartOf="parent" />
 
         <FrameLayout
             android:id="@+id/speechBubble"
@@ -100,7 +103,8 @@
                 android:layout_height="wrap_content"
                 android:adjustViewBounds="true"
                 android:scaleType="fitXY"
-                android:src="@drawable/speech_bubble_vector" />
+                android:src="@drawable/speech_bubble_vector"
+                android:contentDescription="@string/speech_bubble"/>
 
             <TextView
                 android:id="@+id/tvSpeech"

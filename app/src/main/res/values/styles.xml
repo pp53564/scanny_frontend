@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
-    </style>
-
-    <style name="BottomSheetSpinnerItemStyle" parent="Widget.AppCompat.Light.DropDownItem.Spinner">
-        <item name="android:textSize">@dimen/bottom_sheet_text_size</item>
-    </style>
+        <style name="TopRoundedCard" parent="ShapeAppearance.MaterialComponents.MediumComponent">
+         <item name="cornerFamily">rounded</item>
+         <item name="cornerSizeTopLeft">30dp</item>
+          <item name="cornerSizeTopRight">30dp</item>
+          <item name="cornerSizeBottomLeft">0dp</item>
+           <item name="cornerSizeBottomRight">0dp</item>
+           </style>
 </resources>

@@ -5,29 +5,20 @@
     <color name="dark_blue">#32357a</color>
     <color name="blue_gray">#5E5A78</color>
     <color name="blue">#4F55D5</color>
-    <color name="blue_light">#BEC1FB</color>
     <color name="light_blue">#f2f1f6</color>
-    <color name="dark_grey">#A4A4A5</color>
     <color name="light_red">#FF7F7F</color>
     <color name="light_green">#90EE90</color>
-    <color name="green">#4CAF50</color>
-    <color name="light_grey">#F5F5F5</color>
-    <color name="teal_green">#34D1C6</color>
     <color name="green_strong">#7DCF4B</color>
 
 
-        <color name="primaryColor">#3BBFBF</color>      <!-- Turquoise accent -->
-        <color name="primaryDarkColor">#32A2A2</color>  <!-- Slightly darker turquoise -->
+    <!-- Turquoise accent -->
+    <!-- Slightly darker turquoise -->
         <color name="accentColor">#FFD700</color>       <!-- Bright playful gold/yellow -->
 
 
-        <color name="colorPrimary">#FFA726</color>       <!-- bright orange -->
-        <color name="colorPrimaryDark">#FB8C00</color>   <!-- darker orange -->
-        <color name="colorAccent">#66BB6A</color>        <!-- green accent -->
-
-    <color name="pastelPink">#F48FB1</color>
-    <color name="pastelPurple">#CE93D8</color>
-    <color name="pastelBlue">#90CAF9</color>
+    <!-- bright orange -->
+    <!-- darker orange -->
+    <!-- green accent -->
 
 
 </resources>

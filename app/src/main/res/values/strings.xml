@@ -2,116 +2,39 @@
     <string name="app_name">Scanny</string>
     <string name="title_activity_profile">ProfileActivity</string>
     <!-- Strings used for fragments for navigation -->
-    <string name="first_fragment_label">First Fragment</string>
-    <string name="second_fragment_label">Second Fragment</string>
-    <string name="next">Next</string>
-    <string name="previous">Previous</string>
     <string name="bottom_sheet_description">Bottom sheet expandable indicator</string>
 
-    <string name="lorem_ipsum">
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam in scelerisque sem. Mauris
-        volutpat, dolor id interdum ullamcorper, risus dolor egestas lectus, sit amet mattis purus
-        dui nec risus. Maecenas non sodales nisi, vel dictum dolor. Class aptent taciti sociosqu ad
-        litora torquent per conubia nostra, per inceptos himenaeos. Suspendisse blandit eleifend
-        diam, vel rutrum tellus vulputate quis. Aliquam eget libero aliquet, imperdiet nisl a,
-        ornare ex. Sed rhoncus est ut libero porta lobortis. Fusce in dictum tellus.\n\n
-        Suspendisse interdum ornare ante. Aliquam nec cursus lorem. Morbi id magna felis. Vivamus
-        egestas, est a condimentum egestas, turpis nisl iaculis ipsum, in dictum tellus dolor sed
-        neque. Morbi tellus erat, dapibus ut sem a, iaculis tincidunt dui. Interdum et malesuada
-        fames ac ante ipsum primis in faucibus. Curabitur et eros porttitor, ultricies urna vitae,
-        molestie nibh. Phasellus at commodo eros, non aliquet metus. Sed maximus nisl nec dolor
-        bibendum, vel congue leo egestas.\n\n
-        Sed interdum tortor nibh, in sagittis risus mollis quis. Curabitur mi odio, condimentum sit
-        amet auctor at, mollis non turpis. Nullam pretium libero vestibulum, finibus orci vel,
-        molestie quam. Fusce blandit tincidunt nulla, quis sollicitudin libero facilisis et. Integer
-        interdum nunc ligula, et fermentum metus hendrerit id. Vestibulum lectus felis, dictum at
-        lacinia sit amet, tristique id quam. Cras eu consequat dui. Suspendisse sodales nunc ligula,
-        in lobortis sem porta sed. Integer id ultrices magna, in luctus elit. Sed a pellentesque
-        est.\n\n
-        Aenean nunc velit, lacinia sed dolor sed, ultrices viverra nulla. Etiam a venenatis nibh.
-        Morbi laoreet, tortor sed facilisis varius, nibh orci rhoncus nulla, id elementum leo dui
-        non lorem. Nam mollis ipsum quis auctor varius. Quisque elementum eu libero sed commodo. In
-        eros nisl, imperdiet vel imperdiet et, scelerisque a mauris. Pellentesque varius ex nunc,
-        quis imperdiet eros placerat ac. Duis finibus orci et est auctor tincidunt. Sed non viverra
-        ipsum. Nunc quis augue egestas, cursus lorem at, molestie sem. Morbi a consectetur ipsum, a
-        placerat diam. Etiam vulputate dignissim convallis. Integer faucibus mauris sit amet finibus
-        convallis.\n\n
-        Phasellus in aliquet mi. Pellentesque habitant morbi tristique senectus et netus et
-        malesuada fames ac turpis egestas. In volutpat arcu ut felis sagittis, in finibus massa
-        gravida. Pellentesque id tellus orci. Integer dictum, lorem sed efficitur ullamcorper,
-        libero justo consectetur ipsum, in mollis nisl ex sed nisl. Donec maximus ullamcorper
-        sodales. Praesent bibendum rhoncus tellus nec feugiat. In a ornare nulla. Donec rhoncus
-        libero vel nunc consequat, quis tincidunt nisl eleifend. Cras bibendum enim a justo luctus
-        vestibulum. Fusce dictum libero quis erat maximus, vitae volutpat diam dignissim.
-    </string>
     <string name="title_activity_home">HomeActivity</string>
-    <string name="label_interence_time">Inference time</string>
-    <string name="label_confidence_threshold">Threshold</string>
-    <string name="bottom_sheet_button_plus">Increasing with button plus</string>
-    <string name="bottom_sheet_button_minus">Lowering value\n</string>
     <string name="label_max_results">Broj rezultata</string>
     <string name="alt_bottom_sheet_max_results_button_minus">Decreasing maxium detected results\n        button</string>
     <string name="alt_bottom_sheet_max_results_button_plus">Increasing maxium detected results\n        button</string>
-    <string name="label_threads">Number of Threads</string>
-    <string name="bottom_sheet_thread_button_minus">Decrease the number of threads used</string>
-    <string name="alt_bottom_sheet_thread_button_plus">increase the number of threads used</string>
-    <string name="label_delegate">Delegate</string>
-    <string name="label_models">ML model\n</string>
 
-    <string-array name="delegate_spinner_titles">
-        <item>CPU</item>
-        <item>GPU</item>
-        <item>NNAPI</item>
-    </string-array>
-
-    <string-array name="models_spinner_titles">
-        <item>MobileNet V1</item>
-        <item>EfficientDet Lite0</item>
-        <item>EfficientDet Lite1</item>
-        <item>EfficientDet Lite2</item>
-    </string-array>
     <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="taken_image">taken image</string>
-    <string name="task">Uslikaj:</string>
-    <string name="classification">Scanny kaže:</string>
-    <string name="confidences">Postotak:</string>
-    <string name="TAKE_PICTURE">Otvori kameru</string>
     <string name="title_activity_login">LoginActivity</string>
-    <string name="prompt_email">Email</string>
     <string name="prompt_password">Lozinka</string>
     <string name="action_sign_in">Prijavi se</string>
     <string name="action_sign_in_short">Sign in</string>
-    <string name="welcome">"Welcome !"</string>
-    <string name="invalid_username">Not a valid username</string>
     <string name="invalid_password">Lozinka mora biti najmanje 8 znakova</string>
     <string name="login_failed">Neuspješno</string>
     <string name="username">Korisničko ime</string>
-    <string name="instructions_title">Get Ready!</string>
-    <string name="instructions_details">Take a clear photo of the object shown below. The system will try to identify it!</string>
-    <string name="hint_take_picture">Hint: Ensure the object is well-lit and centered in the frame.</string>
     <string name="question">Pitanje</string>
     <string name="attempts_count">Broj pokušaja: 0</string>
     <string name="lessons">Lekcije</string>
-    <string name="welcome_to_scanny">Dobrodošli\n u Scanny</string>
-    <string name="app_description">"Scanny je zabavna aplikacija za učenje jezika! Uz pomoć detekcije objekata, možete otkrivati nove riječi i proširivati svoje znanje na interaktivan i edukativan način. "</string>
     <string name="lets_start">Počnimo!</string>
     <string name="profile">Profil</string>
     <string name="logout">Odjava</string>
     <string name="questions">Pitanja</string>
     <string name="question_subject">Predmet %1$d</string>
     <string name="question_attempts">Broj pokušaja: %1$d</string>
-    <string name="hello">Bok</string>
     <string name="lets_scan">Skeniraj</string>
     <string name="lets_play_quiz">Kviz</string>
-    <string name="skip">Preskoči\n</string>
     <string name="tutorial_desc_4">Čestitamo! Sada znaš kako koristiti Scanny aplikaciju. Spreman si za zabavno učenje jezika!</string>
     <string name="tutorial_desc_3">"Bonjour! Izaberi jezik na kojem želiš učiti. Skenirat ćemo stvari oko nas na tom jeziku. Jeeej! "</string>
     <string name="tutorial_desc_2">Otvorit ćemo kameru i ti ćeš pokazivati predmete oko sebe. Ja ću ti pomoći prepoznati te predmete i naučit ćemo kako se zovu na drugim jezicima. Nije li to super?</string>
     <string name="tutorial_desc_1">Hej! Ja sam Scanny, tvoj robot prijatelj. Spremni za učenje?</string>
     <string name="start_tutorial">Info</string>
     <string name="stats">Statistika</string>
-    <string name="stats_title">Statistika</string>
     <string name="default_title">Naslov</string>
     <string name="selectLanguage">Odaberi jezik</string>
     <string name="home">Home</string>
@@ -124,12 +47,27 @@
     <string name="welcome_hr">Dobrodošli</string>
     <string name="to_scanny">u Scanny</string>
     <string name="scanny_description">Scanny je zabavna aplikacija za učenje jezika. Uz pomoć detekcije objekata možete otkrivati nove riječi i proširivati svoje znanje.</string>
-    <string name="lang_rank">Rank: %1$d / %2$d</string>
-    <string name="correct_answers">Točni odgovori: %1$d</string>
     <string name="next_arrow_desc">Next arrow</string>
     <string name="scanny_tutorial_1">scanny tutorial 1</string>
     <string name="skip_hr">Preskoči</string>
     <string name="one">1</string>
+    <string name="change_password">change password</string>
+    <string name="splash_screen_scanny">splash screen scanny</string>
+    <string name="scanny_tutorial">scanny in tutorial</string>
+    <string name="speech_bubble">speech bubble</string>
+    <string name="flag_image">flag image</string>
+    <string name="medal">medal</string>
+    <string name="take_a_picture_hr">Uslikaj:</string>
+    <string name="classification_result">Klasifikacija:</string>
+    <string name="probabilites">Vjerojatnosti:</string>
+    <string name="open_camera_hr">Otvori kameru</string>
+    <string name="profile_image">profile image</string>
+    <string name="default_name">Petra</string>
+    <string name="logout_logo_desc">logout logo</string>
+    <string name="language_hr">Jezik</string>
+    <string name="rank">0 / 0</string>
+    <string name="lecture_title">Naslov lekcije</string>
+    <string name="bravo">Bravo!</string>
 
 
 </resources>
