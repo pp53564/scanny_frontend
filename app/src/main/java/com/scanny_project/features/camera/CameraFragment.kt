@@ -30,6 +30,8 @@ import kotlinx.coroutines.launch
 import org.tensorflow.lite.task.vision.detector.Detection
 import java.util.concurrent.ExecutorService
 import java.util.concurrent.Executors
+import android.speech.tts.TextToSpeech
+import java.util.Locale
 
 class CameraFragment: Fragment(), ObjectDetectorHelper.DetectorListener{
     private lateinit var bottomSheetBehavior: BottomSheetBehavior<View>
@@ -45,8 +47,14 @@ class CameraFragment: Fragment(), ObjectDetectorHelper.DetectorListener{
     private var camera: Camera? = null
     private var cameraProvider: ProcessCameraProvider? = null
     private var translator: Translator? = null
-
     private lateinit var cameraExecutor: ExecutorService
+    private var textToSpeech: TextToSpeech? = null
+    private var selectedLangCode: String? = null
+    private var lastLabel: String? = null
+
+    private var lastSpokenLabel: String? = null
+    private var lastSpeakTime: Long = 0
+
 
 //    override fun onResume() {
 //        super.onResume()
@@ -60,6 +68,8 @@ class CameraFragment: Fragment(), ObjectDetectorHelper.DetectorListener{
         _fragmentCameraBinding = null
         super.onDestroyView()
 
+        textToSpeech?.stop()
+        textToSpeech?.shutdown()
         cameraExecutor.shutdown()
     }
 
@@ -93,11 +103,15 @@ class CameraFragment: Fragment(), ObjectDetectorHelper.DetectorListener{
     @SuppressLint("MissingPermission")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        selectedLangCode = arguments?.getString("SELECTED_LANGUAGE")
+
         objectDetectorHelper = ObjectDetectorHelper(
             context = requireContext(),
             objectDetectorListener = this
         )
         cameraExecutor = Executors.newSingleThreadExecutor()
+        initTextToSpeech()
+
         fragmentCameraBinding.viewFinder.post {
             viewLifecycleOwner.lifecycleScope.launch(Dispatchers.IO) {
                     setUpCamera()
@@ -106,7 +120,17 @@ class CameraFragment: Fragment(), ObjectDetectorHelper.DetectorListener{
         initBottomSheetControls()
     }
 
-
+    private fun initTextToSpeech() {
+        textToSpeech = TextToSpeech(requireContext()) { status ->
+            if (status == TextToSpeech.SUCCESS) {
+                textToSpeech?.language = Locale.forLanguageTag(selectedLangCode)
+                textToSpeech?.setSpeechRate(1.0f)
+                textToSpeech?.setPitch(1.0f)
+            } else {
+                Log.e(tag, "TextToSpeech initialization failed")
+            }
+        }
+    }
 
     private fun initBottomSheetControls() {
         // When clicked, lower detection score threshold floor
@@ -284,45 +308,41 @@ class CameraFragment: Fragment(), ObjectDetectorHelper.DetectorListener{
                 val score = det.categories[0].score
                 val label = det.categories[0].label
 
-                translator?.translate(label)
-                    ?.addOnSuccessListener { translated ->
-                        val rectF = RectF(
-                            boundingBox.left.toFloat(),
-                            boundingBox.top.toFloat(),
-                            boundingBox.right.toFloat(),
-                            boundingBox.bottom.toFloat()
-                        )
-                        translatedDetections.add(
-                            CustomDetection(rectF, translated, score)
-                        )
+                if(label != lastLabel) {
+                    lastLabel = label
 
-                        pendingTranslations--
-                        if (pendingTranslations == 0) {
-                            fragmentCameraBinding.overlay.setTranslatedResults(
-                                translatedDetections,
-                                imageHeight,
-                                imageWidth
+                    translator?.translate(label)
+                        ?.addOnSuccessListener { translated ->
+                            val rectF = RectF(
+                                boundingBox.left,
+                                boundingBox.top,
+                                boundingBox.right,
+                                boundingBox.bottom
                             )
-                        }
-                    }?.addOnFailureListener {
-//                    val rectF = RectF(
-//                        boundingBox.left.toFloat(),
-//                        boundingBox.top.toFloat(),
-//                        boundingBox.right.toFloat(),
-//                        boundingBox.bottom.toFloat()
-//                    )
-//                    translatedDetections.add(
-//                        CustomDetection(rectF, label, score)
-//                    )
+                            translatedDetections.add(
+                                CustomDetection(rectF, translated, score)
+                            )
+
+                            if (translated != lastSpokenLabel || System.currentTimeMillis() - lastSpeakTime > 6000) {
+                                textToSpeech?.speak(translated, TextToSpeech.QUEUE_ADD, null, null)
+                                lastSpokenLabel = translated
+                                lastSpeakTime = System.currentTimeMillis()
+                            }
+                            Log.i("italian", translated + label)
+
+                            pendingTranslations--
+                            if (pendingTranslations == 0) {
+                                fragmentCameraBinding.overlay.setTranslatedResults(
+                                    translatedDetections,
+                                    imageHeight,
+                                    imageWidth
+                                )
+                            }
+                        }?.addOnFailureListener {
 //
-//                    pendingTranslations--
-//                    if (pendingTranslations == 0) {
-//                        fragmentCameraBinding.overlay.setTranslatedResults(
-//                            translatedDetections,
-//                            imageHeight,
-//                            imageWidth
-//                        )
-//                    }
+                        }
+                } else {
+                    pendingTranslations--
                 }
             }
         }

@@ -1,21 +1,18 @@
 <resources>
     <string name="app_name">Scanny</string>
     <string name="title_activity_profile">ProfileActivity</string>
-    <!-- Strings used for fragments for navigation -->
     <string name="bottom_sheet_description">Bottom sheet expandable indicator</string>
 
     <string name="title_activity_home">HomeActivity</string>
     <string name="label_max_results">Broj rezultata</string>
     <string name="alt_bottom_sheet_max_results_button_minus">Decreasing maxium detected results\n        button</string>
     <string name="alt_bottom_sheet_max_results_button_plus">Increasing maxium detected results\n        button</string>
-
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="taken_image">taken image</string>
     <string name="title_activity_login">LoginActivity</string>
     <string name="prompt_password">Lozinka</string>
     <string name="action_sign_in">Prijavi se</string>
     <string name="action_sign_in_short">Sign in</string>
-    <string name="invalid_password">Lozinka mora biti najmanje 8 znakova</string>
+    <string name="invalid_password">Lozinka mora imati najmanje 8 znakova</string>
     <string name="login_failed">Neuspješno</string>
     <string name="username">Korisničko ime</string>
     <string name="question">Pitanje</string>

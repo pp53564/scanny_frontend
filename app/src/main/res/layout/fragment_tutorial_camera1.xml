@@ -43,7 +43,7 @@
             android:layout_height="wrap_content"
             android:clickable="true"
             android:contentDescription="@string/next_arrow_desc"
-            android:src="@drawable/next"
+            android:src="@drawable/next_arrow_bubble_light"
             app:backgroundTint="@color/dark_blue"
             app:elevation="15dp"
             app:layout_constraintBottom_toBottomOf="@+id/ivScanny"

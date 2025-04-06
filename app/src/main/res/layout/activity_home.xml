@@ -56,6 +56,7 @@
 <!--                        android:textStyle="bold" />-->
 
                     <ImageView
+                        android:id="@+id/imageView7"
                         android:layout_width="280dp"
                         android:layout_height="280dp"
                         android:layout_marginTop="8dp"
@@ -92,6 +93,7 @@
                         android:orientation="vertical">
 
                         <TextView
+                            android:id="@+id/tvScanner"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="8dp"
@@ -105,6 +107,7 @@
                             android:textStyle="bold" />
 
                         <ImageView
+                            android:id="@+id/ivScanner"
                             android:layout_width="84dp"
                             android:layout_height="84dp"
                             android:rotation="45"
@@ -133,6 +136,7 @@
                         android:padding="16dp">
 
                         <TextView
+                            android:id="@+id/tvQuiz"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="8dp"
@@ -145,6 +149,7 @@
                             android:textStyle="bold"/>
 
                         <ImageView
+                            android:id="@+id/ivQuiz"
                             android:layout_width="84dp"
                             android:layout_height="84dp"
                             android:contentDescription="@string/lets_play_quiz"
@@ -179,12 +184,14 @@
                         android:background="@drawable/fancy_card_background_purple">
 
                         <ImageView
+                            android:id="@+id/ivTutorial"
                             android:layout_width="84dp"
                             android:layout_height="84dp"
                             android:contentDescription="@string/lets_scan"
                             app:srcCompat="@drawable/info" />
 
                         <TextView
+                            android:id="@+id/tvTutorial"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="8dp"
@@ -222,6 +229,7 @@
                             app:srcCompat="@drawable/stats2" />
 
                         <TextView
+                            android:id="@+id/tvStats"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="8dp"

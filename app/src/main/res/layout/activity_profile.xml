@@ -261,13 +261,14 @@
                         app:layout_constraintTop_toTopOf="@+id/ivStats" />
 
                     <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
-                        app:srcCompat="@drawable/arrow"
-                        android:contentDescription="TODO" />
+                        app:srcCompat="@drawable/next_arrow_bubble_dark"
+                        android:contentDescription="@string/next_arrow_desc" />
+
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
                 <androidx.constraintlayout.widget.ConstraintLayout

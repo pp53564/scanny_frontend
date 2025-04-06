@@ -6,6 +6,7 @@ import android.graphics.Color
 import android.graphics.Paint
 import android.graphics.Rect
 import android.graphics.RectF
+import android.provider.CalendarContract.Colors
 import android.util.AttributeSet
 import android.view.View
 import androidx.core.content.ContextCompat
@@ -38,23 +39,21 @@ class OverlayView(context: Context?, attrs: AttributeSet?) : View(context, attrs
     }
 
     private fun initPaints() {
-        textBackgroundPaint.color = Color.argb(160, 0, 0, 0)
+        textBackgroundPaint.color = ContextCompat.getColor(context!!, R.color.dark_blue)
         textBackgroundPaint.style = Paint.Style.FILL
         textBackgroundPaint.isAntiAlias = true
-//        textBackgroundPaint.textSize = 62f
 
-        // White text on top of the black background
         textPaint.color = Color.WHITE
-//        textPaint.style = Paint.Style.FILL
         textPaint.isAntiAlias = true
-        textPaint.textSize = 62f
+        textPaint.textSize = 80f
+        textPaint.textAlign = Paint.Align.CENTER
 
-        // Dark-blue bounding box with a moderate stroke width
         boxPaint.color = ContextCompat.getColor(context!!, R.color.dark_blue)
-        boxPaint.strokeWidth = 10f
+        boxPaint.strokeWidth = 12f
         boxPaint.style = Paint.Style.STROKE
         boxPaint.isAntiAlias = true
     }
+
 
 
     fun setTranslatedResults(
@@ -69,7 +68,6 @@ class OverlayView(context: Context?, attrs: AttributeSet?) : View(context, attrs
 
     override fun draw(canvas: Canvas) {
         super.draw(canvas)
-
         for (result in results) {
             val boundingBox = result.boundingBox
             val top = boundingBox.top * scaleFactor
@@ -78,24 +76,32 @@ class OverlayView(context: Context?, attrs: AttributeSet?) : View(context, attrs
             val right = boundingBox.right * scaleFactor
 
             val drawableRect = RectF(left, top, right, bottom)
-            canvas.drawRect(drawableRect, boxPaint)
-//            canvas.drawRect(result.boundingBox, boxPaint)
-            // measure text
-            textBackgroundPaint.getTextBounds(result.label, 0, result.label.length, bounds)
-            val textWidth = bounds.width()
-            val textHeight = bounds.height()
 
+            val cornerRadiusRect = 32f
+            canvas.drawRoundRect(drawableRect, cornerRadiusRect, cornerRadiusRect, boxPaint)
 
-            // background rect
-            canvas.drawRect(
+            val label = result.label
+            val padding = 20f
+            val cornerRadiusText = 15f
+
+            val textWidth = textPaint.measureText(label)
+            val textHeight = textPaint.descent() - textPaint.ascent()
+
+            val backgroundRect = RectF(
                 left,
-                top,
-                left + textWidth + 8,
-                top + textHeight + 8,
-                textBackgroundPaint
+                top - textHeight - padding,
+                left + textWidth + padding * 2,
+                top
             )
-            canvas.drawText(result.label, left, top + textHeight, textPaint)
+
+            canvas.drawRoundRect(backgroundRect, cornerRadiusText, cornerRadiusText, textBackgroundPaint)
+
+            val textX = backgroundRect.left + (backgroundRect.width() / 2)
+            val textY = backgroundRect.top + (backgroundRect.height() / 2) - (textPaint.descent() + textPaint.ascent()) / 2
+
+            canvas.drawText(label, textX, textY, textPaint)
         }
+
     }
 
 //    fun setResults(

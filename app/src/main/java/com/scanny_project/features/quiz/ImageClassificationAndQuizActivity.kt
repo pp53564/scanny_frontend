@@ -172,21 +172,20 @@ class ImageClassificationAndQuizActivity : AppCompatActivity(){
 //    }
 
     private fun handleResult(correct: Boolean, confidenceScore: Float, matchedLabel: String) {
-        binding.classified.visibility = View.VISIBLE
+//        binding.classified.visibility = View.VISIBLE
         binding.confidencesText.visibility = View.VISIBLE
         binding.resultReaction.visibility = View.VISIBLE
         binding.myCardView.visibility = View.VISIBLE
         if (correct) {
             binding.resultReaction.text = getString(R.string.correct_answer)
             showImageDialog(true)
+            //ovo napravi ako nije tocno sto je prvo bilo gore:
+//          binding.result.text = "${matchedLabel}"
+            binding.confidence.text = "${confidenceScore * 100}%"
         } else {
             binding.resultReaction.text = getString(R.string.wrong_answer)
             showImageDialog(false)
         }
-        //ovo napravi ako nije tocno sto je prvo bilo gore:
-        binding.result.text = "${matchedLabel}"
-        binding.confidence.text = "${confidenceScore * 100}%"
-
     }
 
     private fun showImageDialog(correct: Boolean) {

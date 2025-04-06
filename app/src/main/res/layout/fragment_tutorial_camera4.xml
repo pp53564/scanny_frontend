@@ -30,7 +30,7 @@
             android:layout_height="wrap_content"
             android:layout_margin="16dp"
             android:contentDescription="@string/back_button_description"
-            android:src="@drawable/baseline_arrow_back_ios_new_24"
+            android:src="@drawable/ic_back_bubble_light"
             app:backgroundTint="@color/dark_blue"
             app:elevation="10dp"
             app:layout_constraintBottom_toBottomOf="@+id/ivScanny"
@@ -47,7 +47,7 @@
             android:layout_height="wrap_content"
             android:clickable="true"
             android:contentDescription="@string/next_arrow_desc"
-            android:src="@drawable/next"
+            android:src="@drawable/next_arrow_bubble_light"
             app:backgroundTint="@color/dark_blue"
             app:elevation="10dp"
             app:layout_constraintBottom_toBottomOf="@+id/ivScanny"
@@ -63,12 +63,13 @@
             android:id="@+id/ivScanny"
             android:layout_width="150dp"
             android:layout_height="180dp"
-            android:scaleType="fitCenter"
+            android:layout_marginBottom="230dp"
+            android:foregroundGravity="center_horizontal"
             android:src="@drawable/scanny_tutorial_3"
+            android:scaleType="fitCenter"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
             android:contentDescription="@string/scanny_tutorial"/>
 
         <FrameLayout

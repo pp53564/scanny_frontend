@@ -26,8 +26,7 @@ class CameraActivity : AppCompatActivity() {
 //            overlayView.setTranslator(translator)
 //        }
 
-         val selectedLangCode = intent.getStringExtra("SELECTED_LANGUAGE")?: "en"
-        Log.i("petra1", selectedLangCode)
+         val selectedLangCode = intent.getStringExtra("SELECTED_LANGUAGE")
 
         val fragment = CameraFragment().apply {
             arguments = Bundle().apply {
@@ -35,7 +34,7 @@ class CameraActivity : AppCompatActivity() {
             }
         }
 
-        TranslatorHelper.initializeTranslator(selectedLangCode) { translator ->
+        TranslatorHelper.initializeTranslator(selectedLangCode!!) { translator ->
             lifecycle.addObserver(translator)
 //            val overlayView = findViewById<OverlayView>(R.id.overlay)
 //            overlayView.setCustomTranslator(translator)
