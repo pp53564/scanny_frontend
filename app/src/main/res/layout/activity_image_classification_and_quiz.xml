@@ -97,7 +97,8 @@
                         android:layout_marginTop="6dp"
                         android:textColor="@color/accentColor"
                         android:textSize="22sp"
-                        android:textStyle="bold" />
+                        android:textStyle="bold"
+                        android:textAllCaps="true"/>
 
                     <androidx.cardview.widget.CardView
                         android:id="@+id/myCardView"
@@ -120,7 +121,6 @@
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
 
-            <!-- 2) Classification TextViews BELOW the image container -->
             <LinearLayout
                 android:id="@+id/linearLayout2"
                 android:layout_width="match_parent"

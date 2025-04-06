@@ -173,7 +173,6 @@ class ImageClassificationAndQuizActivity : AppCompatActivity(){
 
     private fun handleResult(correct: Boolean, confidenceScore: Float, matchedLabel: String) {
 //        binding.classified.visibility = View.VISIBLE
-        binding.confidencesText.visibility = View.VISIBLE
         binding.resultReaction.visibility = View.VISIBLE
         binding.myCardView.visibility = View.VISIBLE
         if (correct) {
@@ -181,7 +180,8 @@ class ImageClassificationAndQuizActivity : AppCompatActivity(){
             showImageDialog(true)
             //ovo napravi ako nije tocno sto je prvo bilo gore:
 //          binding.result.text = "${matchedLabel}"
-            binding.confidence.text = "${confidenceScore * 100}%"
+            binding.confidencesText.visibility = View.VISIBLE
+            binding.confidence.text = "${(confidenceScore * 100).toInt()}%"
         } else {
             binding.resultReaction.text = getString(R.string.wrong_answer)
             showImageDialog(false)
@@ -202,7 +202,6 @@ class ImageClassificationAndQuizActivity : AppCompatActivity(){
         } else {
             getString(R.string.wrong_answer)
         }
-
         val image = dialog.findViewById<ImageView>(R.id.dialogImageView)
         image.setImageResource(if (correct) R.drawable.scanny_happy else R.drawable.scanny_sad)
 
