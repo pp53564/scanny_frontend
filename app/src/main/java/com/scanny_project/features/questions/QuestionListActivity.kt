@@ -2,29 +2,24 @@ package com.scanny_project.features.questions
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.ui_ux_demo.R
 import com.example.ui_ux_demo.databinding.ActivityQuestionsListBinding
 import com.scanny_project.features.language.SelectLanguageActivityForImageClassification
-import com.scanny_project.data.repository.LectureRepository
-import com.scanny_project.utils.Result
 import com.scanny_project.data.model.UserQuestionDTO
 import com.scanny_project.features.quiz.ImageClassificationAndQuizActivity
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.launch
-import javax.inject.Inject
 
 @AndroidEntryPoint
-class QuestionsListActivity : AppCompatActivity() {
-
-    @Inject
-    lateinit var lectureRepository: LectureRepository
-
+class QuestionListActivity : AppCompatActivity() {
     private lateinit var binding: ActivityQuestionsListBinding
+
+    private val viewModel: QuestionListViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -46,29 +41,31 @@ class QuestionsListActivity : AppCompatActivity() {
             return
         }
 
-        lifecycleScope.launch {
-            val questionsResult = selectedLangCode?.let {
-                lectureRepository.getUserQuestionsByLectureAndLang(lectureId,
-                    it
-                )
-            }
-            if (questionsResult is Result.Success<List<UserQuestionDTO>>) {
-                val questions = questionsResult.data
-
-                val adapter = QuestionsAdapter(questions) { selectedQuestion ->
-                    val intent = Intent(this@QuestionsListActivity, ImageClassificationAndQuizActivity::class.java)
-                    intent.putExtra("QUESTION_KEYWORD", selectedQuestion.localizedSubject)
-                    intent.putExtra("QUESTION_ID", selectedQuestion.id)
-                    intent.putExtra("SELECTED_LANGUAGE", selectedLangCode)
-                    startActivity(intent)
-                }
-
-                binding.questionList.layoutManager = LinearLayoutManager(this@QuestionsListActivity)
-                binding.questionList.adapter = adapter
-
-            } else {
-                Toast.makeText(this@QuestionsListActivity, "Failed to fetch questions", Toast.LENGTH_SHORT).show()
+        viewModel.questions.observe(this) { questions ->
+            if (questions != null) {
+                setupRecyclerView(questions, selectedLangCode!!)
             }
         }
+
+        viewModel.errorMessage.observe(this) { error ->
+            if (!error.isNullOrEmpty()) {
+                Log.e("QuestionListActivity", error)
+            }
+        }
+
+        viewModel.loadQuestions(lectureId, selectedLangCode!!)
+    }
+
+    private fun setupRecyclerView(questions: List<UserQuestionDTO>, selectedLangCode: String) {
+        val adapter = QuestionAdapter(questions) { selectedQuestion ->
+            val intent = Intent(this@QuestionListActivity, ImageClassificationAndQuizActivity::class.java)
+            intent.putExtra("QUESTION_KEYWORD", selectedQuestion.localizedSubject)
+            intent.putExtra("QUESTION_ID", selectedQuestion.id)
+            intent.putExtra("SELECTED_LANGUAGE", selectedLangCode)
+            startActivity(intent)
+        }
+
+        binding.questionList.layoutManager = LinearLayoutManager(this@QuestionListActivity)
+        binding.questionList.adapter = adapter
     }
 }

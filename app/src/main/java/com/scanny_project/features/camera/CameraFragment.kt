@@ -55,6 +55,8 @@ class CameraFragment: Fragment(), ObjectDetectorHelper.DetectorListener{
     private var lastSpokenLabel: String? = null
     private var lastSpeakTime: Long = 0
 
+    private val lastSpokenTimeMap = mutableMapOf<String, Long>()
+
 
 //    override fun onResume() {
 //        super.onResume()
@@ -124,8 +126,8 @@ class CameraFragment: Fragment(), ObjectDetectorHelper.DetectorListener{
         textToSpeech = TextToSpeech(requireContext()) { status ->
             if (status == TextToSpeech.SUCCESS) {
                 textToSpeech?.language = Locale.forLanguageTag(selectedLangCode)
-                textToSpeech?.setSpeechRate(1.0f)
-                textToSpeech?.setPitch(1.0f)
+                textToSpeech?.setPitch(1.2f)
+                textToSpeech?.setSpeechRate(1.2f)
             } else {
                 Log.e(tag, "TextToSpeech initialization failed")
             }
@@ -287,48 +289,105 @@ class CameraFragment: Fragment(), ObjectDetectorHelper.DetectorListener{
         imageAnalyzer?.targetRotation = fragmentCameraBinding.viewFinder.display.rotation
     }
 
+//    override fun onResults(
+//        detections: MutableList<Detection>?,
+//        inferenceTime: Long,
+//        imageHeight: Int,
+//        imageWidth: Int
+//    ) {
+//        if(translator == null) {
+//            return
+//        }
+//
+//        activity?.runOnUiThread {
+//            val rawDetections = detections ?: return@runOnUiThread
+//
+//            val translatedDetections = mutableListOf<CustomDetection>()
+//            var pendingTranslations = rawDetections.size
+//
+//            Log.i("italian", pendingTranslations.toString())
+//
+//            for (det in rawDetections) {
+//                val boundingBox = det.boundingBox
+//                val score = det.categories[0].score
+//                val label = det.categories[0].label
+//
+//                Log.i("italian", label)
+//
+//                if(label.toString() != lastLabel || System.currentTimeMillis() - lastSpeakTime > 10000) {
+//                    lastLabel = label
+//
+//                    translator?.translate(label)
+//                        ?.addOnSuccessListener { translated ->
+//                            val rectF = RectF(
+//                                boundingBox.left,
+//                                boundingBox.top,
+//                                boundingBox.right,
+//                                boundingBox.bottom
+//                            )
+//                            translatedDetections.add(
+//                                CustomDetection(rectF, translated, score)
+//                            )
+//
+//                            textToSpeech?.speak(translated, TextToSpeech.QUEUE_ADD, null, null)
+//                            lastSpokenLabel = translated
+//                            lastSpeakTime = System.currentTimeMillis()
+//                            Log.i("italian", translated + label)
+//
+//                            pendingTranslations--
+//                            if (pendingTranslations == 0) {
+//                                fragmentCameraBinding.overlay.setTranslatedResults(
+//                                    translatedDetections,
+//                                    imageHeight,
+//                                    imageWidth
+//                                )
+//                            }
+//                        }?.addOnFailureListener {
+////
+//                        }
+//                } else {
+//                    pendingTranslations--
+//                }
+//            }
+//        }
+//    }
+
     override fun onResults(
         detections: MutableList<Detection>?,
         inferenceTime: Long,
         imageHeight: Int,
         imageWidth: Int
     ) {
-        if(translator == null) {
-            return
-        }
+        if (translator == null || detections == null) return
 
-        activity?.runOnUiThread {
-            val rawDetections = detections ?: return@runOnUiThread
-
+        viewLifecycleOwner.lifecycleScope.launch {
+            val groupedDetections = detections.groupBy { it.categories[0].label }
             val translatedDetections = mutableListOf<CustomDetection>()
-            var pendingTranslations = rawDetections.size
+            var pendingTranslations = groupedDetections.size
 
-            for (det in rawDetections) {
-                val boundingBox = det.boundingBox
-                val score = det.categories[0].score
-                val label = det.categories[0].label
+            groupedDetections.forEach { (label, detList) ->
+                val currentTime = System.currentTimeMillis()
+                val lastTime = lastSpokenTimeMap[label] ?: 0L
+                val debounceThreshold = 5000L
 
-                if(label != lastLabel) {
-                    lastLabel = label
+                if (currentTime - lastTime > debounceThreshold) {
+                    lastSpokenTimeMap[label] = currentTime
 
                     translator?.translate(label)
                         ?.addOnSuccessListener { translated ->
-                            val rectF = RectF(
-                                boundingBox.left,
-                                boundingBox.top,
-                                boundingBox.right,
-                                boundingBox.bottom
-                            )
-                            translatedDetections.add(
-                                CustomDetection(rectF, translated, score)
-                            )
-
-                            if (translated != lastSpokenLabel || System.currentTimeMillis() - lastSpeakTime > 6000) {
-                                textToSpeech?.speak(translated, TextToSpeech.QUEUE_ADD, null, null)
-                                lastSpokenLabel = translated
-                                lastSpeakTime = System.currentTimeMillis()
+                            detList.forEach { det ->
+                                val boundingBox = det.boundingBox
+                                val score = det.categories[0].score
+                                val rectF = RectF(
+                                    boundingBox.left,
+                                    boundingBox.top,
+                                    boundingBox.right,
+                                    boundingBox.bottom
+                                )
+                                translatedDetections.add(CustomDetection(rectF, translated, score))
                             }
-                            Log.i("italian", translated + label)
+                            textToSpeech?.speak(translated, TextToSpeech.QUEUE_ADD, null, null)
+                            Log.i("TTS", "Speaking: $translated for label: $label")
 
                             pendingTranslations--
                             if (pendingTranslations == 0) {
@@ -339,7 +398,6 @@ class CameraFragment: Fragment(), ObjectDetectorHelper.DetectorListener{
                                 )
                             }
                         }?.addOnFailureListener {
-//
                         }
                 } else {
                     pendingTranslations--
@@ -347,6 +405,7 @@ class CameraFragment: Fragment(), ObjectDetectorHelper.DetectorListener{
             }
         }
     }
+
 
     public fun setTranslator(translator: Translator) {
         this.translator = translator

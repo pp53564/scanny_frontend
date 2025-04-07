@@ -4,26 +4,21 @@ import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import androidx.activity.enableEdgeToEdge
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.ui_ux_demo.R
 import com.example.ui_ux_demo.databinding.ActivityLecturesListBinding
 import com.scanny_project.features.language.SelectLanguageActivityForImageClassification
-import com.scanny_project.data.repository.LectureRepository
-import com.scanny_project.utils.Result
 import com.scanny_project.data.model.UserLectureDTO
-import com.scanny_project.features.questions.QuestionsListActivity
+import com.scanny_project.features.questions.QuestionListActivity
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.launch
-import javax.inject.Inject
 
 @AndroidEntryPoint
-class LecturesListActivity : AppCompatActivity() {
+class LectureListActivity : AppCompatActivity() {
     private lateinit var binding: ActivityLecturesListBinding
 
-    @Inject
-    lateinit var lectureRepository: LectureRepository
+    private val viewModel: LectureListViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -40,20 +35,23 @@ class LecturesListActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
-        lifecycleScope.launch {
-            val lecturesResult = lectureRepository.getAllUserLanguageLectures(selectedLangCode)
-            if (lecturesResult is Result.Success<List<UserLectureDTO>>) {
-                val lectures = lecturesResult.data
+        viewModel.lectures.observe(this) { lectures ->
+            if (lectures != null) {
                 setupRecyclerView(lectures, selectedLangCode)
-            } else {
-                Log.e("LecturesListActivity", "Failed to fetch lectures")
             }
         }
-    }
 
+        viewModel.errorMessage.observe(this) { error ->
+            if (!error.isNullOrEmpty()) {
+                Log.e("LecturesListActivity", error)
+            }
+        }
+
+        viewModel.loadLectures(selectedLangCode)
+    }
     private fun setupRecyclerView(lectures: List<UserLectureDTO>, selectedLangCode: String) {
         val adapter = LecturesAdapter(lectures) { selectedLecture ->
-            val intent = Intent(this, QuestionsListActivity::class.java).apply {
+            val intent = Intent(this, QuestionListActivity::class.java).apply {
                 putExtra("LECTURE_ID", selectedLecture.id)
                 putExtra("SELECTED_LANGUAGE", selectedLangCode)
             }

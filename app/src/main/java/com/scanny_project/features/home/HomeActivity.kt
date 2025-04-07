@@ -6,14 +6,13 @@ import androidx.appcompat.app.AppCompatActivity
 import com.example.ui_ux_demo.R
 import com.example.ui_ux_demo.databinding.ActivityHomeBinding
 import com.google.android.material.bottomnavigation.BottomNavigationView
-import com.scanny_project.features.camera.CameraActivity
 import com.scanny_project.features.language.SelectLanguageActivity
 import com.scanny_project.features.language.SelectLanguageActivityForImageClassification
 import com.scanny_project.features.tutorial.TutorialActivity
 import com.scanny_project.data.SessionManager
 import com.scanny_project.features.profile.ProfileActivity
 import com.scanny_project.features.stats.StatsActivity
-import com.skydoves.transformationlayout.TransformationLayout
+import com.scanny_project.utils.setupNavigation
 import com.skydoves.transformationlayout.onTransformationStartContainer
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
@@ -34,12 +33,8 @@ class HomeActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         navigation = binding.root.findViewById(R.id.bottomNavigationView)
-//        transformationLayout = binding.transformationLayout
-//        transformationLayoutQuiz = binding.transformationLayoutQuiz
-
         val sharedPref = getSharedPreferences("MyAppPrefs", MODE_PRIVATE)
 //        val username = sharedPref.getString("username", "User")
-
 //        binding.tvUsername.text = "Bok $username"
 
         navigation.setOnItemSelectedListener { item ->
@@ -50,13 +45,25 @@ class HomeActivity : AppCompatActivity() {
                     true
                 }
                 R.id.camera -> {
-                    startActivity(Intent(applicationContext, CameraActivity::class.java))
+                    startActivity(Intent(applicationContext, SelectLanguageActivity::class.java))
                     true
                 }
                 else -> false
-            }   }
-            navigation.selectedItemId = R.id.home
+            }
+        }
 
+        navigation.setupNavigation(
+            mapOf(
+                R.id.home to { true },
+                R.id.camera to { startActivity(Intent(this, SelectLanguageActivity::class.java)) },
+                R.id.profile to {
+                    startActivity(Intent(applicationContext, ProfileActivity::class.java))
+                    true
+                }
+            )
+        )
+
+        navigation.selectedItemId = R.id.home
 
         binding.cvScanning.setOnClickListener {
             startActivity(Intent(this, SelectLanguageActivity::class.java))
@@ -76,17 +83,6 @@ class HomeActivity : AppCompatActivity() {
         binding.cvStats.setOnClickListener {
             startActivity(Intent(this, StatsActivity::class.java))
         }
-
-
-//        binding.cvQuiz.setOnClickListener {
-//            val navController = findNavController(R.id.nav_graph_image_class)
-//            navController.navigate(R.id.tutorialImageClass1Fragment)
-//        }
-
-//       binding.cvScanning.setOnClickListener {
-//            val navController = findNavController(R.id.fragment_container)
-//            navController.navigate(R.id.tutorialCamera1Fragment)
-//        }
     }
 
     override fun onResume() {

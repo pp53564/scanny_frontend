@@ -10,10 +10,10 @@ import com.google.android.material.card.MaterialCardView
 import com.example.ui_ux_demo.R
 import com.scanny_project.data.model.UserQuestionDTO
 
-class QuestionsAdapter(
+class QuestionAdapter(
     private val questions: List<UserQuestionDTO>,
     private val onQuestionClick: (UserQuestionDTO) -> Unit
-) : RecyclerView.Adapter<QuestionsAdapter.QuestionViewHolder>() {
+) : RecyclerView.Adapter<QuestionAdapter.QuestionViewHolder>() {
 
     class QuestionViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val questionSubject: TextView = itemView.findViewById(R.id.questionSubject)

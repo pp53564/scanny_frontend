@@ -9,16 +9,6 @@
     <color name="light_red">#FF7F7F</color>
     <color name="light_green">#90EE90</color>
     <color name="green_strong">#7DCF4B</color>
-
-
-    <!-- Turquoise accent -->
-    <!-- Slightly darker turquoise -->
-        <color name="accentColor">#FFD700</color>       <!-- Bright playful gold/yellow -->
-
-
-    <!-- bright orange -->
-    <!-- darker orange -->
-    <!-- green accent -->
-
-
+    <color name="accentColor">#FFD700</color>
+    <color name="scanny_blue">#018DBA</color>
 </resources>

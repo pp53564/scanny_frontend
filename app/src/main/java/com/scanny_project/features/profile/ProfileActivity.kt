@@ -10,7 +10,9 @@ import com.example.ui_ux_demo.databinding.ActivityProfileBinding
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.scanny_project.features.camera.CameraActivity
 import com.scanny_project.features.home.HomeActivity
+import com.scanny_project.features.language.SelectLanguageActivity
 import com.scanny_project.features.login.LoginActivity
+import com.scanny_project.utils.setupNavigation
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -37,20 +39,14 @@ class ProfileActivity : AppCompatActivity() {
         }
 
         navigation = binding.root.findViewById(R.id.bottomNavigationView)
-
-        navigation.setOnItemSelectedListener { item ->
-            when(item.itemId) {
-                R.id.home -> {
-                    startActivity(Intent(this, HomeActivity::class.java))
-                    true
-                }
-                R.id.profile -> true
-                R.id.camera -> {
-                    startActivity(Intent(applicationContext, CameraActivity::class.java))
-                    true
-                }
-                else -> false
-            }   }
+        navigation.setupNavigation(
+            mapOf(
+                R.id.home to {     startActivity(Intent(this, HomeActivity::class.java))
+                    true },
+                R.id.camera to { startActivity(Intent(this, SelectLanguageActivity::class.java)) },
+                R.id.profile to { true }
+            )
+        )
         navigation.selectedItemId = R.id.profile
 
         findViewById<TextView>(R.id.tvLogout).setOnClickListener {

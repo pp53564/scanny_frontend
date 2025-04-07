@@ -67,7 +67,7 @@
                     android:text="@string/welcome_hr"
                     android:textSize="28sp"
                     android:textStyle="bold"
-                    android:textColor="@android:color/black" />
+                    android:textColor="@color/blue_gray" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -75,7 +75,7 @@
                     android:text="@string/to_scanny"
                     android:textSize="24sp"
                     android:textStyle="bold"
-                    android:textColor="@android:color/black"
+                    android:textColor="@color/blue_gray"
                     android:layout_marginTop="4dp" />
 
                 <TextView
@@ -93,7 +93,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="32dp"
-                    android:background="@drawable/bg_button_pink_gradient"
+                    android:background="@drawable/fancy_card_background_pink"
                     android:drawableStart="@drawable/baseline_arrow_outward_24"
                     android:elevation="20dp"
                     android:text="@string/lets_start"

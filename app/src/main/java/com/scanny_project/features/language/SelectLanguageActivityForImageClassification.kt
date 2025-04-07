@@ -7,7 +7,7 @@ import androidx.recyclerview.widget.GridLayoutManager
 import com.example.ui_ux_demo.R
 import com.example.ui_ux_demo.databinding.ActivitySelectLanguageBinding
 import com.scanny_project.features.home.HomeActivity
-import com.scanny_project.features.lectures.LecturesListActivity
+import com.scanny_project.features.lectures.LectureListActivity
 import com.scanny_project.utils.LanguageAdapter
 import com.scanny_project.utils.LanguageData
 
@@ -28,7 +28,7 @@ class SelectLanguageActivityForImageClassification : AppCompatActivity() {
         binding.recyclerLanguages.layoutManager = GridLayoutManager(this, 2)
 
         val adapter = LanguageAdapter(LanguageData.languages) { selectedLanguage ->
-            val intent = Intent(this, LecturesListActivity::class.java)
+            val intent = Intent(this, LectureListActivity::class.java)
             intent.putExtra("SELECTED_LANGUAGE", selectedLanguage.code)
             startActivity(intent)
         }
