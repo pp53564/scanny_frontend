@@ -1,9 +1,9 @@
 package com.scanny_project.di
 
 import com.scanny_project.data.*
-import com.scanny_project.data.repository.LoginRepository
+import com.scanny_project.data.repository.UserRepository
 import com.scanny_project.data.SessionManager
-import com.scanny_project.data.repository.LoginDataSource
+import com.scanny_project.data.repository.UserDataSource
 import com.scanny_project.data.services.LectureService
 import com.scanny_project.data.services.StatsService
 import com.scanny_project.data.services.UserQuestionAttemptService
@@ -72,17 +72,17 @@ object AppModule {
 
     @Provides
     @Singleton
-    fun provideLoginDataSource(userService: UserService): LoginDataSource {
-        return LoginDataSource(userService)
+    fun provideLoginDataSource(userService: UserService): UserDataSource {
+        return UserDataSource(userService)
     }
 
     @Provides
     @Singleton
     fun provideLoginRepository(
-        dataSource: LoginDataSource,
+        dataSource: UserDataSource,
         sessionManager: SessionManager
-    ): LoginRepository {
-        return LoginRepository(dataSource, sessionManager)
+    ): UserRepository {
+        return UserRepository(dataSource, sessionManager)
     }
 
     @Provides

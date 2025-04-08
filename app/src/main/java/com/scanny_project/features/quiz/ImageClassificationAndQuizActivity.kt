@@ -67,10 +67,9 @@ class ImageClassificationAndQuizActivity : AppCompatActivity(){
 
         viewModel.attemptResponse.observe(this) { response ->
             response?.let {
-                // Show a dialog based on "correct" or not
-                if (it.matchedLabel.isNotBlank() && it.confidenceScore > 0f) {
+//                if (it.matchedLabel.isNotBlank() && it.confidenceScore > 0f) {
                     handleResult(it.correct, it.confidenceScore, it.matchedLabel)
-                }
+//                }
             }
         }
     }
@@ -106,8 +105,6 @@ class ImageClassificationAndQuizActivity : AppCompatActivity(){
                     constraintSet.connect(binding.tvQuestion.id, ConstraintSet.TOP, ConstraintSet.PARENT_ID, ConstraintSet.TOP)
                     constraintSet.connect(binding.tvQuestion.id, ConstraintSet.BOTTOM, binding.imageView.id, ConstraintSet.TOP)
                     constraintSet.applyTo(binding.imageContainer)
-
-                    binding.buttonTakePicture.visibility = View.GONE
 
                     image = Bitmap.createScaledBitmap(image, 224, 224, false)
                     val capturedBitmap = Bitmap.createScaledBitmap(image, 224, 224, false)
@@ -176,6 +173,7 @@ class ImageClassificationAndQuizActivity : AppCompatActivity(){
         binding.resultReaction.visibility = View.VISIBLE
         binding.myCardView.visibility = View.VISIBLE
         if (correct) {
+            binding.buttonTakePicture.visibility = View.GONE
             binding.resultReaction.text = getString(R.string.correct_answer)
             showImageDialog(true)
             //ovo napravi ako nije tocno sto je prvo bilo gore:
@@ -183,6 +181,7 @@ class ImageClassificationAndQuizActivity : AppCompatActivity(){
             binding.confidencesText.visibility = View.VISIBLE
             binding.confidence.text = "${(confidenceScore * 100).toInt()}%"
         } else {
+            binding.buttonTakePicture.text = getString(R.string.try_again)
             binding.resultReaction.text = getString(R.string.wrong_answer)
             showImageDialog(false)
         }

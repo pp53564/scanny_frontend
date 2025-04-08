@@ -13,34 +13,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-<!--    <LinearLayout-->
-<!--        android:id="@+id/titleContainer"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="220dp"-->
-<!--        android:gravity="center"-->
-<!--        android:orientation="vertical"-->
-<!--        android:layout_alignParentTop="true">-->
-
-<!--        <TextView-->
-<!--            android:id="@+id/titleText"-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:text="Slikaj objekt!"-->
-<!--            android:textSize="24sp"-->
-<!--            android:textStyle="bold"-->
-<!--            android:textColor="@color/dark_blue"-->
-<!--            android:layout_marginTop="40dp" />-->
-
-<!--        <TextView-->
-<!--            android:id="@+id/subTitleText"-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:text="Otkrij što vidiš!"-->
-<!--            android:textSize="18sp"-->
-<!--            android:textColor="@color/dark_blue"-->
-<!--            android:layout_marginTop="8dp" />-->
-<!--    </LinearLayout>-->
-
     <ScrollView
         android:id="@+id/scrollArea"
         android:layout_width="match_parent"
@@ -52,18 +24,12 @@
         android:padding="16dp"
         android:overScrollMode="never">
 
-        <!--
-             A vertical LinearLayout to hold:
-             (1) The top CardView (question & image)
-             (2) Classification TextViews layout (below)
-        -->
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/imageContainer"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <!-- 1) CardView for question + image container -->
             <androidx.cardview.widget.CardView
                 android:id="@+id/cardView2"
                 android:layout_width="match_parent"

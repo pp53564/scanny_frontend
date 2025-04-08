@@ -3,7 +3,7 @@
     android:id="@+id/bottom_sheet_layout"
     android:layout_width="match_parent"
     android:layout_gravity="center_horizontal"
-    android:background="@color/light_blue"
+    android:background="@color/very_light_blue"
     android:gravity="center_horizontal"
     android:orientation="vertical"
     android:layout_height="wrap_content"
@@ -137,7 +137,7 @@
             android:id="@+id/max_results_minus"
             android:layout_width="48dp"
             android:layout_height="48dp"
-            android:background="@color/light_blue"
+            android:background="@color/very_light_blue"
             android:contentDescription="@string/alt_bottom_sheet_max_results_button_minus"
             android:src="@drawable/minus" />
 
@@ -157,7 +157,7 @@
                     android:id="@+id/max_results_plus"
                     android:layout_width="48dp"
                     android:layout_height="48dp"
-                    android:background="@color/light_blue"
+                    android:background="@color/very_light_blue"
                     android:contentDescription="@string/alt_bottom_sheet_max_results_button_plus"
                     android:src="@drawable/plus" />
             </LinearLayout>

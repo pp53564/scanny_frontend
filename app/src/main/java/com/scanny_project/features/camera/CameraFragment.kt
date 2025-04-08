@@ -31,6 +31,7 @@ import org.tensorflow.lite.task.vision.detector.Detection
 import java.util.concurrent.ExecutorService
 import java.util.concurrent.Executors
 import android.speech.tts.TextToSpeech
+import com.scanny_project.utils.TextToSpeechHelper
 import java.util.Locale
 
 class CameraFragment: Fragment(), ObjectDetectorHelper.DetectorListener{
@@ -48,12 +49,8 @@ class CameraFragment: Fragment(), ObjectDetectorHelper.DetectorListener{
     private var cameraProvider: ProcessCameraProvider? = null
     private var translator: Translator? = null
     private lateinit var cameraExecutor: ExecutorService
-    private var textToSpeech: TextToSpeech? = null
+    private lateinit var ttsHelper: TextToSpeechHelper
     private var selectedLangCode: String? = null
-    private var lastLabel: String? = null
-
-    private var lastSpokenLabel: String? = null
-    private var lastSpeakTime: Long = 0
 
     private val lastSpokenTimeMap = mutableMapOf<String, Long>()
 
@@ -69,9 +66,7 @@ class CameraFragment: Fragment(), ObjectDetectorHelper.DetectorListener{
     override fun onDestroyView() {
         _fragmentCameraBinding = null
         super.onDestroyView()
-
-        textToSpeech?.stop()
-        textToSpeech?.shutdown()
+        ttsHelper.shutdown()
         cameraExecutor.shutdown()
     }
 
@@ -112,7 +107,6 @@ class CameraFragment: Fragment(), ObjectDetectorHelper.DetectorListener{
             objectDetectorListener = this
         )
         cameraExecutor = Executors.newSingleThreadExecutor()
-        initTextToSpeech()
 
         fragmentCameraBinding.viewFinder.post {
             viewLifecycleOwner.lifecycleScope.launch(Dispatchers.IO) {
@@ -122,17 +116,20 @@ class CameraFragment: Fragment(), ObjectDetectorHelper.DetectorListener{
         initBottomSheetControls()
     }
 
-    private fun initTextToSpeech() {
-        textToSpeech = TextToSpeech(requireContext()) { status ->
-            if (status == TextToSpeech.SUCCESS) {
-                textToSpeech?.language = Locale.forLanguageTag(selectedLangCode)
-                textToSpeech?.setPitch(1.2f)
-                textToSpeech?.setSpeechRate(1.2f)
-            } else {
-                Log.e(tag, "TextToSpeech initialization failed")
-            }
-        }
-    }
+//    private fun initTextToSpeech() {
+////        textToSpeech = TextToSpeech(requireContext()) { status ->
+////            if (status == TextToSpeech.SUCCESS) {
+////                textToSpeech?.language = Locale.forLanguageTag(selectedLangCode)
+////                textToSpeech?.setPitch(1.2f)
+////                textToSpeech?.setSpeechRate(1.2f)
+////            } else {
+////                Log.e(tag, "TextToSpeech initialization failed")
+////            }
+////        }
+//        ttsHelper = TextToSpeechHelper(requireContext(), languageCode = selectedLangCode) {
+//            speakTutorialText()
+//        }
+//    }
 
     private fun initBottomSheetControls() {
         // When clicked, lower detection score threshold floor
@@ -386,7 +383,12 @@ class CameraFragment: Fragment(), ObjectDetectorHelper.DetectorListener{
                                 )
                                 translatedDetections.add(CustomDetection(rectF, translated, score))
                             }
-                            textToSpeech?.speak(translated, TextToSpeech.QUEUE_ADD, null, null)
+//                            textToSpeech?.speak(translated, TextToSpeech.QUEUE_ADD, null, null)
+                            ttsHelper = selectedLangCode?.let {
+                                TextToSpeechHelper(requireContext(), languageCode = it) {
+                                    ttsHelper.speak(translated)
+                                }
+                            }!!
                             Log.i("TTS", "Speaking: $translated for label: $label")
 
                             pendingTranslations--

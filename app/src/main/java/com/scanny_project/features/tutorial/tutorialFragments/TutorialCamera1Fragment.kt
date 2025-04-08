@@ -9,11 +9,12 @@ import androidx.navigation.fragment.findNavController
 import com.example.ui_ux_demo.databinding.FragmentTutorialCamera1Binding
 import android.speech.tts.TextToSpeech
 import android.util.Log
+import com.scanny_project.utils.TextToSpeechHelper
 import java.util.Locale
 
 class TutorialCamera1Fragment : Fragment(){
     private lateinit var binding : FragmentTutorialCamera1Binding
-    private var textToSpeech: TextToSpeech? = null
+    private lateinit var ttsHelper: TextToSpeechHelper
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -27,38 +28,32 @@ class TutorialCamera1Fragment : Fragment(){
         binding = FragmentTutorialCamera1Binding.inflate(inflater, container, false)
         val root: View = binding.root
 
-        textToSpeech = TextToSpeech(requireContext()) { status ->
-            if (status == TextToSpeech.SUCCESS) {
-                textToSpeech?.language = Locale.forLanguageTag("hr")
-                textToSpeech?.setPitch(1.2f)
-                textToSpeech?.setSpeechRate(1.2f)
-                speakTutorialText()
-            } else {
-                Log.e("TTS", "Initialization failed")
-            }
+        ttsHelper = TextToSpeechHelper(requireContext()) {
+            speakTutorialText()
         }
 
         binding.skipTutorialButton.setOnClickListener {
             findNavController().navigate(
                 TutorialCamera1FragmentDirections.actionTutorialCamera1FragmentToHomeActivity()
             )
+            ttsHelper.shutdown()
         }
         binding.btnTutorialNext.setOnClickListener {
             findNavController().navigate(
                 TutorialCamera1FragmentDirections.actionTutorialCamera1FragmentToTutorialCamera2Fragment()
             )
+            ttsHelper.shutdown()
         }
         return root
     }
 
     private fun speakTutorialText() {
         val message = binding.tvSpeech.text.toString()
-        textToSpeech?.speak(message, TextToSpeech.QUEUE_FLUSH, null, null)
+        ttsHelper.speak(message)
     }
 
     override fun onDestroyView() {
         super.onDestroyView()
-        textToSpeech?.stop()
-        textToSpeech?.shutdown()
+        ttsHelper.shutdown()
     }
 }

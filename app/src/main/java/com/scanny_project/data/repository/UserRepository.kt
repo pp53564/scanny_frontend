@@ -4,7 +4,7 @@ import com.scanny_project.utils.Result
 import com.scanny_project.data.SessionManager
 import com.scanny_project.data.model.LoggedInUser
 
-class LoginRepository(private val dataSource: LoginDataSource, private val sessionManager: SessionManager) {
+class UserRepository(private val dataSource: UserDataSource, private val sessionManager: SessionManager) {
 
     // in-memory cache of the loggedInUser object
     private var user: LoggedInUser? = null
@@ -33,6 +33,11 @@ class LoginRepository(private val dataSource: LoginDataSource, private val sessi
 
         return result
     }
+
+    suspend fun changePassword(newPassword: String, oldPassword: String): Result<String> {
+        return dataSource.changePassword(newPassword, oldPassword)
+    }
+
 //    suspend fun getProtectedResource(): String {
 //        return dataSource.getProtectedResource()
 //    }

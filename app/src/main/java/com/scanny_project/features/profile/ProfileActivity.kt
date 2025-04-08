@@ -9,6 +9,7 @@ import com.example.ui_ux_demo.R
 import com.example.ui_ux_demo.databinding.ActivityProfileBinding
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.scanny_project.features.camera.CameraActivity
+import com.scanny_project.features.changePassword.ChangePasswordActivity
 import com.scanny_project.features.home.HomeActivity
 import com.scanny_project.features.language.SelectLanguageActivity
 import com.scanny_project.features.login.LoginActivity
@@ -49,13 +50,17 @@ class ProfileActivity : AppCompatActivity() {
         )
         navigation.selectedItemId = R.id.profile
 
-        findViewById<TextView>(R.id.tvLogout).setOnClickListener {
+         binding.tvLogout.setOnClickListener {
             viewModel.logout()
             val intent = Intent(this, LoginActivity::class.java)
             intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
             startActivity(intent)
             finish()
         }
+//        binding.clChangePassword.setOnClickListener {
+//            val intent = Intent(this, ChangePasswordActivity::class.java)
+//            startActivity(intent)
+//        }
 
     }
 

@@ -49,6 +49,7 @@
     <string name="skip_hr">Preskoči</string>
     <string name="one">1</string>
     <string name="change_password">change password</string>
+    <string name="change_password_hr">Promijeni lozinku</string>
     <string name="splash_screen_scanny">splash screen scanny</string>
     <string name="scanny_tutorial">scanny in tutorial</string>
     <string name="speech_bubble">speech bubble</string>
@@ -65,4 +66,7 @@
     <string name="rank">0 / 0</string>
     <string name="lecture_title">Naslov lekcije</string>
     <string name="bravo">Bravo!</string>
+    <string name="try_again">Uslikaj ponovo</string>
+    <string name="old_password">Stara lozinka</string>
+    <string name="new_password">Nova lozinka</string>
 </resources>

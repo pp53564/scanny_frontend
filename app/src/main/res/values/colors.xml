@@ -3,9 +3,10 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="dark_blue">#32357a</color>
+    <color name="light_blue">#6a75ff</color>
     <color name="blue_gray">#5E5A78</color>
     <color name="blue">#4F55D5</color>
-    <color name="light_blue">#f2f1f6</color>
+    <color name="very_light_blue">#f2f1f6</color>
     <color name="light_red">#FF7F7F</color>
     <color name="light_green">#90EE90</color>
     <color name="green_strong">#7DCF4B</color>

@@ -5,7 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.ui_ux_demo.R
-import com.scanny_project.data.repository.LoginRepository
+import com.scanny_project.data.repository.UserRepository
 import com.scanny_project.utils.Result
 import com.scanny_project.data.SessionManager
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -13,7 +13,7 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class LoginViewModel @Inject constructor(private val loginRepository: LoginRepository, private val sessionManager: SessionManager) : ViewModel(){
+class LoginViewModel @Inject constructor(private val userRepository: UserRepository, private val sessionManager: SessionManager) : ViewModel(){
 
     private val _loginForm = MutableLiveData<LoginFormState>()
     val loginFormState: LiveData<LoginFormState> = _loginForm
@@ -26,7 +26,7 @@ class LoginViewModel @Inject constructor(private val loginRepository: LoginRepos
 
     fun login(username: String, password: String) {
         viewModelScope.launch {
-            val result = loginRepository.login(username, password)
+            val result = userRepository.login(username, password)
 
             if (result is Result.Success) {
                 sessionManager.authToken = result.data.token
