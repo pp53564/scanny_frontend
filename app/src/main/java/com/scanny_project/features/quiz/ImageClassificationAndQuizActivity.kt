@@ -22,6 +22,7 @@ import androidx.constraintlayout.widget.ConstraintSet
 import com.example.ui_ux_demo.R
 import com.example.ui_ux_demo.databinding.ActivityImageClassificationAndQuizBinding
 import com.scanny_project.features.language.SelectLanguageActivityForImageClassification
+import com.scanny_project.utils.TranslatorHelper
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -169,18 +170,23 @@ class ImageClassificationAndQuizActivity : AppCompatActivity(){
 //    }
 
     private fun handleResult(correct: Boolean, confidenceScore: Float, matchedLabel: String) {
-//        binding.classified.visibility = View.VISIBLE
         binding.resultReaction.visibility = View.VISIBLE
         binding.myCardView.visibility = View.VISIBLE
         if (correct) {
             binding.buttonTakePicture.visibility = View.GONE
             binding.resultReaction.text = getString(R.string.correct_answer)
             showImageDialog(true)
-            //ovo napravi ako nije tocno sto je prvo bilo gore:
-//          binding.result.text = "${matchedLabel}"
             binding.confidencesText.visibility = View.VISIBLE
             binding.confidence.text = "${(confidenceScore * 100).toInt()}%"
         } else {
+            if(matchedLabel != null) {
+                binding.classified.visibility = View.VISIBLE
+                TranslatorHelper.initializeTranslator(com.google.mlkit.nl.translate.TranslateLanguage.CROATIAN) {
+                    TranslatorHelper.translateText(matchedLabel) { translatedText ->
+                        binding.result.text = translatedText
+                    }
+                }
+            }
             binding.buttonTakePicture.text = getString(R.string.try_again)
             binding.resultReaction.text = getString(R.string.wrong_answer)
             showImageDialog(false)

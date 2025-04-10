@@ -3,6 +3,7 @@ package com.scanny_project.features.camera
 import android.annotation.SuppressLint
 import android.content.res.Configuration
 import android.graphics.Bitmap
+import android.graphics.Color
 import android.graphics.RectF
 import android.os.Bundle
 import android.util.Log
@@ -51,8 +52,19 @@ class CameraFragment: Fragment(), ObjectDetectorHelper.DetectorListener{
     private lateinit var cameraExecutor: ExecutorService
     private lateinit var ttsHelper: TextToSpeechHelper
     private var selectedLangCode: String? = null
+    private var lastLabel: String = ""
 
     private val lastSpokenTimeMap = mutableMapOf<String, Long>()
+    private var lastSpokenTime: Long = 0L
+
+    private val colorList by lazy {
+        listOf(
+            ContextCompat.getColor(requireContext(), R.color.green_strong),
+            ContextCompat.getColor(requireContext(), R.color.purple),
+            ContextCompat.getColor(requireContext(), R.color.red)
+        )
+    }
+    private var colorIndex = 0
 
 
 //    override fun onResume() {
@@ -364,43 +376,94 @@ class CameraFragment: Fragment(), ObjectDetectorHelper.DetectorListener{
 
             groupedDetections.forEach { (label, detList) ->
                 val currentTime = System.currentTimeMillis()
-                val lastTime = lastSpokenTimeMap[label] ?: 0L
-                val debounceThreshold = 5000L
+                val normalizedLabel = label.trim().lowercase()
+                val debounceThreshold = 7000L
 
-                if (currentTime - lastTime > debounceThreshold) {
-                    lastSpokenTimeMap[label] = currentTime
+                val isDifferent = normalizedLabel != lastLabel
+                val isPastDebounce = currentTime - lastSpokenTime > debounceThreshold
 
-                    translator?.translate(label)
-                        ?.addOnSuccessListener { translated ->
-                            detList.forEach { det ->
-                                val boundingBox = det.boundingBox
-                                val score = det.categories[0].score
-                                val rectF = RectF(
-                                    boundingBox.left,
-                                    boundingBox.top,
-                                    boundingBox.right,
-                                    boundingBox.bottom
-                                )
-                                translatedDetections.add(CustomDetection(rectF, translated, score))
-                            }
-//                            textToSpeech?.speak(translated, TextToSpeech.QUEUE_ADD, null, null)
-                            ttsHelper = selectedLangCode?.let {
-                                TextToSpeechHelper(requireContext(), languageCode = it) {
-                                    ttsHelper.speak(translated)
+                if (isDifferent || isPastDebounce) {
+                    lastSpokenTime = currentTime
+                    if (isDifferent) {
+                        colorIndex = (colorIndex + 1) % colorList.size
+                        lastLabel = normalizedLabel
+                    }
+                    Log.i("petra3", lastLabel)
+
+                    if(selectedLangCode != "en") {
+                        translator?.translate(label)
+                            ?.addOnSuccessListener { translated ->
+                                detList.forEach { det ->
+                                    val boundingBox = det.boundingBox
+                                    val score = det.categories[0].score
+                                    val rectF = RectF(
+                                        boundingBox.left,
+                                        boundingBox.top,
+                                        boundingBox.right,
+                                        boundingBox.bottom
+                                    )
+                                    translatedDetections.add(
+                                        CustomDetection(
+                                            rectF,
+                                            translated,
+                                            score,
+                                            colorList[colorIndex]
+                                        )
+                                    )
                                 }
-                            }!!
-                            Log.i("TTS", "Speaking: $translated for label: $label")
+//                            textToSpeech?.speak(translated, TextToSpeech.QUEUE_ADD, null, null)
+                                ttsHelper = selectedLangCode?.let {
+                                    TextToSpeechHelper(requireContext(), languageCode = it) {
+                                        ttsHelper.speak(translated)
+                                    }
+                                }!!
+                                Log.i("TTS", "Speaking: $translated for label: $label")
 
-                            pendingTranslations--
-                            if (pendingTranslations == 0) {
-                                fragmentCameraBinding.overlay.setTranslatedResults(
-                                    translatedDetections,
-                                    imageHeight,
-                                    imageWidth
-                                )
+                                pendingTranslations--
+                                if (pendingTranslations == 0) {
+                                    fragmentCameraBinding.overlay.setTranslatedResults(
+                                        translatedDetections,
+                                        imageHeight,
+                                        imageWidth
+                                    )
+                                }
+                            }?.addOnFailureListener {
                             }
-                        }?.addOnFailureListener {
+                    } else {
+                        detList.forEach { det ->
+                            val boundingBox = det.boundingBox
+                            val score = det.categories[0].score
+                            val rectF = RectF(
+                                boundingBox.left,
+                                boundingBox.top,
+                                boundingBox.right,
+                                boundingBox.bottom
+                            )
+                            translatedDetections.add(
+                                CustomDetection(
+                                    rectF,
+                                    label,
+                                    score,
+                                    colorList[colorIndex]
+                                )
+                            )
                         }
+                        ttsHelper = selectedLangCode?.let {
+                            TextToSpeechHelper(requireContext(), languageCode = it) {
+                                ttsHelper.speak(label)
+                            }
+                        }!!
+                        Log.i("TTS", "Speaking: $label for label: $label")
+
+                        pendingTranslations--
+                        if (pendingTranslations == 0) {
+                            fragmentCameraBinding.overlay.setTranslatedResults(
+                                translatedDetections,
+                                imageHeight,
+                                imageWidth
+                            )
+                        }
+                    }
                 } else {
                     pendingTranslations--
                 }
@@ -417,5 +480,4 @@ class CameraFragment: Fragment(), ObjectDetectorHelper.DetectorListener{
             Toast.makeText(requireContext(), error, Toast.LENGTH_SHORT).show()
         }
     }
-
 }

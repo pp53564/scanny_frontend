@@ -4,9 +4,7 @@ import android.content.Context
 import android.graphics.Canvas
 import android.graphics.Color
 import android.graphics.Paint
-import android.graphics.Rect
 import android.graphics.RectF
-
 import android.util.AttributeSet
 import android.view.View
 import androidx.core.content.ContextCompat
@@ -24,6 +22,7 @@ class OverlayView(context: Context?, attrs: AttributeSet?) : View(context, attrs
     private var textPaint = Paint()
     private var scaleFactor: Float = 1f
 //    private var bounds = Rect()
+
 
 
     init {
@@ -72,8 +71,11 @@ class OverlayView(context: Context?, attrs: AttributeSet?) : View(context, attrs
             val boundingBox = result.boundingBox
             val top = boundingBox.top * scaleFactor
             val bottom = boundingBox.bottom * scaleFactor
-            val left = boundingBox.left * scaleFactor
-            val right = boundingBox.right * scaleFactor
+            val rawLeft = boundingBox.left * scaleFactor
+            val left = if (rawLeft < 20f) rawLeft + 20f else rawLeft
+            val right = (boundingBox.right * scaleFactor).coerceAtMost(width.toFloat())
+            textBackgroundPaint.color = result.color
+            boxPaint.color = result.color
 
             val drawableRect = RectF(left, top, right, bottom)
 
@@ -104,25 +106,5 @@ class OverlayView(context: Context?, attrs: AttributeSet?) : View(context, attrs
 
     }
 
-//    fun setResults(
-//        detectionResults: MutableList<Detection>,
-//        imageHeight: Int,
-//        imageWidth: Int,
-//    ) {
-//
-//        results = myDetections
-//
-//
-//        // PreviewView is in FILL_START mode. So we need to scale up the bounding box to match with
-//        // the size that the captured images will be displayed.
-//        scaleFactor = max(width * 1f / imageWidth, height * 1f / imageHeight)
-//    }
-
-//    companion object {
-//        private const val BOUNDING_RECT_TEXT_PADDING = 8
-//    }
-
-//    fun setCustomTranslator(translator: Translator) {
-//        this.translator = translator
-//    }
 }
+

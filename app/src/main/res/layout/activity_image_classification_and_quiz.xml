@@ -98,25 +98,25 @@
                 app:layout_constraintTop_toBottomOf="@+id/cardView2"
                 tools:layout_editor_absoluteX="0dp">
 
-<!--                <TextView-->
-<!--                    android:id="@+id/classified"-->
-<!--                    android:layout_width="wrap_content"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    android:layout_marginTop="14dp"-->
-<!--                    android:text="@string/classification_result"-->
-<!--                    android:textColor="@color/dark_blue"-->
-<!--                    android:textSize="18sp"-->
-<!--                    android:textStyle="bold"-->
-<!--                    android:visibility="gone" />-->
+                <TextView
+                    android:id="@+id/classified"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="14dp"
+                    android:text="@string/classification_result"
+                    android:textColor="@color/dark_blue"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    android:visibility="gone" />
 
-<!--                <TextView-->
-<!--                    android:id="@+id/result"-->
-<!--                    android:layout_width="wrap_content"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    android:layout_marginTop="4dp"-->
-<!--                    android:textColor="@color/black"-->
-<!--                    android:textSize="22sp"-->
-<!--                    android:textStyle="bold" />-->
+                <TextView
+                    android:id="@+id/result"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:textColor="@color/black"
+                    android:textSize="22sp"
+                    android:textStyle="bold" />
 
                 <TextView
                     android:id="@+id/confidencesText"
@@ -150,7 +150,6 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
 
-    <!-- "Otvori kameru" button anchored at bottom center -->
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/buttonTakePicture"
         android:layout_width="wrap_content"

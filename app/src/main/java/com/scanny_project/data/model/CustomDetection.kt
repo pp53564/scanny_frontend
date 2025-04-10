@@ -5,5 +5,6 @@ import android.graphics.RectF
 data class CustomDetection(
     val boundingBox: RectF,
     val label: String,
-    val score: Float
+    val score: Float,
+    val color: Int
 )

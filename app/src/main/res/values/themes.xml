@@ -2,7 +2,7 @@
     <!-- Base application theme. -->
     <style name="Base.Theme.UI_UX_Demo" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <item name="android:navigationBarColor">@color/black</item>
-
+        <item name="android:statusBarColor">@color/black</item>
     </style>
 
     <style name="Theme.MyApp.Splash" parent="Theme.MaterialComponents.DayNight.NoActionBar">

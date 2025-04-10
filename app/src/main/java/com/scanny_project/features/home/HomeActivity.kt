@@ -3,6 +3,7 @@ package com.scanny_project.features.home
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContentProviderCompat.requireContext
 import com.example.ui_ux_demo.R
 import com.example.ui_ux_demo.databinding.ActivityHomeBinding
 import com.google.android.material.bottomnavigation.BottomNavigationView
@@ -12,6 +13,7 @@ import com.scanny_project.features.tutorial.TutorialActivity
 import com.scanny_project.data.SessionManager
 import com.scanny_project.features.profile.ProfileActivity
 import com.scanny_project.features.stats.StatsActivity
+import com.scanny_project.utils.TextToSpeechHelper
 import com.scanny_project.utils.setupNavigation
 import com.skydoves.transformationlayout.onTransformationStartContainer
 import dagger.hilt.android.AndroidEntryPoint
@@ -33,9 +35,6 @@ class HomeActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         navigation = binding.root.findViewById(R.id.bottomNavigationView)
-        val sharedPref = getSharedPreferences("MyAppPrefs", MODE_PRIVATE)
-//        val username = sharedPref.getString("username", "User")
-//        binding.tvUsername.text = "Bok $username"
 
         navigation.setOnItemSelectedListener { item ->
             when(item.itemId) {

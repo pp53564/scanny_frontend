@@ -31,7 +31,7 @@ class StatsAdapter(
     override fun onBindViewHolder(holder: StatsViewHolder, position: Int) {
         val stat = items[position]
 
-        holder.langStats.text = "Rank: ${stat.rank} / ${stat.totalUsersInLang}".trimIndent()
+        holder.langStats.text = "Bodovi: ${stat.score}"
         val flag = LanguageData.languages.firstOrNull { it.code == stat.languageCode }?.flagResId
             ?: R.drawable.fancy_card_background_blue
         holder.flagImage.setImageResource(flag)

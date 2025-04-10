@@ -12,4 +12,7 @@
     <color name="green_strong">#7DCF4B</color>
     <color name="accentColor">#FFD700</color>
     <color name="scanny_blue">#018DBA</color>
+    <color name="red">#E67569</color>
+    <color name="purple">#894DF6</color>
+    <color name="pink">#FF9DE4</color>
 </resources>
