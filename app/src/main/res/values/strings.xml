@@ -69,4 +69,7 @@
     <string name="try_again">Uslikaj ponovo</string>
     <string name="old_password">Stara lozinka</string>
     <string name="new_password">Nova lozinka</string>
+    <string name="stats_neighbors">Tvoja pozicija</string>
+    <string name="name">Ime</string>
+    <string name="zero">0</string>
 </resources>

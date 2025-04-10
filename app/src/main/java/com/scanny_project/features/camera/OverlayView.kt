@@ -6,7 +6,7 @@ import android.graphics.Color
 import android.graphics.Paint
 import android.graphics.Rect
 import android.graphics.RectF
-import android.provider.CalendarContract.Colors
+
 import android.util.AttributeSet
 import android.view.View
 import androidx.core.content.ContextCompat
@@ -23,7 +23,7 @@ class OverlayView(context: Context?, attrs: AttributeSet?) : View(context, attrs
     private var textBackgroundPaint = Paint()
     private var textPaint = Paint()
     private var scaleFactor: Float = 1f
-    private var bounds = Rect()
+//    private var bounds = Rect()
 
 
     init {

@@ -1,15 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!-- Base application theme. -->
-    <style name="Base.Theme.UI_UX_Demo" parent="Theme.MaterialComponents.DayNight.NoActionBar">
-        <item name="android:navigationBarColor">@color/black</item>
-
-    </style>
-
     <style name="Theme.MyApp.Splash" parent="Theme.MaterialComponents.DayNight.NoActionBar">
-        <item name="windowSplashScreenBackground">@color/scanny_blue</item>
+        <item name="android:windowSplashScreenBackground">@color/scanny_blue</item>
         <item name="windowSplashScreenAnimatedIcon">@drawable/profile3</item>
         <item name="windowSplashScreenAnimationDuration">5000</item>
         <item name="postSplashScreenTheme">@style/Theme.UI_UX_Demo</item>
     </style>
-
 </resources>

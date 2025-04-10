@@ -4,17 +4,13 @@ import android.graphics.Bitmap
 import android.util.Log
 import com.scanny_project.utils.Result
 import com.scanny_project.data.model.AttemptResponse
-import com.scanny_project.data.model.StatsPerUserAndLanguageDTO
-import com.scanny_project.data.services.StatsService
 import com.scanny_project.data.services.UserQuestionAttemptService
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.MultipartBody
-import okhttp3.RequestBody
 import okhttp3.RequestBody.Companion.asRequestBody
 import okhttp3.RequestBody.Companion.toRequestBody
-import retrofit2.Response
 import java.io.File
 import java.io.FileOutputStream
 import javax.inject.Inject
@@ -22,8 +18,7 @@ import javax.inject.Singleton
 
 @Singleton
 class AttemptsRepository @Inject constructor(
-    private val attemptsApi: UserQuestionAttemptService,
-    private val statsService: StatsService
+    private val attemptsApi: UserQuestionAttemptService
 ) {
     suspend fun recordAttempt(
         questionId: Long,
@@ -62,20 +57,6 @@ class AttemptsRepository @Inject constructor(
                 }
             } catch (e: Exception) {
                 Log.e("AttemptsRepository", "recordAttempt: Exception - ${e.message}", e)
-                Result.Error(e)
-            }
-        }
-    }
-
-    suspend fun getAllUserLanguageLectures(): Result<Response<List<StatsPerUserAndLanguageDTO>>> {
-        return withContext(Dispatchers.IO) {
-            try {
-                val statsList = statsService.getUserLanguagesStats()
-                Log.i("AttemptsRepository", "getAllUserLanguageLectures: Success")
-                Log.i("AttemptsRepository", statsList.toString())
-                Result.Success(statsList)
-            } catch (e: Exception) {
-                Log.e("AttemptsRepository", "getAllUserLanguageLectures: Exception - ${e.message}", e)
                 Result.Error(e)
             }
         }

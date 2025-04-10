@@ -5,30 +5,30 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.scanny_project.utils.Result
-import com.scanny_project.data.model.StatsPerUserAndLanguageDTO
+import com.scanny_project.data.model.NeighborDTO
 import com.scanny_project.data.repository.StatsRepository
+import com.scanny_project.utils.Result
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class StatsViewModel @Inject constructor(
+class StatsDetailsViewModel @Inject constructor(
     private val statsRepository: StatsRepository
 ) : ViewModel() {
 
-    private val _languageStatsList = MutableLiveData<List<StatsPerUserAndLanguageDTO>>()
-    val languageStatsList: LiveData<List<StatsPerUserAndLanguageDTO>> = _languageStatsList
+    private val _neighborsForLanguageList = MutableLiveData<List<NeighborDTO>>()
+    val neighborsForLanguageList: LiveData<List<NeighborDTO>> = _neighborsForLanguageList
 
-    fun loadUserLanguageStats() {
+    fun loadNeighborsForLanguage(selectedLanguage: String) {
         viewModelScope.launch {
-            val result = statsRepository.getAllUserLanguageLectures()
+            val result = statsRepository.getNeighborsForLanguage(selectedLanguage)
             if (result is Result.Success) {
-                _languageStatsList.value = result.data
+                _neighborsForLanguageList.value = result.data
             }
             if (result is Result.Error) {
-                    Log.e("StatsViewModel", "Failed to load stats", result.exception)
-                }
+                Log.e("StatsDetailsViewModel", "Failed to load stats", result.exception)
             }
+        }
     }
 }

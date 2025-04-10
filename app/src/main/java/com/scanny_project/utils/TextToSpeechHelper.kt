@@ -15,7 +15,7 @@ class TextToSpeechHelper(
     override fun onInit(status: Int) {
         if (status == TextToSpeech.SUCCESS) {
             textToSpeech?.apply {
-                language = Locale.forLanguageTag("hr")
+                language = Locale.forLanguageTag(languageCode)
                 setPitch(1.2f)
                 setSpeechRate(1.2f)
             }
