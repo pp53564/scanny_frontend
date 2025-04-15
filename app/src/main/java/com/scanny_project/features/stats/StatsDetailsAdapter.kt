@@ -43,7 +43,7 @@ class StatsDetailsAdapter(
 
         fun bind(item: NeighborDTO, isCurrentUser: Boolean) {
               tvUser.text = item.username
-              tvScore.text = item.score.toString()
+              tvScore.text = item.score.toInt().toString()
 
             if (isCurrentUser) {
                 tvUser.setTypeface(null, Typeface.BOLD)

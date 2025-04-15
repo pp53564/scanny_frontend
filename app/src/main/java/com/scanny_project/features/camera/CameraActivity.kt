@@ -8,6 +8,9 @@ import android.util.Log
 import com.example.ui_ux_demo.R
 import com.example.ui_ux_demo.databinding.ActivityCameraBinding
 import com.scanny_project.features.home.HomeActivity
+import com.scanny_project.features.language.SelectLanguageActivity
+import com.scanny_project.utils.LanguageData
+import com.scanny_project.utils.TextToSpeechHelper
 import com.scanny_project.utils.TranslatorHelper
 
 class CameraActivity : AppCompatActivity() {
@@ -18,7 +21,7 @@ class CameraActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         binding.buttonBackLayout.imButtonBack.setOnClickListener {
-            val intent = Intent(this, HomeActivity::class.java)
+            val intent = Intent(this, SelectLanguageActivity::class.java)
             startActivity(intent)
         }
 //        val overlayView = findViewById<OverlayView>(R.id.overlay)
@@ -27,6 +30,7 @@ class CameraActivity : AppCompatActivity() {
 //        }
 
          val selectedLangCode = intent.getStringExtra("SELECTED_LANGUAGE")
+         binding.tvLanguageTitle.text = LanguageData.languages.firstOrNull { it.code == selectedLangCode }?.name.toString()
 
         val fragment = CameraFragment().apply {
             arguments = Bundle().apply {

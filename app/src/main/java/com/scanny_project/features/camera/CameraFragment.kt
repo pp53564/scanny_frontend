@@ -36,7 +36,7 @@ import com.scanny_project.utils.TextToSpeechHelper
 import java.util.Locale
 
 class CameraFragment: Fragment(), ObjectDetectorHelper.DetectorListener{
-    private lateinit var bottomSheetBehavior: BottomSheetBehavior<View>
+//    private lateinit var bottomSheetBehavior: BottomSheetBehavior<View>
     private val tag = "ObjectDetection"
     private var _fragmentCameraBinding: FragmentCameraBinding? = null
     private val fragmentCameraBinding
@@ -88,22 +88,23 @@ class CameraFragment: Fragment(), ObjectDetectorHelper.DetectorListener{
         savedInstanceState: Bundle?
     ): View {
         _fragmentCameraBinding = FragmentCameraBinding.inflate(inflater, container, false)
-        bottomSheetBehavior = BottomSheetBehavior.from(fragmentCameraBinding.bottomSheetLayout.root)
 
-        bottomSheetBehavior.addBottomSheetCallback(object : BottomSheetBehavior.BottomSheetCallback() {
-            override fun onStateChanged(bottomSheet: View, newState: Int) {
-                when (newState) {
-                    BottomSheetBehavior.STATE_EXPANDED -> {
-                        fragmentCameraBinding.bottomSheetLayout.imUp.setImageResource(R.drawable.ic_arrow_down_bubble)
-                    }
-                    BottomSheetBehavior.STATE_COLLAPSED -> {
-                        fragmentCameraBinding.bottomSheetLayout.imUp.setImageResource(R.drawable.ic_arrow_up_bubble)
-                    }
-                }
-            }
-            override fun onSlide(bottomSheet: View, slideOffset: Float) {
-            }
-        })
+//        bottomSheetBehavior = BottomSheetBehavior.from(fragmentCameraBinding.bottomSheetLayout.root)
+//
+//        bottomSheetBehavior.addBottomSheetCallback(object : BottomSheetBehavior.BottomSheetCallback() {
+//            override fun onStateChanged(bottomSheet: View, newState: Int) {
+//                when (newState) {
+//                    BottomSheetBehavior.STATE_EXPANDED -> {
+//                        fragmentCameraBinding.bottomSheetLayout.imUp.setImageResource(R.drawable.ic_arrow_down_bubble)
+//                    }
+//                    BottomSheetBehavior.STATE_COLLAPSED -> {
+//                        fragmentCameraBinding.bottomSheetLayout.imUp.setImageResource(R.drawable.ic_arrow_up_bubble)
+//                    }
+//                }
+//            }
+//            override fun onSlide(bottomSheet: View, slideOffset: Float) {
+//            }
+//        })
 
 
         return fragmentCameraBinding.root
@@ -113,11 +114,14 @@ class CameraFragment: Fragment(), ObjectDetectorHelper.DetectorListener{
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         selectedLangCode = arguments?.getString("SELECTED_LANGUAGE")
+        ttsHelper = selectedLangCode?.let { TextToSpeechHelper(requireContext(), languageCode = it) }!!
 
         objectDetectorHelper = ObjectDetectorHelper(
             context = requireContext(),
             objectDetectorListener = this
-        )
+        ).apply {
+            maxResults = 1
+        }
         cameraExecutor = Executors.newSingleThreadExecutor()
 
         fragmentCameraBinding.viewFinder.post {
@@ -125,7 +129,7 @@ class CameraFragment: Fragment(), ObjectDetectorHelper.DetectorListener{
                     setUpCamera()
             }
         }
-        initBottomSheetControls()
+//        initBottomSheetControls()
     }
 
 //    private fun initTextToSpeech() {
@@ -143,92 +147,92 @@ class CameraFragment: Fragment(), ObjectDetectorHelper.DetectorListener{
 //        }
 //    }
 
-    private fun initBottomSheetControls() {
-        // When clicked, lower detection score threshold floor
-        /*fragmentCameraBinding.bottomSheetLayout.thresholdMinus.setOnClickListener {
-            if (objectDetectorHelper.threshold >= 0.1) {
-                objectDetectorHelper.threshold -= 0.1f
-                updateControlsUi()
-            }
-        }
+//    private fun initBottomSheetControls() {
+//        // When clicked, lower detection score threshold floor
+//        /*fragmentCameraBinding.bottomSheetLayout.thresholdMinus.setOnClickListener {
+//            if (objectDetectorHelper.threshold >= 0.1) {
+//                objectDetectorHelper.threshold -= 0.1f
+//                updateControlsUi()
+//            }
+//        }
+//
+//        // When clicked, raise detection score threshold floor
+//        fragmentCameraBinding.bottomSheetLayout.thresholdPlus.setOnClickListener {
+//            if (objectDetectorHelper.threshold <= 0.8) {
+//                objectDetectorHelper.threshold += 0.1f
+//                updateControlsUi()
+//            }
+//        }*/
+//
+//        // When clicked, reduce the number of objects that can be detected at a time
+//        fragmentCameraBinding.bottomSheetLayout.maxResultsMinus.setOnClickListener {
+//            if (objectDetectorHelper.maxResults > 1) {
+//                objectDetectorHelper.maxResults--
+//                updateControlsUi()
+//            }
+//        }
+//
+//        // When clicked, increase the number of objects that can be detected at a time
+//        fragmentCameraBinding.bottomSheetLayout.maxResultsPlus.setOnClickListener {
+//            if (objectDetectorHelper.maxResults < 3) {
+//                objectDetectorHelper.maxResults++
+//                updateControlsUi()
+//            }
+//        }
+//
+//        // When clicked, decrease the number of threads used for detection
+//      /*  fragmentCameraBinding.bottomSheetLayout.threadsMinus.setOnClickListener {
+//            if (objectDetectorHelper.numThreads > 1) {
+//                objectDetectorHelper.numThreads--
+//                updateControlsUi()
+//            }
+//        }
+//
+//        // When clicked, increase the number of threads used for detection
+//        fragmentCameraBinding.bottomSheetLayout.threadsPlus.setOnClickListener {
+//            if (objectDetectorHelper.numThreads < 4) {
+//                objectDetectorHelper.numThreads++
+//                updateControlsUi()
+//            }
+//        }
+//
+//        // When clicked, change the underlying hardware used for inference. Current options are CPU
+//        // GPU, and NNAPI
+//        fragmentCameraBinding.bottomSheetLayout.spinnerDelegate.setSelection(0, false)
+//        fragmentCameraBinding.bottomSheetLayout.spinnerDelegate.onItemSelectedListener =
+//            object : AdapterView.OnItemSelectedListener {
+//                override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
+//                    objectDetectorHelper.currentDelegate = p2
+//                    updateControlsUi()
+//                }
+//
+//                override fun onNothingSelected(p0: AdapterView<*>?) {
+//                }
+//            }
+//
+//        // When clicked, change the underlying model used for object detection
+//        fragmentCameraBinding.bottomSheetLayout.spinnerModel.setSelection(0, false)
+//        fragmentCameraBinding.bottomSheetLayout.spinnerModel.onItemSelectedListener =
+//            object : AdapterView.OnItemSelectedListener {
+//                override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
+//                    objectDetectorHelper.currentModel = p2
+//                    updateControlsUi()
+//                }
+//
+//                override fun onNothingSelected(p0: AdapterView<*>?) {
+//                }
+//            }*/
+//    }
 
-        // When clicked, raise detection score threshold floor
-        fragmentCameraBinding.bottomSheetLayout.thresholdPlus.setOnClickListener {
-            if (objectDetectorHelper.threshold <= 0.8) {
-                objectDetectorHelper.threshold += 0.1f
-                updateControlsUi()
-            }
-        }*/
 
-        // When clicked, reduce the number of objects that can be detected at a time
-        fragmentCameraBinding.bottomSheetLayout.maxResultsMinus.setOnClickListener {
-            if (objectDetectorHelper.maxResults > 1) {
-                objectDetectorHelper.maxResults--
-                updateControlsUi()
-            }
-        }
-
-        // When clicked, increase the number of objects that can be detected at a time
-        fragmentCameraBinding.bottomSheetLayout.maxResultsPlus.setOnClickListener {
-            if (objectDetectorHelper.maxResults < 3) {
-                objectDetectorHelper.maxResults++
-                updateControlsUi()
-            }
-        }
-
-        // When clicked, decrease the number of threads used for detection
-      /*  fragmentCameraBinding.bottomSheetLayout.threadsMinus.setOnClickListener {
-            if (objectDetectorHelper.numThreads > 1) {
-                objectDetectorHelper.numThreads--
-                updateControlsUi()
-            }
-        }
-
-        // When clicked, increase the number of threads used for detection
-        fragmentCameraBinding.bottomSheetLayout.threadsPlus.setOnClickListener {
-            if (objectDetectorHelper.numThreads < 4) {
-                objectDetectorHelper.numThreads++
-                updateControlsUi()
-            }
-        }
-
-        // When clicked, change the underlying hardware used for inference. Current options are CPU
-        // GPU, and NNAPI
-        fragmentCameraBinding.bottomSheetLayout.spinnerDelegate.setSelection(0, false)
-        fragmentCameraBinding.bottomSheetLayout.spinnerDelegate.onItemSelectedListener =
-            object : AdapterView.OnItemSelectedListener {
-                override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
-                    objectDetectorHelper.currentDelegate = p2
-                    updateControlsUi()
-                }
-
-                override fun onNothingSelected(p0: AdapterView<*>?) {
-                }
-            }
-
-        // When clicked, change the underlying model used for object detection
-        fragmentCameraBinding.bottomSheetLayout.spinnerModel.setSelection(0, false)
-        fragmentCameraBinding.bottomSheetLayout.spinnerModel.onItemSelectedListener =
-            object : AdapterView.OnItemSelectedListener {
-                override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
-                    objectDetectorHelper.currentModel = p2
-                    updateControlsUi()
-                }
-
-                override fun onNothingSelected(p0: AdapterView<*>?) {
-                }
-            }*/
-    }
-
-
-    private fun updateControlsUi() {
-        fragmentCameraBinding.bottomSheetLayout.maxResultsValue.text = objectDetectorHelper.maxResults.toString()
-
-        // Needs to be cleared instead of reinitialized because the GPU
-        // delegate needs to be initialized on the thread using it when applicable
-        objectDetectorHelper.clearObjectDetector()
-        fragmentCameraBinding.overlay.clear()
-    }
+//    private fun updateControlsUi() {
+//        fragmentCameraBinding.bottomSheetLayout.maxResultsValue.text = objectDetectorHelper.maxResults.toString()
+//
+//        // Needs to be cleared instead of reinitialized because the GPU
+//        // delegate needs to be initialized on the thread using it when applicable
+//        objectDetectorHelper.clearObjectDetector()
+//        fragmentCameraBinding.overlay.clear()
+//    }
 
 
     private fun setUpCamera() {
@@ -288,8 +292,20 @@ class CameraFragment: Fragment(), ObjectDetectorHelper.DetectorListener{
     }
 
 
+//    private fun detectObjects(image: ImageProxy) {
+//        image.use { bitmapBuffer.copyPixelsFromBuffer(image.planes[0].buffer) }
+//        val imageRotation = image.imageInfo.rotationDegrees
+//        objectDetectorHelper.detect(bitmapBuffer, imageRotation)
+//    }
     private fun detectObjects(image: ImageProxy) {
-        image.use { bitmapBuffer.copyPixelsFromBuffer(image.planes[0].buffer) }
+        if (ttsHelper.isSpeaking) {
+            image.close()
+            return
+        }
+
+        image.use {
+            bitmapBuffer.copyPixelsFromBuffer(image.planes[0].buffer)
+        }
         val imageRotation = image.imageInfo.rotationDegrees
         objectDetectorHelper.detect(bitmapBuffer, imageRotation)
     }
@@ -393,8 +409,23 @@ class CameraFragment: Fragment(), ObjectDetectorHelper.DetectorListener{
                     if(selectedLangCode != "en") {
                         translator?.translate(label)
                             ?.addOnSuccessListener { translated ->
+                                val translatedNormalized = translated.trim().lowercase()
+                                val labelNormalized = label.trim().lowercase()
+                                // ako ne zna prevest da preskocis ->isprobaj
+                                if (translatedNormalized == labelNormalized) {
+                                    Log.w("Translation", "No translation found for '$label'")
+                                    return@addOnSuccessListener
+                                }
                                 detList.forEach { det ->
                                     val boundingBox = det.boundingBox
+                                    val boxWidth = boundingBox.width()
+
+                                    val minSizePx = 200f
+
+                                    if (boxWidth < minSizePx) {
+                                        return@addOnSuccessListener
+                                    }
+//                                    val boundingBox = det.boundingBox
                                     val score = det.categories[0].score
                                     val rectF = RectF(
                                         boundingBox.left,
@@ -411,12 +442,10 @@ class CameraFragment: Fragment(), ObjectDetectorHelper.DetectorListener{
                                         )
                                     )
                                 }
+
 //                            textToSpeech?.speak(translated, TextToSpeech.QUEUE_ADD, null, null)
-                                ttsHelper = selectedLangCode?.let {
-                                    TextToSpeechHelper(requireContext(), languageCode = it) {
-                                        ttsHelper.speak(translated)
-                                    }
-                                }!!
+                                ttsHelper.speak(translated)
+
                                 Log.i("TTS", "Speaking: $translated for label: $label")
 
                                 pendingTranslations--
@@ -448,11 +477,7 @@ class CameraFragment: Fragment(), ObjectDetectorHelper.DetectorListener{
                                 )
                             )
                         }
-                        ttsHelper = selectedLangCode?.let {
-                            TextToSpeechHelper(requireContext(), languageCode = it) {
-                                ttsHelper.speak(label)
-                            }
-                        }!!
+                        ttsHelper.speak(label)
                         Log.i("TTS", "Speaking: $label for label: $label")
 
                         pendingTranslations--

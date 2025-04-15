@@ -69,7 +69,10 @@ class OverlayView(context: Context?, attrs: AttributeSet?) : View(context, attrs
         super.draw(canvas)
         for (result in results) {
             val boundingBox = result.boundingBox
-            val top = boundingBox.top * scaleFactor
+//            val rawTop = boundingBox.top * scaleFactor
+//            val top = if (rawTop < 20f) rawTop + 20f else rawTop
+            val top = (boundingBox.top * scaleFactor)
+                .coerceIn(100f, height.toFloat() - 100f)
             val bottom = boundingBox.bottom * scaleFactor
             val rawLeft = boundingBox.left * scaleFactor
             val left = if (rawLeft < 20f) rawLeft + 20f else rawLeft

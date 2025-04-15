@@ -22,6 +22,7 @@ import androidx.constraintlayout.widget.ConstraintSet
 import com.example.ui_ux_demo.R
 import com.example.ui_ux_demo.databinding.ActivityImageClassificationAndQuizBinding
 import com.scanny_project.features.language.SelectLanguageActivityForImageClassification
+import com.scanny_project.utils.TextToSpeechHelper
 import com.scanny_project.utils.TranslatorHelper
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -35,6 +36,7 @@ class ImageClassificationAndQuizActivity : AppCompatActivity(){
     private var currentQuestionId: Long = 0L
     private val viewModel: ImageQuizViewModel by viewModels()
     private lateinit var langCode: String
+    private lateinit var ttsHelper: TextToSpeechHelper
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -46,8 +48,12 @@ class ImageClassificationAndQuizActivity : AppCompatActivity(){
         val task = intent.getStringExtra("QUESTION_KEYWORD") ?: "unknown"
         langCode = intent.getStringExtra("SELECTED_LANGUAGE").toString()
         binding.tvThingForPicture.text = task
-
         currentQuestionId = intent.getLongExtra("QUESTION_ID", 0L)
+
+        ttsHelper = langCode?.let { TextToSpeechHelper(this, languageCode = it) }!!
+        binding.speakerIcon.setOnClickListener{
+            ttsHelper.speak(task)
+        }
 
 //        imageClassifierHelper = ImageClassifierHelper(
 //            context = this,
@@ -225,5 +231,11 @@ class ImageClassificationAndQuizActivity : AppCompatActivity(){
 ////            viewModel.sendAttempt(currentQuestionId, imageBitmap = null)
 ////        }
 //    }
+
+override fun onDestroy() {
+    super.onDestroy()
+    ttsHelper.shutdown()
+}
+
 
 }

@@ -12,6 +12,16 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
+        <TextView
+            android:id="@+id/tvLanguageTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="16dp"
+            android:text="@string/language"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
         <androidx.fragment.app.FragmentContainerView
             android:id="@+id/fragment_container"
             android:name="androidx.navigation.fragment.NavHostFragment"

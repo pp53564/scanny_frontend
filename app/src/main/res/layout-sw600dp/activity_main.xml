@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="top"
+        android:fillViewport="true"
+        android:overScrollMode="never"
+        android:paddingBottom="40dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="540dp">
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:scaleType="fitXY"
+                    android:adjustViewBounds="true"
+                    android:contentDescription="@string/scanny_main"
+                    android:src="@drawable/wave_top" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:gravity="center"
+                    android:padding="16dp">
+
+                    <ImageView
+                        android:layout_width="400dp"
+                        android:layout_height="400dp"
+                        android:layout_marginTop="8dp"
+                        android:scaleType="fitCenter"
+                        android:src="@drawable/scanny_for_main"
+                        android:contentDescription="@string/scanny_main" />
+
+                </LinearLayout>
+            </FrameLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:gravity="center"
+                android:background="@drawable/bg_rounded"
+                android:padding="24dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="16dp"
+                android:layout_marginHorizontal="16dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/welcome_hr"
+                    android:textSize="48sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/blue_gray" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/to_scanny"
+                    android:textSize="40sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/blue_gray"
+                    android:layout_marginTop="4dp" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:gravity="center"
+                    android:text="@string/scanny_description"
+                    android:textSize="26sp"
+                    android:textColor="@android:color/black" />
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/startButton"
+                    style="@android:style/Widget.Button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="40dp"
+                    android:background="@drawable/fancy_card_background_pink"
+                    android:drawableStart="@drawable/arrow_outward"
+                    android:elevation="20dp"
+                    android:text="@string/lets_start"
+                    android:textSize="38sp"
+                    android:textColor="@color/white"
+                    android:drawablePadding="8dp"
+                    android:paddingHorizontal="30dp"
+                    android:paddingVertical="15dp"
+                    android:textStyle="bold" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+
+</FrameLayout>

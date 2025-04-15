@@ -42,7 +42,7 @@ class TutorialCamera3Fragment : Fragment() {
 
         binding.skipTutorialButton.setOnClickListener {
             findNavController().navigate(
-                TutorialCamera2FragmentDirections.actionTutorialCamera2FragmentToHomeActivity()
+                TutorialCamera3FragmentDirections.actionTutorialCamera3FragmentToHomeActivity()
             )
             ttsHelper.shutdown()
         }

@@ -1,22 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
 <FrameLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/tutorialCamera3Fragment"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/tutorialCamera1Fragment"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.scanny_project.features.tutorial.tutorialFragments.TutorialCamera3Fragment">
+    tools:context="com.scanny_project.features.tutorial.tutorialFragments.TutorialCamera1Fragment">
+
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
         <ProgressBar
-            android:id="@+id/progressBarTutorial3"
+            android:id="@+id/progressBarTutorial1"
             style="?android:attr/progressBarStyleHorizontal"
-            android:layout_width="200dp"
+            android:layout_width="300dp"
             android:layout_height="wrap_content"
-            android:progress="75"
+            android:progress="25"
             android:progressTint="@color/dark_blue"
             app:layout_constraintBottom_toTopOf="@+id/speechBubble"
             app:layout_constraintEnd_toEndOf="parent"
@@ -26,23 +28,6 @@
             app:layout_constraintVertical_bias="0.05" />
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/btnTutorialBack"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="16dp"
-            android:contentDescription="@string/back_button_description"
-            android:src="@drawable/ic_back_bubble_light"
-            app:backgroundTint="@color/dark_blue"
-            app:elevation="10dp"
-            app:layout_constraintBottom_toBottomOf="@+id/ivScanny"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.09"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/ivScanny"
-            app:layout_constraintVertical_bias="0.556"
-            app:tint="@android:color/white" />
-
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/btnTutorialNext"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -50,7 +35,7 @@
             android:contentDescription="@string/next_arrow_desc"
             android:src="@drawable/next_arrow_bubble_light"
             app:backgroundTint="@color/dark_blue"
-            app:elevation="10dp"
+            app:elevation="15dp"
             app:layout_constraintBottom_toBottomOf="@+id/ivScanny"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.9"
@@ -63,14 +48,16 @@
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/skipTutorialButton"
             style="@android:style/Widget.Button"
-            android:layout_width="200dp"
+            android:layout_width="250dp"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="28dp"
+            android:layout_marginBottom="80dp"
             android:background="@drawable/background_gradient"
             android:elevation="20dp"
+            android:paddingVertical="10dp"
             android:text="@string/skip_hr"
             android:textColor="@color/white"
-            android:textSize="20sp"
+            android:textSize="30sp"
+            android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
@@ -78,25 +65,27 @@
 
         <ImageView
             android:id="@+id/ivScanny"
-            android:layout_width="150dp"
-            android:layout_height="180dp"
-            android:layout_marginBottom="160dp"
+            android:layout_width="250dp"
+            android:layout_height="280dp"
             android:contentDescription="@string/scanny_tutorial"
-            android:foregroundGravity="center_horizontal"
+            android:foregroundGravity="center_vertical"
             android:scaleType="fitCenter"
-            android:src="@drawable/scanny_franch"
+            android:src="@drawable/scanny_tut_1"
             app:layout_constraintBottom_toTopOf="@+id/skipTutorialButton"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintHorizontal_bias="0.498"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <FrameLayout
             android:id="@+id/speechBubble"
-            android:layout_width="293dp"
-            android:layout_height="156dp"
+            android:layout_width="472dp"
+            android:layout_height="231dp"
+            android:layout_marginTop="50dp"
             app:layout_constraintBottom_toTopOf="@+id/ivScanny"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="parent">
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintHorizontal_bias="0.5">
 
             <ImageView
                 android:layout_width="match_parent"
@@ -111,10 +100,13 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="16dp"
-                android:text="@string/tutorial_desc_3"
+                android:gravity="center"
+                android:paddingTop="15dp"
+                android:text="@string/tutorial_desc_1"
                 android:textColor="@android:color/black"
-                android:textSize="16sp" />
+                android:textSize="26sp" />
         </FrameLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
+
 </FrameLayout>

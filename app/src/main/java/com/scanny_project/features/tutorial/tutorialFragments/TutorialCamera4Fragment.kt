@@ -40,6 +40,14 @@ class TutorialCamera4Fragment : Fragment() {
             )
             ttsHelper.shutdown()
         }
+
+        binding.skipTutorialButton.setOnClickListener {
+            findNavController().navigate(
+                TutorialCamera4FragmentDirections.actionTutorialCamera4FragmentToHomeActivity()
+            )
+            ttsHelper.shutdown()
+        }
+
         return root
     }
 

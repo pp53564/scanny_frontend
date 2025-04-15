@@ -18,7 +18,7 @@
     <string name="question">Pitanje</string>
     <string name="attempts_count">Broj pokušaja: 0</string>
     <string name="lessons">Lekcije</string>
-    <string name="lets_start">Počnimo!</string>
+    <string name="lets_start">Počnimo</string>
     <string name="profile">Profil</string>
     <string name="logout">Odjava</string>
     <string name="questions">Pitanja</string>
@@ -26,8 +26,8 @@
     <string name="question_attempts">Broj pokušaja: %1$d</string>
     <string name="lets_scan">Skeniraj</string>
     <string name="lets_play_quiz">Kviz</string>
-    <string name="tutorial_desc_4">Čestitamo! Sada znaš kako koristiti Scanny aplikaciju. Spreman si za zabavno učenje jezika!</string>
-    <string name="tutorial_desc_3">"Bonjour! Izaberi jezik na kojem želiš učiti. Skenirat ćemo stvari oko nas na tom jeziku. Jeeej! "</string>
+    <string name="tutorial_desc_3">Bonjour! Izaberi jezik na kojem želiš učiti. Skenirat ćemo stvari oko nas, učiti nove riječi, a zatim riješiti mini kviz! Tako skupljaš bodove!</string>
+    <string name="tutorial_desc_4">Čestitamo! Sada znaš kako koristiti Scanny aplikaciju. Prati svoje bodove, usporedi ih s prijateljima i nastavi učiti uz zabavu!</string>
     <string name="tutorial_desc_2">Otvorit ćemo kameru i ti ćeš pokazivati predmete oko sebe. Ja ću ti pomoći prepoznati te predmete i naučit ćemo kako se zovu na drugim jezicima. Nije li to super?</string>
     <string name="tutorial_desc_1">Hej! Ja sam Scanny, tvoj robot prijatelj. Spremni za učenje?</string>
     <string name="start_tutorial">Info</string>
@@ -72,4 +72,6 @@
     <string name="stats_neighbors">Tvoja pozicija</string>
     <string name="name">Ime</string>
     <string name="zero">0</string>
+    <string name="language">Jezik</string>
+    <string name="speaker">speaker</string>
 </resources>

@@ -1,0 +1,313 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.scanny_project.features.profile.ProfileActivity">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="250dp"
+            android:padding="8dp"
+            android:background="@color/dark_blue">
+
+<!--                <LinearLayout-->
+<!--                    android:id="@+id/title_and_back_button"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:orientation="horizontal"-->
+<!--                    app:layout_constraintEnd_toEndOf="parent"-->
+<!--                    app:layout_constraintStart_toStartOf="parent"-->
+<!--                    app:layout_constraintTop_toTopOf="parent">-->
+<!--                    <include-->
+<!--                        android:id="@+id/buttonBackLayout"-->
+<!--                        layout="@layout/back_button_just_arrow_light"-->
+<!--                        android:layout_width="40dp"-->
+<!--                        android:layout_height="40dp" />-->
+
+<!--                    <TextView-->
+<!--                        android:id="@+id/title_text"-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="match_parent"-->
+<!--                        android:layout_marginStart="6dp"-->
+<!--                        android:gravity="center_vertical"-->
+<!--                        android:text="@string/profile"-->
+<!--                        android:textColor="@android:color/white"-->
+<!--                        android:textSize="24sp"-->
+<!--                        android:textStyle="bold" />-->
+<!--                </LinearLayout>-->
+
+                <include
+                    android:id="@+id/header"
+                    layout="@layout/header_light"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+                <ImageView
+                    android:layout_width="168dp"
+                android:layout_height="113dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="1.0"
+                app:srcCompat="@drawable/profile3"
+                android:contentDescription="@string/profile_image"/>
+
+<!--            <TextView-->
+<!--                android:id="@+id/textView3"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginTop="15dp"-->
+<!--                android:text="@string/profile"-->
+<!--                android:textColor="@color/white"-->
+<!--                android:textSize="30sp"-->
+<!--                android:textStyle="bold"-->
+<!--                app:layout_constraintEnd_toEndOf="parent"-->
+<!--                app:layout_constraintStart_toStartOf="parent"-->
+<!--                app:layout_constraintTop_toTopOf="parent" />-->
+
+<!--                <include-->
+<!--                    android:id="@+id/buttonBackLayout"-->
+<!--                    layout="@layout/back_button_just_arrow_light"-->
+<!--                    app:layout_constraintStart_toStartOf="parent"-->
+<!--                    app:layout_constraintTop_toTopOf="parent" />-->
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/top_rounded_background_2"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/tvUsername"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="@string/default_name"
+                    android:textAlignment="center"
+                    android:textColor="@color/dark_blue"
+                    android:textSize="35sp"
+                    android:textStyle="bold" />
+
+<!--                <TextView-->
+<!--                    android:id="@+id/textView5"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:text="petra@gmail.com"-->
+<!--                    android:textAlignment="center" />-->
+
+<!--                <androidx.constraintlayout.widget.ConstraintLayout-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="match_parent"-->
+<!--                    android:layout_marginStart="32dp"-->
+<!--                    android:layout_marginTop="16dp"-->
+<!--                    android:layout_marginEnd="32dp"-->
+<!--                    android:layout_marginBottom="16dp">-->
+
+<!--                    <ImageView-->
+<!--                        android:id="@+id/ivNotification"-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        app:layout_constraintBottom_toBottomOf="parent"-->
+<!--                        app:layout_constraintStart_toStartOf="parent"-->
+<!--                        app:layout_constraintTop_toTopOf="parent"-->
+<!--                        app:srcCompat="@drawable/btn_1" />-->
+
+<!--                    <TextView-->
+<!--                        android:id="@+id/tvNotification"-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:layout_marginStart="16dp"-->
+<!--                        android:text="Obavijesti"-->
+<!--                        android:textColor="@color/dark_blue"-->
+<!--                        android:textSize="20sp"-->
+<!--                        android:textStyle="bold"-->
+<!--                        app:layout_constraintBottom_toBottomOf="parent"-->
+<!--                        app:layout_constraintStart_toEndOf="@+id/ivNotification"-->
+<!--                        app:layout_constraintTop_toTopOf="@+id/ivNotification" />-->
+
+<!--                    <ImageView-->
+<!--                        android:id="@+id/ivNextNotif"-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        app:layout_constraintBottom_toBottomOf="parent"-->
+<!--                        app:layout_constraintEnd_toEndOf="parent"-->
+<!--                        app:layout_constraintTop_toTopOf="parent"-->
+<!--                        app:srcCompat="@drawable/arrow" />-->
+<!--                </androidx.constraintlayout.widget.ConstraintLayout>-->
+
+<!--                <androidx.constraintlayout.widget.ConstraintLayout-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="match_parent"-->
+<!--                    android:layout_marginStart="32dp"-->
+<!--                    android:layout_marginTop="16dp"-->
+<!--                    android:layout_marginEnd="32dp"-->
+<!--                    android:layout_marginBottom="16dp">-->
+
+<!--                    <ImageView-->
+<!--                        android:id="@+id/ivGallery"-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        app:layout_constraintBottom_toBottomOf="parent"-->
+<!--                        app:layout_constraintStart_toStartOf="parent"-->
+<!--                        app:layout_constraintTop_toTopOf="parent"-->
+<!--                        app:srcCompat="@drawable/btn_3" />-->
+
+<!--                    <TextView-->
+<!--                        android:id="@+id/tvGallery"-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:layout_marginStart="16dp"-->
+<!--                        android:text="Galerija"-->
+<!--                        android:textColor="@color/dark_blue"-->
+<!--                        android:textSize="20sp"-->
+<!--                        android:textStyle="bold"-->
+<!--                        app:layout_constraintBottom_toBottomOf="parent"-->
+<!--                        app:layout_constraintStart_toEndOf="@+id/ivGallery"-->
+<!--                        app:layout_constraintTop_toTopOf="@+id/ivGallery" />-->
+
+<!--                    <ImageView-->
+<!--                        android:id="@+id/ivNextGallery"-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        app:layout_constraintBottom_toBottomOf="parent"-->
+<!--                        app:layout_constraintEnd_toEndOf="parent"-->
+<!--                        app:layout_constraintTop_toTopOf="parent"-->
+<!--                        app:srcCompat="@drawable/arrow" />-->
+<!--                </androidx.constraintlayout.widget.ConstraintLayout>-->
+
+<!--                <androidx.constraintlayout.widget.ConstraintLayout-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="match_parent"-->
+<!--                    android:layout_marginStart="32dp"-->
+<!--                    android:layout_marginTop="16dp"-->
+<!--                    android:layout_marginEnd="32dp"-->
+<!--                    android:layout_marginBottom="16dp">-->
+
+<!--                    <ImageView-->
+<!--                        android:id="@+id/ivList"-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        app:layout_constraintBottom_toBottomOf="parent"-->
+<!--                        app:layout_constraintStart_toStartOf="parent"-->
+<!--                        app:layout_constraintTop_toTopOf="parent"-->
+<!--                        app:srcCompat="@drawable/btn_4" />-->
+
+<!--                    <TextView-->
+<!--                        android:id="@+id/tvList"-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:layout_marginStart="16dp"-->
+<!--                        android:text="Moja lista"-->
+<!--                        android:textColor="@color/dark_blue"-->
+<!--                        android:textSize="20sp"-->
+<!--                        android:textStyle="bold"-->
+<!--                        app:layout_constraintBottom_toBottomOf="parent"-->
+<!--                        app:layout_constraintStart_toEndOf="@+id/ivList"-->
+<!--                        app:layout_constraintTop_toTopOf="@+id/ivList" />-->
+
+<!--                    <ImageView-->
+<!--                        android:id="@+id/ivNextList"-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        app:layout_constraintBottom_toBottomOf="parent"-->
+<!--                        app:layout_constraintEnd_toEndOf="parent"-->
+<!--                        app:layout_constraintTop_toTopOf="parent"-->
+<!--                        app:srcCompat="@drawable/arrow" />-->
+<!--                </androidx.constraintlayout.widget.ConstraintLayout>-->
+
+<!--                <androidx.constraintlayout.widget.ConstraintLayout-->
+<!--                    android:id="@+id/clChangePassword"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="match_parent"-->
+<!--                    android:layout_marginStart="32dp"-->
+<!--                    android:layout_marginTop="16dp"-->
+<!--                    android:layout_marginEnd="32dp"-->
+<!--                    android:layout_marginBottom="16dp">-->
+
+<!--                    <ImageView-->
+<!--                        android:id="@+id/ivChangePassword"-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        app:layout_constraintBottom_toBottomOf="parent"-->
+<!--                        app:layout_constraintStart_toStartOf="parent"-->
+<!--                        app:layout_constraintTop_toTopOf="parent"-->
+<!--                        app:srcCompat="@drawable/btn_5"-->
+<!--                        android:contentDescription="@string/change_password" />-->
+
+<!--                    <TextView-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:layout_marginStart="16dp"-->
+<!--                        android:text="Promijeni lozinku->todo"-->
+<!--                        android:textColor="@color/dark_blue"-->
+<!--                        android:textSize="20sp"-->
+<!--                        android:textStyle="bold"-->
+<!--                        app:layout_constraintBottom_toBottomOf="parent"-->
+<!--                        app:layout_constraintStart_toEndOf="@+id/ivChangePassword"-->
+<!--                        app:layout_constraintTop_toTopOf="@+id/ivChangePassword" />-->
+
+<!--                    <ImageView-->
+<!--                        android:layout_width="30dp"-->
+<!--                        android:layout_height="30dp"-->
+<!--                        app:layout_constraintBottom_toBottomOf="parent"-->
+<!--                        app:layout_constraintEnd_toEndOf="parent"-->
+<!--                        app:layout_constraintTop_toTopOf="parent"-->
+<!--                        app:srcCompat="@drawable/next_arrow_bubble_dark"-->
+<!--                        android:contentDescription="@string/next_arrow_desc" />-->
+
+<!--                </androidx.constraintlayout.widget.ConstraintLayout>-->
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="32dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginEnd="32dp"
+                    android:layout_marginBottom="16dp">
+
+                    <ImageView
+                        android:id="@+id/ivLogout"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:srcCompat="@drawable/btn_6"
+                        android:contentDescription="@string/logout_logo_desc"/>
+
+                    <TextView
+                        android:id="@+id/tvLogout"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:text="@string/logout"
+                        android:textColor="@color/dark_blue"
+                        android:textSize="35sp"
+                        android:textStyle="bold"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toEndOf="@+id/ivLogout"
+                        app:layout_constraintTop_toTopOf="@+id/ivLogout" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </LinearLayout>
+
+        </LinearLayout>
+    </ScrollView>
+    <include layout="@layout/bottom_navigation" />
+</androidx.constraintlayout.widget.ConstraintLayout>
