@@ -51,41 +51,4 @@ class LectureRepository @Inject constructor(
             Result.Error(IOException("Error fetching lectures", e))
         }
     }
-
-    suspend fun getQuestionsByLecture(lectureId: Long): Result<List<QuestionDTO>> {
-        return try {
-            val response = lectureService.getQuestionsByLecture(lectureId)
-            if (response.isSuccessful) {
-                Result.Success(response.body() ?: emptyList())
-            } else {
-                Result.Error(IOException("Failed to fetch questions: ${response.message()}"))
-            }
-        } catch (e: Exception) {
-            Result.Error(IOException("Error fetching questions", e))
-        }
-    }
-    suspend fun getUserQuestionsByLecture(lectureId: Long): Result<List<UserQuestionDTO>> {
-        return try {
-            val response = lectureService.getUserQuestionsByLecture(lectureId)
-            if (response.isSuccessful) {
-                Result.Success(response.body() ?: emptyList())
-            } else {
-                Result.Error(IOException("Failed to fetch questions: ${response.message()}"))
-            }
-        } catch (e: Exception) {
-            Result.Error(IOException("Error fetching questions", e))
-        }
-    }
-    suspend fun getUserQuestionsByLectureAndLang(lectureId: Long, selectedLangCode: String): Result<List<UserQuestionDTO>> {
-        return try {
-            val response = lectureService.getUserQuestionsByLectureAndLang(lectureId, selectedLangCode)
-            if (response.isSuccessful) {
-                Result.Success(response.body() ?: emptyList())
-            } else {
-                Result.Error(IOException("Failed to fetch questions: ${response.message()}"))
-            }
-        } catch (e: Exception) {
-            Result.Error(IOException("Error fetching questions", e))
-        }
-    }
 }

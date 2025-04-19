@@ -28,8 +28,9 @@ class QuestionListActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         binding.header.buttonBackLayout.imButtonBack.setOnClickListener {
-            val intent = Intent(this, SelectLanguageActivityForImageClassification::class.java)
-            startActivity(intent)
+//            val intent = Intent(this, SelectLanguageActivityForImageClassification::class.java)
+//            startActivity(intent)
+            onBackPressedDispatcher.onBackPressed()
         }
 
         binding.header.titleText.text = getString(R.string.questions)
@@ -57,7 +58,7 @@ class QuestionListActivity : AppCompatActivity() {
     }
 
     private fun setupRecyclerView(questions: List<UserQuestionDTO>, selectedLangCode: String) {
-        val adapter = QuestionAdapter(questions) { selectedQuestion ->
+        val adapter = QuestionAdapter(questions, selectedLangCode) { selectedQuestion ->
             val intent = Intent(this@QuestionListActivity, ImageClassificationAndQuizActivity::class.java)
             intent.putExtra("QUESTION_KEYWORD", selectedQuestion.localizedSubject)
             intent.putExtra("QUESTION_ID", selectedQuestion.id)

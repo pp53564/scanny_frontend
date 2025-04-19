@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp">
+
+    <include
+        android:id="@+id/buttonBackLayout"
+        layout="@layout/back_button_just_arrow" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/buttonBackLayout"
+        android:overScrollMode="never">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cardView2"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:cardCornerRadius="24dp"
+                app:cardElevation="6dp"
+                app:strokeWidth="2dp"
+                app:strokeColor="@color/light_green"
+                app:cardUseCompatPadding="true"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:background="@drawable/bg_rounded"
+                    android:padding="24dp"
+                    android:gravity="center_horizontal">
+
+                    <TextView
+                        android:id="@+id/tvAnswerLabel"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/correct_asnwered"
+                        android:textSize="20sp"
+                        android:textStyle="bold"
+                        android:textColor="@color/dark_blue"/>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical"
+                        android:layout_marginTop="8dp">
+
+                        <ImageView
+                            android:id="@+id/ivSpeaker"
+                            android:layout_width="38dp"
+                            android:layout_height="38dp"
+                            android:src="@drawable/speaker_icon"
+                            android:contentDescription="@string/speaker"/>
+
+                        <TextView
+                            android:id="@+id/tvAnswerText"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="8dp"
+                            android:textSize="22sp"
+                            android:textStyle="bold"
+                            android:textAllCaps="true" />
+                    </LinearLayout>
+
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/myCardView"
+                        android:layout_width="280dp"
+                        android:layout_height="280dp"
+                        android:layout_marginTop="16dp"
+                        app:cardCornerRadius="16dp"
+                        app:cardUseCompatPadding="true"
+                        android:elevation="4dp">
+
+                        <ImageView
+                            android:id="@+id/ivAnswerImage"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:scaleType="centerCrop"
+                            android:contentDescription="@string/taken_image"/>
+                    </androidx.cardview.widget.CardView>
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+</RelativeLayout>

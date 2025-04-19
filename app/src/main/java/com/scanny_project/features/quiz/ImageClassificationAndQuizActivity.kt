@@ -26,6 +26,7 @@ import com.scanny_project.utils.TextToSpeechHelper
 import com.scanny_project.utils.TranslatorHelper
 import dagger.hilt.android.AndroidEntryPoint
 
+
 @AndroidEntryPoint
 class ImageClassificationAndQuizActivity : AppCompatActivity(){
 
@@ -46,11 +47,11 @@ class ImageClassificationAndQuizActivity : AppCompatActivity(){
         imageView = binding.imageView
 
         val task = intent.getStringExtra("QUESTION_KEYWORD") ?: "unknown"
-        langCode = intent.getStringExtra("SELECTED_LANGUAGE").toString()
+        langCode = intent.getStringExtra("SELECTED_LANGUAGE")!!
         binding.tvThingForPicture.text = task
         currentQuestionId = intent.getLongExtra("QUESTION_ID", 0L)
 
-        ttsHelper = langCode?.let { TextToSpeechHelper(this, languageCode = it) }!!
+        ttsHelper = TextToSpeechHelper(this, languageCode = langCode)
         binding.speakerIcon.setOnClickListener{
             ttsHelper.speak(task)
         }
@@ -78,6 +79,11 @@ class ImageClassificationAndQuizActivity : AppCompatActivity(){
                     handleResult(it.correct, it.confidenceScore, it.matchedLabel)
 //                }
             }
+        }
+
+        viewModel.loading.observe(this) { isLoading ->
+            binding.progressOverlay.visibility =
+                if (isLoading) View.VISIBLE else View.GONE
         }
     }
 
@@ -134,67 +140,31 @@ class ImageClassificationAndQuizActivity : AppCompatActivity(){
         }
     }
 
-//    private fun classifyImage(image: Bitmap) {
-//        val resizedImage = Bitmap.createScaledBitmap(image, 224, 224, false)
-//
-//    }
-
-//    override fun onError(error: String) {
-//        Toast.makeText(this, error, Toast.LENGTH_SHORT).show()
-//    }
-
-//    override fun onResults(results: List<Classifications>?, inferenceTime: Long) {
-//        binding.classified.visibility = View.VISIBLE
-//        binding.confidencesText.visibility = View.VISIBLE
-//        binding.resultReaction.visibility = View.VISIBLE
-//        binding.myCardView.visibility = View.VISIBLE
-//
-//        var succeeded = false
-//        if (!results.isNullOrEmpty()) {
-//            val classifications = results[0]
-//            if (classifications.categories.isNotEmpty()) {
-//                val topResult = classifications.categories.maxByOrNull { it.score }
-//                topResult?.let {
-//                    if (it.label.contains(binding.tvThingForPicture.text)) {
-//                        binding.resultReaction.text = "BRAVO! Točan odgovor."
-//                        showImageDialog(true)
-//                        succeeded = true
-//                    } else {
-//                        binding.resultReaction.text = "Pokušaj ponovo."
-//                        showImageDialog(false)
-//                    }
-//                    binding.result.text = "${it.label}"
-//                    binding.confidence.text = "${it.score * 100}%"
-//                    Log.i("ImageQuizActivity", "Label: ${it.label}, Confidence: ${it.score}")
-//                }
-//            } else {
-//                binding.result.text = "Nema rezultata"
-//                Log.i("ImageQuizActivity", "No classifications received.")
-//            }
-//        }
-//        viewModel.sendAttempt(currentQuestionId, succeeded, (binding.imageView.drawable as? BitmapDrawable)?.bitmap)
-//    }
 
     private fun handleResult(correct: Boolean, confidenceScore: Float, matchedLabel: String) {
         binding.resultReaction.visibility = View.VISIBLE
+        binding.resultReactionIcon.setImageResource( if(correct) R.drawable.baseline_auto_awesome_24 else R.drawable.baseline_arrow_downward_24)
+        binding.resultReactionIcon.visibility = View.VISIBLE
         binding.myCardView.visibility = View.VISIBLE
         if (correct) {
             binding.buttonTakePicture.visibility = View.GONE
             binding.resultReaction.text = getString(R.string.correct_answer)
             showImageDialog(true)
+            binding.resultIcon2.visibility = View.VISIBLE
             binding.confidencesText.visibility = View.VISIBLE
+            binding.confidence.visibility = View.VISIBLE
             binding.confidence.text = "${(confidenceScore * 100).toInt()}%"
         } else {
-            if(matchedLabel != null) {
-                binding.classified.visibility = View.VISIBLE
-                TranslatorHelper.initializeTranslator(com.google.mlkit.nl.translate.TranslateLanguage.CROATIAN) {
-                    TranslatorHelper.translateText(matchedLabel) { translatedText ->
-                        binding.result.text = translatedText
-                    }
+            TranslatorHelper.initializeTranslator(com.google.mlkit.nl.translate.TranslateLanguage.CROATIAN) {
+                TranslatorHelper.translateText(matchedLabel) { translatedText ->
+                    binding.resultIcon.visibility = View.VISIBLE
+                    binding.classified.visibility = View.VISIBLE
+                    binding.result.visibility = View.VISIBLE
+                    binding.result.text = translatedText
                 }
             }
             binding.buttonTakePicture.text = getString(R.string.try_again)
-            binding.resultReaction.text = getString(R.string.wrong_answer)
+            binding.resultReaction.text = getString(R.string.wrong_answer_2)
             showImageDialog(false)
         }
     }
@@ -206,7 +176,6 @@ class ImageClassificationAndQuizActivity : AppCompatActivity(){
         dialog.setCancelable(true)
         dialog.setContentView(R.layout.dialog_image)
         dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
-
         val textView = dialog.findViewById<TextView>(R.id.dialogMessage)
         textView.text = if (correct) {
             getString(R.string.correct_answer)
@@ -214,7 +183,7 @@ class ImageClassificationAndQuizActivity : AppCompatActivity(){
             getString(R.string.wrong_answer)
         }
         val image = dialog.findViewById<ImageView>(R.id.dialogImageView)
-        image.setImageResource(if (correct) R.drawable.scanny_happy else R.drawable.scanny_sad)
+        image.setImageResource(R.drawable.scanny_from_bottom)
 
         dialog.show()
         dialog.window?.decorView?.postDelayed({

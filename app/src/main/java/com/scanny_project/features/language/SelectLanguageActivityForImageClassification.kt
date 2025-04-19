@@ -23,6 +23,7 @@ class SelectLanguageActivityForImageClassification : AppCompatActivity() {
         binding.header.buttonBackLayout.imButtonBack.setOnClickListener {
             val intent = Intent(this, HomeActivity::class.java)
             startActivity(intent)
+            finish()
         }
 
         binding.recyclerLanguages.layoutManager = GridLayoutManager(this, 2)

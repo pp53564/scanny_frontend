@@ -37,8 +37,9 @@ class StatsDetailsActivity : AppCompatActivity() {
         }
 
         binding.header.buttonBackLayout.imButtonBack.setOnClickListener {
-            val intent = Intent(this, StatsActivity::class.java)
-            startActivity(intent)
+//            val intent = Intent(this, StatsActivity::class.java)
+//            startActivity(intent)
+              onBackPressedDispatcher.onBackPressed()
         }
 
         viewModel.loadNeighborsForLanguage(languageCode)

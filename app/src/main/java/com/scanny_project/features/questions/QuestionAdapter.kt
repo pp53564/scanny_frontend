@@ -1,5 +1,6 @@
 package com.scanny_project.features.questions
 
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,6 +13,7 @@ import com.scanny_project.data.model.UserQuestionDTO
 
 class QuestionAdapter(
     private val questions: List<UserQuestionDTO>,
+    private val langCode: String,
     private val onQuestionClick: (UserQuestionDTO) -> Unit
 ) : RecyclerView.Adapter<QuestionAdapter.QuestionViewHolder>() {
 
@@ -46,6 +48,11 @@ class QuestionAdapter(
             if(!question.succeeded) {
                 onQuestionClick(question)
             } else {
+                val intent = Intent(context, AnsweredQuestionActivity::class.java).apply {
+                    putExtra("QUESTION_ID", question.id)
+                    putExtra("SELECTED_LANGUAGE", langCode)
+                }
+                context.startActivity(intent)
                 Toast.makeText(context, "Uspješno odgovoreno!", Toast.LENGTH_SHORT).show()
             }
         }

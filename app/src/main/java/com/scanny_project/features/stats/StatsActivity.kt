@@ -32,6 +32,7 @@ class StatsActivity : AppCompatActivity() {
         binding.header.buttonBackLayout.imButtonBack.setOnClickListener {
             val intent = Intent(this, HomeActivity::class.java)
             startActivity(intent)
+            finish()
         }
     }
 

@@ -9,6 +9,7 @@ import com.scanny_project.data.services.StatsService
 import com.scanny_project.data.services.UserQuestionAttemptService
 import com.scanny_project.data.services.UserService
 import com.scanny_project.data.network.AuthInterceptor
+import com.scanny_project.data.services.QuestionService
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -61,6 +62,11 @@ object AppModule {
     @Singleton
     fun provideLectureService(retrofit: Retrofit): LectureService {
         return retrofit.create(LectureService::class.java)
+    }
+    @Provides
+    @Singleton
+    fun provideQuestionService(retrofit: Retrofit): QuestionService {
+        return retrofit.create(QuestionService::class.java)
     }
 
     @Provides

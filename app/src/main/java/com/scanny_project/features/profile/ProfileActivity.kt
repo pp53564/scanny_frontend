@@ -35,8 +35,9 @@ class ProfileActivity : AppCompatActivity() {
         binding.header.titleText.text = getString(R.string.profile)
 
         binding.header.buttonBackLayout.imButtonBack.setOnClickListener {
-            val intent = Intent(this, HomeActivity::class.java)
-            startActivity(intent)
+//            val intent = Intent(this, HomeActivity::class.java)
+//            startActivity(intent)
+            onBackPressedDispatcher.onBackPressed()
         }
 
         navigation = binding.root.findViewById(R.id.bottomNavigationView)

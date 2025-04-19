@@ -7,13 +7,14 @@ import androidx.lifecycle.viewModelScope
 import com.scanny_project.data.model.UserLectureDTO
 import com.scanny_project.data.model.UserQuestionDTO
 import com.scanny_project.data.repository.LectureRepository
+import com.scanny_project.data.repository.QuestionRepository
 import com.scanny_project.utils.Result
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 @HiltViewModel
 class QuestionListViewModel @Inject constructor(
-    private val lectureRepository: LectureRepository
+    private val questionRepository: QuestionRepository
 ) : ViewModel() {
     private val _questions = MutableLiveData<List<UserQuestionDTO>>()
     val questions: LiveData<List<UserQuestionDTO>> get() = _questions
@@ -23,7 +24,7 @@ class QuestionListViewModel @Inject constructor(
 
     fun loadQuestions(lectureId: Long, selectedLangCode: String) {
         viewModelScope.launch {
-            val questionsResult = lectureRepository.getUserQuestionsByLectureAndLang(lectureId, selectedLangCode)
+            val questionsResult = questionRepository.getUserQuestionsByLectureAndLang(lectureId, selectedLangCode)
             if (questionsResult is Result.Success) {
                 _questions.value = questionsResult.data
             } else {

@@ -24,6 +24,9 @@ class ImageQuizViewModel @Inject constructor(
     private val _attemptResponse = MutableLiveData<AttemptResponse?>()
     val attemptResponse: LiveData<AttemptResponse?> get() = _attemptResponse
 
+    private val _loading = MutableLiveData(false)
+    val loading: LiveData<Boolean> get() = _loading
+
     init {
         _attemptSent.value = false
     }
@@ -32,15 +35,21 @@ class ImageQuizViewModel @Inject constructor(
         if (_attemptSent.value == true) return
 
         _attemptSent.value = true
+        _loading.value = true
 
         //tu je bilo GlobalScope ako ne radi ovo
         viewModelScope.launch {
-            val result = attemptsRepository.recordAttempt(questionId, imageBitmap, langCode)
-            if (result is Result.Success) {
-                _attemptResponse.postValue(result.data)
-                Log.i("ImageQuizViewModel", "Attempt recorded successfully.")
-            } else {
-                Log.e("ImageQuizViewModel", "Failed to record attempt.")
+            try {
+                val result = attemptsRepository.recordAttempt(
+                    questionId, imageBitmap, langCode
+                )
+                if (result is Result.Success) {
+                    _attemptResponse.postValue(result.data)
+                } else {
+                    Log.e("ImageQuizViewModel", "Failed to record attempt.")
+                }
+            } finally {
+                _loading.postValue(false)
             }
         }
     }

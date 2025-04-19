@@ -37,7 +37,7 @@
     <string name="home">Home</string>
     <string name="camera">Camera</string>
     <string name="correct_answer">Bravo! Dobro obavljeno!</string>
-    <string name="wrong_answer">Ops! Nije dobro. Pokušaj ponovo.</string>
+    <string name="wrong_answer">Nije dobro ali pokušaj ponovo!</string>
     <string name="back_button_description">back button</string>
     <string name="scanny_home">home scanny</string>
     <string name="scanny_main">scanny on main screen</string>
@@ -56,8 +56,8 @@
     <string name="flag_image">flag image</string>
     <string name="medal">medal</string>
     <string name="take_a_picture_hr">Uslikaj:</string>
-    <string name="classification_result">Scanny kaže:</string>
-    <string name="probabilites">Vjerojatnosti:</string>
+    <string name="classification_result">Mislim da je ovo:</string>
+    <string name="probabilites">Postotak:</string>
     <string name="open_camera_hr">Otvori kameru</string>
     <string name="profile_image">profile image</string>
     <string name="default_name">Petra</string>
@@ -74,4 +74,6 @@
     <string name="zero">0</string>
     <string name="language">Jezik</string>
     <string name="speaker">speaker</string>
+    <string name="wrong_answer_2">Nema veze, pokušaj ponovo!</string>
+    <string name="correct_asnwered">Točno odgovoreno!</string>
 </resources>

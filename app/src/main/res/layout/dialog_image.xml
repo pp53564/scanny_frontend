@@ -22,7 +22,7 @@
                     android:layout_height="96dp"
                     android:layout_marginBottom="16dp"
                     android:scaleType="fitCenter"
-                    android:src="@drawable/scanny_happy" />
+                    android:src="@drawable/scanny_from_bottom" />
 
                 <TextView
                     android:id="@+id/dialogMessage"

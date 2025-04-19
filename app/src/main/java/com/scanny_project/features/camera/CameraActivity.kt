@@ -21,8 +21,9 @@ class CameraActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         binding.buttonBackLayout.imButtonBack.setOnClickListener {
-            val intent = Intent(this, SelectLanguageActivity::class.java)
-            startActivity(intent)
+//            val intent = Intent(this, SelectLanguageActivity::class.java)
+//            startActivity(intent)
+            onBackPressedDispatcher.onBackPressed()
         }
 //        val overlayView = findViewById<OverlayView>(R.id.overlay)
 //        TranslatorHelper.initializeTranslator(TranslateLanguage.ITALIAN) { translator ->

@@ -14,8 +14,7 @@
         app:enterAnim="@anim/slide_in_right" />
     <action
         android:id="@+id/action_tutorialCamera1Fragment_to_homeActivity"
-        app:destination="@id/homeActivity"
-        app:exitAnim="@anim/slide_in_left" />
+        app:destination="@id/homeActivity" />
 </fragment>
 <fragment
     android:id="@+id/tutorialCamera2Fragment"
