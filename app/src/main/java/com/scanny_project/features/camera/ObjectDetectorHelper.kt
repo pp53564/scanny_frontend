@@ -13,8 +13,8 @@ import org.tensorflow.lite.task.vision.detector.Detection
 import org.tensorflow.lite.task.vision.detector.ObjectDetector
 
 class ObjectDetectorHelper(
-    //iznad kolike točnosti zelis sada stoji 70 posto
-    private var threshold: Float = 0.7f,
+    //iznad kolike točnosti zelis sada stoji 40 posto
+    private var threshold: Float = 0.4f,
     private var numThreads: Int = 2,
     var maxResults: Int = 1,
     private var currentDelegate: Int = 0,

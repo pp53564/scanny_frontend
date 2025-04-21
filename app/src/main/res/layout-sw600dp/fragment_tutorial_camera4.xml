@@ -116,7 +116,7 @@
                 android:layout_margin="16dp"
                 android:gravity="center"
                 android:paddingTop="15dp"
-                android:text="@string/tutorial_desc_3"
+                android:text="@string/tutorial_desc_4"
                 android:textColor="@android:color/black"
                 android:textSize="26sp" />
         </FrameLayout>

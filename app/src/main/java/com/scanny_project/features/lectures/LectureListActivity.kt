@@ -31,8 +31,9 @@ class LectureListActivity : AppCompatActivity() {
         val selectedLangCode = intent.getStringExtra("SELECTED_LANGUAGE").toString()
 
         binding.header.buttonBackLayout.imButtonBack.setOnClickListener {
-            val intent = Intent(this, SelectLanguageActivityForImageClassification::class.java)
-            startActivity(intent)
+//            val intent = Intent(this, SelectLanguageActivityForImageClassification::class.java)
+//            startActivity(intent)
+            onBackPressedDispatcher.onBackPressed()
         }
 
         viewModel.lectures.observe(this) { lectures ->

@@ -59,7 +59,7 @@ class LoginActivity : AppCompatActivity() {
             }
             setResult(Activity.RESULT_OK)
             //samo za test OVO OBRISI POSLIJE
-            startActivity(Intent(this, MainActivity::class.java))
+//            startActivity(Intent(this, MainActivity::class.java))
         })
 
         username.afterTextChanged {
