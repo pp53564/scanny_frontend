@@ -6,5 +6,6 @@ data class StatsPerUserAndLanguageDTO(
     val attemptSum: Long,
     val score: Long,
     val rank: Integer,
-    val totalUsersInLang: Integer
+    val totalUsersInLang: Integer,
+    val totalQuestions: Long
 )

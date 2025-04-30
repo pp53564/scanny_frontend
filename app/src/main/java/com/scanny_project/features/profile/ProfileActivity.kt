@@ -51,7 +51,7 @@ class ProfileActivity : AppCompatActivity() {
         )
         navigation.selectedItemId = R.id.profile
 
-         binding.tvLogout.setOnClickListener {
+         binding.cvLogout.setOnClickListener {
             viewModel.logout()
             val intent = Intent(this, LoginActivity::class.java)
             intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK

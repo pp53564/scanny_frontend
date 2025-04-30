@@ -26,17 +26,22 @@ class LoginViewModel @Inject constructor(private val userRepository: UserReposit
 
     fun login(username: String, password: String) {
         viewModelScope.launch {
-            val result = userRepository.login(username, password)
+            try {
+                val result = userRepository.login(username, password)
 
-            if (result is Result.Success) {
-                sessionManager.authToken = result.data.token
-                _loginResult.value =
-                    LoginResult(success = LoggedInUserView(displayUserName = result.data.displayName))
-            } else {
+                if (result is Result.Success) {
+                    sessionManager.authToken = result.data.token
+                    _loginResult.value =
+                        LoginResult(success = LoggedInUserView(displayUserName = result.data.displayName))
+                } else {
+                    _loginResult.value = LoginResult(error = R.string.login_failed)
+                }
+            } catch (e: Exception) {
                 _loginResult.value = LoginResult(error = R.string.login_failed)
             }
         }
     }
+
 
 
     fun loginDataChanged(username: String, password: String) {

@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import android.widget.ProgressBar
 import android.widget.TextView
 import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
@@ -31,6 +32,10 @@ class StatsAdapter(
     override fun onBindViewHolder(holder: StatsViewHolder, position: Int) {
         val stat = items[position]
 
+        val progressBar = holder.statsCardView.findViewById<ProgressBar>(R.id.progressBarForLanguage)
+        progressBar.max = stat.totalQuestions.toInt()
+        progressBar.progress = stat.correctAnswers.toInt()
+
         holder.langStats.text = "Bodovi: ${stat.score}"
         val flag = LanguageData.languages.firstOrNull { it.code == stat.languageCode }?.flagResId
             ?: R.drawable.fancy_card_background_blue
@@ -43,7 +48,5 @@ class StatsAdapter(
             context.startActivity(intent)
         }
     }
-
     override fun getItemCount() = items.size
-
 }

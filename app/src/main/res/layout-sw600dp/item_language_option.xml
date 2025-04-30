@@ -14,7 +14,7 @@
         android:layout_width="204dp"
         android:layout_height="184dp"
         android:scaleType="centerCrop"
-        android:elevation="15dp"
+        android:elevation="20dp"
         android:contentDescription="@string/flag_image"
         app:shapeAppearanceOverlay="@style/RoundedCornersImage" />
 
@@ -24,6 +24,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="8dp"
+        android:textStyle="bold"
         android:text="@string/language_hr"
         android:textSize="26sp" />
 </LinearLayout>

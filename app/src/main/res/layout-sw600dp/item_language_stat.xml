@@ -17,7 +17,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:paddingVertical="14dp"
+        android:paddingVertical="30dp"
         android:paddingHorizontal="10dp"
         android:gravity="center_vertical"
         android:baselineAligned="false">
@@ -57,55 +57,46 @@
                 android:gravity="center_vertical">
 
                 <ImageView
-                    android:layout_width="38dp"
-                    android:layout_height="38dp"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
                     android:layout_marginEnd="4dp"
                     android:src="@drawable/medal"
                     android:contentDescription="@string/medal"/>
 
-                <TextView
-                    android:id="@+id/tvRank"
+                <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/zero"
-                    android:textColor="@android:color/darker_gray"
-                    android:textSize="35sp"
-                    android:textStyle="bold" />
+                    android:orientation="vertical">
+                    <TextView
+                        android:id="@+id/tvRank"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/zero"
+                        android:textColor="@android:color/darker_gray"
+                        android:textSize="55sp"
+                        android:textStyle="bold" />
+                    <ProgressBar
+                        android:id="@+id/progressBarForLanguage"
+                        style="?android:attr/progressBarStyleHorizontal"
+                        android:layout_width="400dp"
+                        android:layout_height="20dp"
+                        android:progress="25"
+                        android:progressDrawable="@drawable/thick_progress_bar"
+                        />
+
+                </LinearLayout>
+
             </LinearLayout>
 
         </LinearLayout>
 
-<!--        <LinearLayout-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:gravity="center_horizontal"-->
-<!--            android:orientation="vertical"-->
-<!--            android:layout_marginStart="16dp">-->
-
-<!--            <FrameLayout-->
-<!--                android:layout_width="94dp"-->
-<!--                android:layout_height="70dp"-->
-<!--                android:background="@drawable/rounded_image"-->
-<!--                android:clipToOutline="true">-->
-
-<!--                <ImageView-->
-<!--                    android:id="@+id/flagImage"-->
-<!--                    android:layout_width="match_parent"-->
-<!--                    android:layout_height="match_parent"-->
-<!--                    android:scaleType="centerCrop"-->
-<!--                    android:contentDescription="@string/flag_image"/>-->
-<!--            </FrameLayout>-->
-
-
-
         <com.google.android.material.imageview.ShapeableImageView
             android:id="@+id/flagImage"
-            android:layout_width="94dp"
-            android:layout_height="70dp"
+            android:layout_width="110dp"
+            android:layout_height="100dp"
             android:scaleType="centerCrop"
             android:contentDescription="@string/flag_image"
             app:shapeAppearanceOverlay="@style/RoundedCornersImage" />
-<!--        </LinearLayout>-->
 
     </LinearLayout>
 </androidx.cardview.widget.CardView>

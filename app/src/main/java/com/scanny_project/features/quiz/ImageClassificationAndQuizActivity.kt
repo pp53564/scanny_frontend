@@ -202,10 +202,18 @@ class ImageClassificationAndQuizActivity : AppCompatActivity(){
 ////        }
 //    }
 
-override fun onDestroy() {
-    super.onDestroy()
-    ttsHelper.shutdown()
-}
+    override fun onDestroy() {
+        super.onDestroy()
+        ttsHelper.shutdown()
+    }
 
-
+    override fun onBackPressed() {
+        if (viewModel.attemptSent.value == false) {
+            viewModel.sendAttempt(currentQuestionId, imageBitmap = null, langCode)
+        }
+        val intent = Intent(this, SelectLanguageActivityForImageClassification::class.java)
+        startActivity(intent)
+        finish()
+        super.onBackPressed()
+    }
 }
