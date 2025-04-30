@@ -14,6 +14,7 @@
         android:layout_width="204dp"
         android:layout_height="184dp"
         android:scaleType="centerCrop"
+        android:elevation="15dp"
         android:contentDescription="@string/flag_image"
         app:shapeAppearanceOverlay="@style/RoundedCornersImage" />
 

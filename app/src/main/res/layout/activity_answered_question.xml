@@ -48,7 +48,7 @@
                         android:text="@string/correct_asnwered"
                         android:textSize="20sp"
                         android:textStyle="bold"
-                        android:textColor="@color/dark_blue"/>
+                        android:textColor="@color/blue_gray"/>
 
                     <LinearLayout
                         android:layout_width="wrap_content"

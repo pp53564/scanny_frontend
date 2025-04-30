@@ -146,6 +146,7 @@ class ImageClassificationAndQuizActivity : AppCompatActivity(){
         binding.resultReactionIcon.setImageResource( if(correct) R.drawable.baseline_auto_awesome_24 else R.drawable.baseline_arrow_downward_24)
         binding.resultReactionIcon.visibility = View.VISIBLE
         binding.myCardView.visibility = View.VISIBLE
+        binding.cardWithResults.visibility = View.VISIBLE
         if (correct) {
             binding.buttonTakePicture.visibility = View.GONE
             binding.resultReaction.text = getString(R.string.correct_answer)

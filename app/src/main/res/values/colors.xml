@@ -15,4 +15,19 @@
     <color name="red">#E67569</color>
     <color name="purple">#894DF6</color>
     <color name="pink">#FF9DE4</color>
+    <color name="background">#F2F2F2</color>
+    <color name="card_result">#E8F5E9</color>
+    <color name="text_primary">#212121</color>
+    <color name="text_secondary">#757575</color>
+    <color name="text_accent">#4F4E7F</color>
+    <color name="icon_primary">#4F4E7F</color>
+    <color name="icon_success">#4CAF50</color>
+    <color name="icon_action">#616161</color>
+    <color name="button_start">#5D5DF4</color>
+    <color name="button_end">  #6462F6</color>
+    <color name="pink_strong"> #E91E63</color>
+    <color name="pink_primary">#EF4788</color>
+    <color name="pink_shadow">#D13775</color>
+    <color name="light_green_2">#E1FDE1</color>
+    <color name="dark_navy">#1A2431</color>
 </resources>

@@ -5,7 +5,9 @@ import android.graphics.Typeface
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.example.ui_ux_demo.R
 import com.google.android.material.card.MaterialCardView
@@ -39,6 +41,7 @@ class StatsDetailsAdapter(
         private val tvUser: TextView = itemView.findViewById(R.id.tvUser)
         private val tvScore: TextView = itemView.findViewById(R.id.tvScore)
         private val cardView: MaterialCardView = itemView.findViewById(R.id.cardNeighborsStats)
+        private val ivIcon: ImageView = itemView.findViewById(R.id.ivAvatar)
         val context: Context = itemView.context
 
         fun bind(item: NeighborDTO, isCurrentUser: Boolean) {
@@ -47,7 +50,21 @@ class StatsDetailsAdapter(
 
             if (isCurrentUser) {
                 tvUser.setTypeface(null, Typeface.BOLD)
-                cardView.strokeColor = context.getColor(R.color.light_green)
+                cardView.setCardBackgroundColor(
+                    ContextCompat.getColor(context, R.color.light_green_2)
+                )
+            }
+
+            val iconRes = when (position) {
+                0 -> R.drawable.first_place
+                1 -> R.drawable.second_place
+                2 -> R.drawable.third_place
+                else -> null
+            }
+
+            if (iconRes != null) {
+                ivIcon.setImageResource(iconRes)
+                ivIcon.imageTintList = null
             }
         }
     }
