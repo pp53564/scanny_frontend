@@ -36,8 +36,8 @@
     <string name="selectLanguage">Odaberi jezik</string>
     <string name="home">Home</string>
     <string name="camera">Camera</string>
-    <string name="correct_answer">Bravo! Dobro obavljeno!</string>
-    <string name="wrong_answer">Nije dobro ali pokušaj ponovo!</string>
+    <string name="correct_answer">Bravo!</string>
+    <string name="wrong_answer">Pokušaj ponovo!</string>
     <string name="back_button_description">back button</string>
     <string name="scanny_home">home scanny</string>
     <string name="scanny_main">scanny on main screen</string>
@@ -77,4 +77,5 @@
     <string name="wrong_answer_2">Nema veze, pokušaj ponovo!</string>
     <string name="correct_asnwered">Točno odgovoreno</string>
     <string name="scanny_from_bottom">scanny from bottom</string>
+    <string name="thing">Predmet</string>
 </resources>

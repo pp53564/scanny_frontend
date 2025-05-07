@@ -11,13 +11,17 @@ import android.os.Bundle
 import android.provider.MediaStore
 import android.util.Log
 import android.view.View
+import android.view.ViewGroup
 import android.view.Window
+import android.view.WindowManager
 import android.widget.ImageView
+import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.constraintlayout.widget.ConstraintSet
 import com.example.ui_ux_demo.R
 import com.example.ui_ux_demo.databinding.ActivityImageClassificationAndQuizBinding
@@ -172,26 +176,41 @@ class ImageClassificationAndQuizActivity : AppCompatActivity(){
 
     private fun showImageDialog(correct: Boolean) {
         if (isFinishing || isDestroyed) return
-        val dialog = Dialog(this)
-        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
-        dialog.setCancelable(true)
-        dialog.setContentView(R.layout.dialog_image)
-        dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
-        val textView = dialog.findViewById<TextView>(R.id.dialogMessage)
-        textView.text = if (correct) {
-            getString(R.string.correct_answer)
-        } else {
-            getString(R.string.wrong_answer)
+
+        val dialog = Dialog(this).apply {
+            requestWindowFeature(Window.FEATURE_NO_TITLE)
+            setCancelable(true)
+            setContentView(R.layout.dialog_image)
+            window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+            window?.addFlags(WindowManager.LayoutParams.FLAG_DIM_BEHIND)
+            window?.setDimAmount(0.6f)
         }
-        val image = dialog.findViewById<ImageView>(R.id.dialogImageView)
-        image.setImageResource(R.drawable.scanny_from_bottom)
+
+        val root = dialog.findViewById<LinearLayout>(R.id.layout_dialog)
+        val bgRes = if (correct) R.drawable.confetti_background else R.color.background
+        root.setBackgroundResource(bgRes)
+
+        val icon = dialog.findViewById<ImageView>(R.id.icon)
+        val res = if(correct) R.drawable.ic_check_green else R.drawable.x_icon
+        icon.setImageResource(res)
+
+        dialog.findViewById<TextView>(R.id.dialogMessage).text =
+            if (correct) getString(R.string.correct_answer)
+            else getString(R.string.wrong_answer)
+
+        val scanny = if (correct) R.drawable.scanny_from_bottom else R.drawable.scanny_sad
+
+        dialog.findViewById<ImageView>(R.id.dialogImageView)
+            .setImageResource(scanny)
 
         dialog.show()
+        dialog.window?.setLayout(
+            ViewGroup.LayoutParams.WRAP_CONTENT,
+            ViewGroup.LayoutParams.WRAP_CONTENT
+        )
         dialog.window?.decorView?.postDelayed({
-            if (dialog.isShowing) {
-                dialog.dismiss()
-            }
-        }, 3000)
+            if (dialog.isShowing) dialog.dismiss()
+        }, 4000)
     }
 
 //    override fun onPause() {

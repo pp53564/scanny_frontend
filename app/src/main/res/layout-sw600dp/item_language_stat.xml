@@ -18,37 +18,15 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:paddingVertical="30dp"
-        android:paddingHorizontal="10dp"
+        android:paddingHorizontal="20dp"
         android:gravity="center_vertical"
         android:baselineAligned="false">
 
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:orientation="vertical">
-
-<!--            <LinearLayout-->
-<!--                android:layout_width="wrap_content"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:orientation="horizontal"-->
-<!--                android:gravity="center_vertical"-->
-<!--                android:layout_marginBottom="8dp">-->
-
-<!--                <ImageView-->
-<!--                    android:layout_width="28dp"-->
-<!--                    android:layout_height="28dp"-->
-<!--                    android:layout_marginEnd="4dp"-->
-<!--                    android:src="@drawable/check" />-->
-
-<!--                <TextView-->
-<!--                    android:id="@+id/tvCorrectAnswers"-->
-<!--                    android:layout_width="wrap_content"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    android:text="0"-->
-<!--                    android:textColor="@android:color/darker_gray"-->
-<!--                    android:textSize="14sp" />-->
-<!--            </LinearLayout>-->
 
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -66,13 +44,14 @@
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical">
+                    android:orientation="vertical"
+                    android:layout_marginBottom="5dp">
                     <TextView
                         android:id="@+id/tvRank"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/zero"
-                        android:textColor="@android:color/darker_gray"
+                        android:textColor="@color/text_secondary"
                         android:textSize="55sp"
                         android:textStyle="bold" />
                     <ProgressBar
@@ -94,6 +73,7 @@
             android:id="@+id/flagImage"
             android:layout_width="110dp"
             android:layout_height="100dp"
+            android:elevation="20dp"
             android:scaleType="centerCrop"
             android:contentDescription="@string/flag_image"
             app:shapeAppearanceOverlay="@style/RoundedCornersImage" />

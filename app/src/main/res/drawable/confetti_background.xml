@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:aapt="http://schemas.android.com/aapt"
+    android:width="360dp"
+    android:height="360dp"
+    android:viewportWidth="360"
+    android:viewportHeight="360">
+
+    <path android:fillColor="#F44336" android:pathData="M40,40 h16 v16 h-16 z"/>
+    <path android:fillColor="#FFEB3B" android:pathData="M290,70 h14 v14 h-14 z"/>
+    <path android:fillColor="#4CAF50" android:pathData="M90,250 h12 v12 h-12 z"/>
+    <path android:fillColor="#03A9F4" android:pathData="M240,310 h15 v15 h-15 z"/>
+    <path android:fillColor="#9C27B0" android:pathData="M320,200 h13 v13 h-13 z"/>
+
+    <group android:rotation="45" android:pivotX="100" android:pivotY="120">
+        <path android:fillColor="#FF9800" android:pathData="M95,118 h20 v6 h-20 z"/>
+    </group>
+
+    <group android:rotation="-30" android:pivotX="310" android:pivotY="150">
+        <path android:fillColor="#3F51B5" android:pathData="M300,147 h24 v6 h-24 z"/>
+    </group>
+
+    <group android:rotation="20" android:pivotX="60" android:pivotY="310">
+        <path android:fillColor="#009688" android:pathData="M50,308 h22 v6 h-22 z"/>
+    </group>
+
+    <group android:rotation="-40" android:pivotX="200" android:pivotY="40">
+        <path android:fillColor="#E91E63" android:pathData="M190,37 h26 v6 h-26 z"/>
+    </group>
+    <path
+        android:strokeColor="#8BC34A"
+        android:strokeWidth="6"
+        android:strokeLineCap="round"
+        android:fillColor="@android:color/transparent"
+        android:pathData="M60,90
+                          C80,70 110,100 130,80"/>
+
+    <path
+        android:strokeColor="#FF5722"
+        android:strokeWidth="6"
+        android:strokeLineCap="round"
+        android:fillColor="@android:color/transparent"
+        android:pathData="M280,250
+                          C260,230 230,260 210,240"/>
+
+    <path android:fillColor="#00BCD4" android:pathData="M170,160
+                                                      a6,6 0 1,0 12,0
+                                                      a6,6 0 1,0 -12,0"/>
+
+    <gradient
+        android:type="linear"
+        android:startColor="#33000000"
+    android:endColor="#00000000"
+    android:angle="270"/>
+</vector>

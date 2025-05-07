@@ -32,7 +32,7 @@ class ImageQuizViewModel @Inject constructor(
     }
 
     fun sendAttempt(questionId: Long, imageBitmap: Bitmap?, langCode: String) {
-        if (_attemptSent.value == true) return
+//        if (_attemptSent.value == true) return
 
         _attemptSent.value = true
         _loading.value = true
@@ -53,4 +53,5 @@ class ImageQuizViewModel @Inject constructor(
             }
         }
     }
+
 }

@@ -6,7 +6,8 @@
     android:id="@+id/tutorialCamera1Fragment"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.scanny_project.features.tutorial.tutorialFragments.TutorialCamera1Fragment">
+    tools:context="com.scanny_project.features.tutorial.tutorialFragments.TutorialCamera1Fragment"
+    android:background="@drawable/bg_shadow">
 
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -19,13 +20,13 @@
             android:layout_width="300dp"
             android:layout_height="wrap_content"
             android:progress="25"
-            android:progressTint="@color/dark_blue"
+            android:progressDrawable="@drawable/thick_progress_bar"
+            android:progressTint="@color/pink"
             app:layout_constraintBottom_toTopOf="@+id/speechBubble"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.05" />
+            app:layout_constraintVertical_bias="0.104" />
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/btnTutorialNext"
@@ -51,35 +52,42 @@
             android:layout_width="250dp"
             android:layout_height="wrap_content"
             android:layout_marginBottom="80dp"
-            android:background="@drawable/background_gradient"
+            android:background="@drawable/gradient_purple_2"
             android:elevation="20dp"
             android:paddingVertical="10dp"
             android:text="@string/skip_hr"
             android:textColor="@color/white"
             android:textSize="30sp"
             android:textStyle="bold"
+            android:drawablePadding="8dp"
+            android:paddingLeft="24dp"
+            android:paddingTop="20dp"
+            android:paddingRight="24dp"
+            android:paddingBottom="20dp"
+            android:textAllCaps="false"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent" />
 
+
         <ImageView
             android:id="@+id/ivScanny"
-            android:layout_width="250dp"
-            android:layout_height="280dp"
+            android:layout_width="350dp"
+            android:layout_height="380dp"
             android:contentDescription="@string/scanny_tutorial"
             android:foregroundGravity="center_vertical"
             android:scaleType="fitCenter"
             android:src="@drawable/scanny_tut_1"
             app:layout_constraintBottom_toTopOf="@+id/skipTutorialButton"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.498"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.664" />
 
         <FrameLayout
             android:id="@+id/speechBubble"
-            android:layout_width="472dp"
+            android:layout_width="372dp"
             android:layout_height="231dp"
             android:layout_marginTop="50dp"
             app:layout_constraintBottom_toTopOf="@+id/ivScanny"
@@ -91,9 +99,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:adjustViewBounds="true"
+                android:contentDescription="@string/speech_bubble"
                 android:scaleType="fitXY"
-                android:src="@drawable/speech_bubble_vector"
-                android:contentDescription="@string/speech_bubble"/>
+                android:src="@drawable/speech_bubble_vector" />
 
             <TextView
                 android:id="@+id/tvSpeech"
@@ -103,7 +111,7 @@
                 android:gravity="center"
                 android:paddingTop="15dp"
                 android:text="@string/tutorial_desc_1"
-                android:textColor="@android:color/black"
+                android:textColor="@color/text_primary"
                 android:textSize="26sp" />
         </FrameLayout>
 

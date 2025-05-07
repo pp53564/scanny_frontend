@@ -2,37 +2,65 @@
 <androidx.cardview.widget.CardView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="220dp"
-    android:layout_height="wrap_content"
+    android:layout_width="300dp"
+    android:layout_height="300dp"
     android:layout_margin="16dp"
     app:cardCornerRadius="24dp"
     app:cardElevation="8dp"
-    android:backgroundTint="@android:color/white">
+    android:background="@drawable/confetti_background">
 
         <LinearLayout
+            android:id="@+id/layout_dialog"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:gravity="center"
-            android:padding="20dp">
+            android:layout_height="match_parent"
+            android:background="@drawable/confetti_background"
+            android:orientation="vertical">
+
+                <com.google.android.material.card.MaterialCardView
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_gravity="center"
+                    android:layout_margin="50dp"
+                    android:layout_weight="1"
+                    app:cardCornerRadius="32dp"
+                    app:cardElevation="25dp">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:padding="10dp"
+                            android:gravity="center">
+                                <TextView
+                                    android:id="@+id/dialogMessage"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:gravity="center"
+                                    android:paddingVertical="25dp"
+                                    android:text="@string/bravo"
+                                    android:textAlignment="center"
+                                    android:textSize="20sp"
+                                    android:textStyle="bold"/>
+                                <ImageView
+                                    android:id="@+id/icon"
+                                    android:layout_width="30dp"
+                                    android:layout_height="match_parent"
+                                    android:src="@drawable/x_icon"
+                                    android:layout_marginStart="15dp"/>
+                        </LinearLayout>
+                </com.google.android.material.card.MaterialCardView>
+
 
                 <ImageView
                     android:id="@+id/dialogImageView"
-                    android:layout_width="96dp"
-                    android:layout_height="96dp"
-                    android:layout_marginBottom="16dp"
-                    android:scaleType="fitCenter"
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal|bottom"
+                    android:adjustViewBounds="true"
+                    android:scaleType="fitEnd"
+                    android:layout_marginBottom="0dp"
+                    android:paddingBottom="0dp"
                     android:src="@drawable/scanny_from_bottom" />
 
-                <TextView
-                    android:id="@+id/dialogMessage"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:textAlignment="center"
-                    android:textSize="20sp"
-                    android:textStyle="bold"
-                    android:textColor="#32357A"
-                    android:text="@string/bravo" />
         </LinearLayout>
 </androidx.cardview.widget.CardView>
