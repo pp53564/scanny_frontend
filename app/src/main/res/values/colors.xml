@@ -19,6 +19,7 @@
     <color name="card_result">#E8F5E9</color>
     <color name="text_primary">#212121</color>
     <color name="text_secondary">#757575</color>
+    <color name="light_gray">#AAAAAA</color>
     <color name="text_accent">#4F4E7F</color>
     <color name="icon_primary">#4F4E7F</color>
     <color name="icon_success">#4CAF50</color>

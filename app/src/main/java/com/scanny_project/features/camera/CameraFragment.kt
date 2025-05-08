@@ -59,9 +59,9 @@ class CameraFragment: Fragment(), ObjectDetectorHelper.DetectorListener{
 
     private val colorList by lazy {
         listOf(
-            ContextCompat.getColor(requireContext(), R.color.green_strong),
-            ContextCompat.getColor(requireContext(), R.color.purple),
-            ContextCompat.getColor(requireContext(), R.color.red)
+            ContextCompat.getColor(requireContext(), R.color.pink),
+            ContextCompat.getColor(requireContext(), R.color.button_start),
+            ContextCompat.getColor(requireContext(), R.color.green_strong)
         )
     }
     private var colorIndex = 0

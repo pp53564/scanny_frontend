@@ -19,7 +19,7 @@
             <gradient
                 android:type="linear"
                 android:startX="0" android:startY="0"
-                android:endX="0"   android:endY="260"
+                android:endX="0"   android:endY="220"
                 android:startColor="@color/button_start"
                 android:endColor  ="#00000000"/>
         </aapt:attr>

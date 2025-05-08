@@ -60,7 +60,7 @@
                         android:layout_width="400dp"
                         android:layout_height="20dp"
                         android:progress="25"
-                        android:progressDrawable="@drawable/thick_progress_bar"
+                        android:progressDrawable="@drawable/thick_progress_bar_2"
                         />
 
                 </LinearLayout>

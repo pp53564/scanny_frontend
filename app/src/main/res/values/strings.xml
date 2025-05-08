@@ -28,7 +28,8 @@
     <string name="lets_play_quiz">Kviz</string>
     <string name="tutorial_desc_3">Bonjour! Izaberi jezik na kojem želiš učiti. Skenirat ćemo stvari oko nas, učiti nove riječi, a zatim riješiti mini kviz! Tako skupljaš bodove!</string>
     <string name="tutorial_desc_4">Čestitamo! Sada znaš kako koristiti Scanny aplikaciju. Prati svoje bodove, usporedi ih s prijateljima i nastavi učiti uz zabavu!</string>
-    <string name="tutorial_desc_2">Otvorit ćemo kameru i ti ćeš pokazivati predmete oko sebe. Ja ću ti pomoći prepoznati te predmete i naučit ćemo kako se zovu na drugim jezicima. Nije li to super?</string>
+    <string name="tutorial_desc_2">Otvorit ćemo kameru i ti ćeš pokazivati predmete oko sebe. Ja ću ti pomoći prepoznati te predmete i naučit ćemo kako se zovu na drugim jezicima.
+        Nije li to super?</string>
     <string name="tutorial_desc_1">Hej! Ja sam Scanny, tvoj robot prijatelj. Spremni za učenje?</string>
     <string name="start_tutorial">Info</string>
     <string name="stats">Statistika</string>

@@ -12,21 +12,30 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:clipToPadding="false"
+        android:clipChildren="false">
 
-        <ProgressBar
-            android:id="@+id/progressBarTutorial1"
-            style="?android:attr/progressBarStyleHorizontal"
+        <com.google.android.material.card.MaterialCardView
             android:layout_width="300dp"
             android:layout_height="wrap_content"
-            android:progress="25"
-            android:progressDrawable="@drawable/thick_progress_bar"
-            android:progressTint="@color/pink"
+            app:cardCornerRadius="12dp"
+            app:cardElevation="8dp"
             app:layout_constraintBottom_toTopOf="@+id/speechBubble"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.104" />
+            app:layout_constraintVertical_bias="0.104">
+
+            <ProgressBar
+                android:id="@+id/progressBarTutorial1"
+                style="?android:attr/progressBarStyleHorizontal"
+                android:layout_width="match_parent"
+                android:layout_height="24dp"
+                android:progress="25"
+                android:progressDrawable="@drawable/thick_progress_bar"
+                android:progressTint="@color/pink" />
+        </com.google.android.material.card.MaterialCardView>
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/btnTutorialNext"
@@ -35,7 +44,7 @@
             android:clickable="true"
             android:contentDescription="@string/next_arrow_desc"
             android:src="@drawable/next_arrow_bubble_light"
-            app:backgroundTint="@color/dark_blue"
+            app:backgroundTint="@color/button_end"
             app:elevation="15dp"
             app:layout_constraintBottom_toBottomOf="@+id/ivScanny"
             app:layout_constraintEnd_toEndOf="parent"
