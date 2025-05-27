@@ -5,8 +5,6 @@ import com.scanny_project.data.SessionManager
 import com.scanny_project.data.model.LoggedInUser
 
 class UserRepository(private val dataSource: UserDataSource, private val sessionManager: SessionManager) {
-
-    // in-memory cache of the loggedInUser object
     private var user: LoggedInUser? = null
 
     val isLoggedIn: Boolean
@@ -38,14 +36,11 @@ class UserRepository(private val dataSource: UserDataSource, private val session
         return dataSource.changePassword(newPassword, oldPassword)
     }
 
-//    suspend fun getProtectedResource(): String {
-//        return dataSource.getProtectedResource()
-//    }
-
     private fun setLoggedInUser(loggedInUser: LoggedInUser) {
         this.user = loggedInUser
         sessionManager.userId = loggedInUser.id
         sessionManager.authToken = loggedInUser.token
+        sessionManager.userRole = loggedInUser.role
         // If user credentials will be cached in local storage, it is recommended it be encrypted
         // @see https://developer.android.com/training/articles/keystore
     }

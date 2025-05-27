@@ -11,22 +11,30 @@ import com.google.mlkit.nl.translate.TranslatorOptions
 object TranslatorHelper {
     private var translator: Translator? = null
 
-    fun initializeTranslator(targetLang: String, param: (Translator) -> Unit) {
+    fun initializeTranslator(targetLang: String, sourceLang: String,  param: (Translator) -> Unit) {
+        val srcLangCode = when (sourceLang) {
+            "hr"  -> TranslateLanguage.CROATIAN
+            "de"  -> TranslateLanguage.GERMAN
+            "fr"  -> TranslateLanguage.FRENCH
+            "it"  -> TranslateLanguage.ITALIAN
+            else  -> TranslateLanguage.ENGLISH
+        }
         val options = TranslatorOptions.Builder()
-            .setSourceLanguage(TranslateLanguage.ENGLISH)
+            .setSourceLanguage(srcLangCode)
             .setTargetLanguage(targetLang)
             .build()
 
-        translator = Translation.getClient(options)
+//        translator = Translation.getClient(options)
+        val translator = Translation.getClient(options)
 
 
         var conditions = DownloadConditions.Builder()
             .requireWifi()
             .build()
 
-        translator!!.downloadModelIfNeeded(conditions)
+        translator.downloadModelIfNeeded(conditions)
             .addOnSuccessListener {
-                param(translator!!)
+                param(translator)
                 Log.d("MLKit", "Language model downloaded successfully!")
             }
             .addOnFailureListener { exception ->

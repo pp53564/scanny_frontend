@@ -6,5 +6,6 @@ package com.scanny_project.data.model
 data class LoggedInUser(
     val displayName: String,
     val token: String,
-    val id: Long
+    val id: Long,
+    val role: String
 )

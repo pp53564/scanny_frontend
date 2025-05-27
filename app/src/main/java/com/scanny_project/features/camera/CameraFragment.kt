@@ -53,9 +53,9 @@ class CameraFragment: Fragment(), ObjectDetectorHelper.DetectorListener{
     private lateinit var ttsHelper: TextToSpeechHelper
     private var selectedLangCode: String? = null
     private var lastLabel: String = ""
-
-    private val lastSpokenTimeMap = mutableMapOf<String, Long>()
     private var lastSpokenTime: Long = 0L
+
+    private val scannedLabels = mutableSetOf<String>()
 
     private val colorList by lazy {
         listOf(
@@ -75,12 +75,12 @@ class CameraFragment: Fragment(), ObjectDetectorHelper.DetectorListener{
 ////        }
 //    }
 
-    override fun onDestroyView() {
-        _fragmentCameraBinding = null
-        super.onDestroyView()
-        ttsHelper.shutdown()
-        cameraExecutor.shutdown()
-    }
+//    override fun onDestroyView() {
+//        _fragmentCameraBinding = null
+//        super.onDestroyView()
+//        ttsHelper.shutdown()
+//        cameraExecutor.shutdown()
+//    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -114,6 +114,7 @@ class CameraFragment: Fragment(), ObjectDetectorHelper.DetectorListener{
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         selectedLangCode = arguments?.getString("SELECTED_LANGUAGE")
+        if(selectedLangCode.isNullOrBlank()) selectedLangCode = "hr"
         ttsHelper = selectedLangCode?.let { TextToSpeechHelper(requireContext(), languageCode = it) }!!
 
         objectDetectorHelper = ObjectDetectorHelper(
@@ -274,7 +275,7 @@ class CameraFragment: Fragment(), ObjectDetectorHelper.DetectorListener{
     ) {
         if (translator == null || detections == null) return
 
-        viewLifecycleOwner.lifecycleScope.launch {
+        lifecycleScope.launch {
             val groupedDetections = detections.groupBy { it.categories[0].label }
             val translatedDetections = mutableListOf<CustomDetection>()
             var pendingTranslations = groupedDetections.size
@@ -298,6 +299,8 @@ class CameraFragment: Fragment(), ObjectDetectorHelper.DetectorListener{
                     if(selectedLangCode != "en") {
                         translator?.translate(label)
                             ?.addOnSuccessListener { translated ->
+                                if(!scannedLabels.contains(translated)) scannedLabels.add(label)
+
                                 val translatedNormalized = translated.trim().lowercase()
                                 val labelNormalized = label.trim().lowercase()
                                 // ako ne zna prevest da preskocis ->isprobaj
@@ -332,6 +335,7 @@ class CameraFragment: Fragment(), ObjectDetectorHelper.DetectorListener{
                                             colorList[colorIndex]
                                         )
                                     )
+
                                 }
 
 //                            textToSpeech?.speak(translated, TextToSpeech.QUEUE_ADD, null, null)
@@ -400,4 +404,25 @@ class CameraFragment: Fragment(), ObjectDetectorHelper.DetectorListener{
             Toast.makeText(requireContext(), error, Toast.LENGTH_SHORT).show()
         }
     }
+    override fun onDestroyView() {
+        super.onDestroyView()
+
+        cameraProvider?.unbindAll()
+        imageAnalyzer?.clearAnalyzer()
+
+        objectDetectorHelper.clearObjectDetector()
+
+        ttsHelper.shutdown()
+        cameraExecutor.shutdown()
+
+        _fragmentCameraBinding = null
+
+//        _fragmentCameraBinding = null
+//        super.onDestroyView()
+//        ttsHelper.shutdown()
+//        cameraExecutor.shutdown()
+    }
+
+
+    fun getScannedItems(): List<String> = scannedLabels.toList()
 }

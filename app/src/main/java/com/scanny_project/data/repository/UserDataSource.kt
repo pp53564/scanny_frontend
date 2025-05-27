@@ -24,7 +24,8 @@ class UserDataSource @Inject constructor(
                 val loggedInUser = LoggedInUser(
                     displayName = username,
                     token = authResponse.token,
-                    id = authResponse.id
+                    id = authResponse.id,
+                    role = authResponse.role
                 )
                 Log.d("LoginDataSource", "Login network request successful")
                 Result.Success(loggedInUser)

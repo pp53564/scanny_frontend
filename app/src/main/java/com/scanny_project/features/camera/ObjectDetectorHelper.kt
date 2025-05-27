@@ -91,6 +91,7 @@ class ObjectDetectorHelper(
             tensorImage.width)
     }
 
+
     interface DetectorListener {
         fun onError(error: String)
         fun onResults(

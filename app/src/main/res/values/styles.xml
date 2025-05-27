@@ -13,6 +13,11 @@
         <item name="cornerSize">16dp</item>
     </style>
 
+    <style name="MoreRoundedCornersImage">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">20dp</item>
+    </style>
+
     <style name="ShapeAppearance.App.MediumComponent" parent="ShapeAppearance.MaterialComponents.MediumComponent">
         <item name="cornerFamily">cut</item>
         <item name="elevation">20dp</item>
@@ -21,6 +26,15 @@
 
     <style name="Widget.App.CardView" parent="Widget.MaterialComponents.CardView">
         <item name="shapeAppearance">@style/ShapeAppearance.App.MediumComponent</item>
+    </style>
+
+    <style name="ShapeAppearance.App.SquareCheckbox" parent="ShapeAppearance.MaterialComponents.SmallComponent">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">0dp</item>
+    </style>
+
+    <style name="Widget.App.SquareCheckbox" parent="Widget.MaterialComponents.CompoundButton.CheckBox">
+        <item name="shapeAppearanceSmallComponent">@style/ShapeAppearance.App.SquareCheckbox</item>
     </style>
 
 </resources>

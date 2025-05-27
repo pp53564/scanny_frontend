@@ -32,6 +32,7 @@
         Nije li to super?</string>
     <string name="tutorial_desc_1">Hej! Ja sam Scanny, tvoj robot prijatelj. Spremni za učenje?</string>
     <string name="start_tutorial">Info</string>
+    <string name="add_lection">Dodaj lekciju</string>
     <string name="stats">Statistika</string>
     <string name="default_title">Naslov</string>
     <string name="selectLanguage">Odaberi jezik</string>
@@ -79,4 +80,13 @@
     <string name="correct_asnwered">Točno odgovoreno</string>
     <string name="scanny_from_bottom">scanny from bottom</string>
     <string name="thing">Predmet</string>
+    <string name="addLecture">Dodaj lekciju</string>
+    <string name="hint_lecture_name">Voće i povrće</string>
+    <string name="add_word">dodaj predmet</string>
+    <string name="changeTranslation">Promijeni prijevode</string>
+    <string name="enter_title">Unesite naziv lekcije</string>
+    <string name="scanned_items">Skenirani predmeti</string>
+    <string name="add_new_subject">Dodaj novi predmet</string>
+    <string name="scanned_item">Predmet</string>
+    <string name="save">Spremi</string>
 </resources>

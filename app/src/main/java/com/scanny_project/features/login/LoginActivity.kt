@@ -14,7 +14,9 @@ import android.widget.EditText
 import android.widget.Toast
 import androidx.activity.viewModels
 import com.example.ui_ux_demo.databinding.ActivityLoginBinding
+import com.scanny_project.features.home.HomeActivity
 import com.scanny_project.features.home.MainActivity
+import com.scanny_project.features.teacher.home.TeacherHomeActivity
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -55,7 +57,12 @@ class LoginActivity : AppCompatActivity() {
             }
             if (loginResult.success != null) {
                 updateUiWithUser(loginResult.success)
-                startActivity(Intent(this, MainActivity::class.java))
+                val nextScreen = if (loginResult.success.role == "ROLE_TEACHER") {
+                    Intent(this, TeacherHomeActivity::class.java)
+                } else {
+                    Intent(this, HomeActivity::class.java)
+                }
+                startActivity(nextScreen)
             }
             setResult(Activity.RESULT_OK)
             //samo za test OVO OBRISI POSLIJE

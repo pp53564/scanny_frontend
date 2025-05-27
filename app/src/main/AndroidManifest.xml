@@ -21,6 +21,15 @@
         android:theme="@style/Base.Theme.UI_UX_Demo"
         tools:targetApi="31">
         <activity
+            android:name="com.scanny_project.features.teacher.lecture.EditTranslationActivity"
+            android:exported="false" />
+        <activity
+            android:name="com.scanny_project.features.teacher.lecture.AddLectureActivity"
+            android:exported="false" />
+        <activity
+            android:name="com.scanny_project.features.teacher.home.TeacherHomeActivity"
+            android:exported="false" />
+        <activity
             android:name="com.scanny_project.features.questions.AnsweredQuestionActivity"
             android:exported="false" />
         <activity
@@ -77,6 +86,7 @@
         <!-- /> -->
         <activity
             android:name="com.scanny_project.features.home.MainActivity"
+            android:clearTaskOnLaunch="true"
             android:exported="true"
             android:theme="@style/Theme.MyApp.Splash">
             <intent-filter>

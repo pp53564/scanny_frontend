@@ -10,14 +10,17 @@ import javax.inject.Singleton
 
 @Singleton
 class SessionManager @Inject constructor(@ApplicationContext context: Context) {
-
+    
     private val prefsName = "user_session"
     private val authTokenKey = "auth_token"
     private val userIdKey = "user_id"
+    private val userRoleKey   = "user_role"
 
     private val sharedPreferences: SharedPreferences
 
     init {
+        
+        
         val masterKey = MasterKey.Builder(context)
             .setKeyScheme(MasterKey.KeyScheme.AES256_GCM)
             .build()
@@ -41,6 +44,12 @@ class SessionManager @Inject constructor(@ApplicationContext context: Context) {
         get() = sharedPreferences.getLong(userIdKey, 0L)
         set(value) {
             sharedPreferences.edit().putLong(userIdKey, value).apply()
+        }
+
+    var userRole: String?
+        get() = sharedPreferences.getString(userRoleKey, null)
+        set(value) {
+            sharedPreferences.edit().putString(userRoleKey, value).apply()
         }
 
     fun clearSession() {

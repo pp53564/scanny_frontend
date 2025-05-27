@@ -30,9 +30,9 @@ class LoginViewModel @Inject constructor(private val userRepository: UserReposit
                 val result = userRepository.login(username, password)
 
                 if (result is Result.Success) {
-                    sessionManager.authToken = result.data.token
+//                    sessionManager.authToken = result.data.token
                     _loginResult.value =
-                        LoginResult(success = LoggedInUserView(displayUserName = result.data.displayName))
+                        LoginResult(success = LoggedInUserView(displayUserName = result.data.displayName, role = result.data.role))
                 } else {
                     _loginResult.value = LoginResult(error = R.string.login_failed)
                 }

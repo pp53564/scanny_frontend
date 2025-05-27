@@ -160,7 +160,7 @@ class ImageClassificationAndQuizActivity : AppCompatActivity(){
             binding.confidence.visibility = View.VISIBLE
             binding.confidence.text = "${(confidenceScore * 100).toInt()}%"
         } else {
-            TranslatorHelper.initializeTranslator(com.google.mlkit.nl.translate.TranslateLanguage.CROATIAN) {
+            TranslatorHelper.initializeTranslator(com.google.mlkit.nl.translate.TranslateLanguage.CROATIAN, "en") {
                 TranslatorHelper.translateText(matchedLabel) { translatedText ->
                     binding.resultIcon.visibility = View.VISIBLE
                     binding.classified.visibility = View.VISIBLE
