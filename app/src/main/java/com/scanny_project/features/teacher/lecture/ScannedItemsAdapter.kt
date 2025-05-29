@@ -72,8 +72,8 @@ class ScannedItemsAdapter(
         notifyDataSetChanged()
     }
 
-    fun getSelectedItems(): List<String> =
-        items.filter { it.isChecked }.map { it.translations["en"].toString() }
+    fun getSelectedItems(): List<ScannedItem> =
+        items.filter { it.isChecked }.map { it }
 
     fun addItem(item: ScannedItem) {
         items.add(item)

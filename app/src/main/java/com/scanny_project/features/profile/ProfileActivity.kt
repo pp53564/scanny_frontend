@@ -8,8 +8,6 @@ import androidx.activity.viewModels
 import com.example.ui_ux_demo.R
 import com.example.ui_ux_demo.databinding.ActivityProfileBinding
 import com.google.android.material.bottomnavigation.BottomNavigationView
-import com.scanny_project.features.camera.CameraActivity
-import com.scanny_project.features.changePassword.ChangePasswordActivity
 import com.scanny_project.features.home.HomeActivity
 import com.scanny_project.features.language.SelectLanguageActivity
 import com.scanny_project.features.login.LoginActivity

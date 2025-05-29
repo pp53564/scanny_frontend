@@ -10,7 +10,4 @@ import retrofit2.http.POST
 interface UserService {
     @POST("users")
     suspend fun createOrLoginUser(@Body createUserRequest: CreateUserRequest): Response<AuthenticationResponse>
-    @POST("users/change-password")
-    suspend fun changePassword(@Body changePasswordRequest: ChangePasswordRequest): Response<String>
-
 }

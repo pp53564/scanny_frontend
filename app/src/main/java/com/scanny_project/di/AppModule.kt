@@ -3,12 +3,14 @@ package com.scanny_project.di
 import com.scanny_project.data.*
 import com.scanny_project.data.repository.UserRepository
 import com.scanny_project.data.SessionManager
+import com.scanny_project.data.api.LectureApi
 import com.scanny_project.data.repository.UserDataSource
-import com.scanny_project.data.services.LectureService
 import com.scanny_project.data.services.StatsService
 import com.scanny_project.data.services.UserQuestionAttemptService
 import com.scanny_project.data.services.UserService
 import com.scanny_project.data.network.AuthInterceptor
+import com.scanny_project.data.repository.LectureRepository
+import com.scanny_project.data.repository.impl.LectureRepositoryImpl
 import com.scanny_project.data.services.QuestionService
 import dagger.Module
 import dagger.Provides
@@ -60,9 +62,14 @@ object AppModule {
 
     @Provides
     @Singleton
-    fun provideLectureService(retrofit: Retrofit): LectureService {
-        return retrofit.create(LectureService::class.java)
+    fun provideLectureApi(retrofit: Retrofit): LectureApi {
+        return retrofit.create(LectureApi::class.java)
     }
+    @Provides
+    @Singleton
+    fun provideLectureRepository(api: LectureApi): LectureRepository =
+        LectureRepositoryImpl(api)
+
     @Provides
     @Singleton
     fun provideQuestionService(retrofit: Retrofit): QuestionService {

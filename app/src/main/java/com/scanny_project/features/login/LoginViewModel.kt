@@ -21,8 +21,6 @@ class LoginViewModel @Inject constructor(private val userRepository: UserReposit
     private val _loginResult = MutableLiveData<LoginResult>()
     val loginResult: LiveData<LoginResult> = _loginResult
 
-    private val _protectedResourceResult = MutableLiveData<String>()
-
 
     fun login(username: String, password: String) {
         viewModelScope.launch {
@@ -42,8 +40,6 @@ class LoginViewModel @Inject constructor(private val userRepository: UserReposit
         }
     }
 
-
-
     fun loginDataChanged(username: String, password: String) {
       if (!isPasswordValid(password)) {
             _loginForm.value = LoginFormState(passwordError = R.string.invalid_password)
@@ -51,7 +47,6 @@ class LoginViewModel @Inject constructor(private val userRepository: UserReposit
             _loginForm.value = LoginFormState(isDataValid = true)
         }
     }
-
 
     private fun isPasswordValid(password: String): Boolean {
         return password.length >= 8

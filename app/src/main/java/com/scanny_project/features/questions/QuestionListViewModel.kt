@@ -4,9 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.scanny_project.data.model.UserLectureDTO
 import com.scanny_project.data.model.UserQuestionDTO
-import com.scanny_project.data.repository.LectureRepository
 import com.scanny_project.data.repository.QuestionRepository
 import com.scanny_project.utils.Result
 import dagger.hilt.android.lifecycle.HiltViewModel

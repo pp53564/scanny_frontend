@@ -32,10 +32,6 @@ class UserRepository(private val dataSource: UserDataSource, private val session
         return result
     }
 
-    suspend fun changePassword(newPassword: String, oldPassword: String): Result<String> {
-        return dataSource.changePassword(newPassword, oldPassword)
-    }
-
     private fun setLoggedInUser(loggedInUser: LoggedInUser) {
         this.user = loggedInUser
         sessionManager.userId = loggedInUser.id

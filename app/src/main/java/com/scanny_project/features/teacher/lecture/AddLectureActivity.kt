@@ -5,7 +5,10 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.activity.viewModels
+import androidx.core.view.isVisible
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.ui_ux_demo.R
 import com.example.ui_ux_demo.databinding.ActivityAddLectureBinding
@@ -19,6 +22,7 @@ import dagger.hilt.android.AndroidEntryPoint
 class AddLectureActivity : AppCompatActivity() {
     private lateinit var binding: ActivityAddLectureBinding
     private lateinit var adapter: ScannedItemsAdapter
+    private val viewModel: AddLectureViewModel by viewModels()
 
     private val scanLauncher = registerForActivityResult(
         ActivityResultContracts.StartActivityForResult()
@@ -56,7 +60,6 @@ class AddLectureActivity : AppCompatActivity() {
         adapter.updateItem(position, item)
 
     }
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -102,9 +105,13 @@ class AddLectureActivity : AppCompatActivity() {
         }
 
         binding.saveLecture.setOnClickListener {
+            binding.username.error = null
             val lessonName = binding.username.text.toString().trim()
-            val selected = adapter.getSelectedItems()
-            Log.i("AddLecture", "Sending lesson '$lessonName' with items $selected")
+            val items = adapter.getSelectedItems()
+            viewModel.setLectureName(lessonName)
+            viewModel.setSelectedItems(items)
+            viewModel.createLecture()
+            Log.i("AddLecture", "Sending lesson '$lessonName' with items $items")
         }
 
         binding.btnAddWord.setOnClickListener {
@@ -118,6 +125,46 @@ class AddLectureActivity : AppCompatActivity() {
             }
         }
 
+        viewModel.uiState.observe(this) { state ->
+            when (state) {
+                is AddLectureViewModel.UiState.Idle -> {
+                    binding.progressBar.isVisible = false
+                    binding.saveLecture.isEnabled = true
+                    binding.username.error = null
+                }
+                is AddLectureViewModel.UiState.Loading -> {
+                    binding.progressBar.isVisible = true
+                    binding.saveLecture.isEnabled = false
+                }
+                is AddLectureViewModel.UiState.ValidationError -> {
+                    binding.progressBar.isVisible = false
+                    binding.saveLecture.isEnabled = true
+
+                    binding.username.error = state.nameError
+
+                    state.itemsError?.let { msg ->
+                        Toast.makeText(this, msg, Toast.LENGTH_SHORT).show()
+                    }
+                }
+                is AddLectureViewModel.UiState.Success -> {
+                    binding.progressBar.isVisible = false
+                    Toast.makeText(this,
+                        getString(R.string.lecture_created_successfully),
+                        Toast.LENGTH_SHORT
+                    ).show()
+                    setResult(Activity.RESULT_OK)
+                    finish()
+                }
+                is AddLectureViewModel.UiState.Error -> {
+                    binding.progressBar.isVisible = false
+                    binding.saveLecture.isEnabled = true
+                    Toast.makeText(this,
+                        state.message,
+                        Toast.LENGTH_LONG
+                    ).show()
+                }
+            }
+        }
 
     }
 

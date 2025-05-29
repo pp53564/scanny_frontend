@@ -89,4 +89,5 @@
     <string name="add_new_subject">Dodaj novi predmet</string>
     <string name="scanned_item">Predmet</string>
     <string name="save">Spremi</string>
+    <string name="lecture_created_successfully">Uspješno dodana lekcija!</string>
 </resources>

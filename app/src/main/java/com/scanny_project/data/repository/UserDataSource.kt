@@ -40,29 +40,6 @@ class UserDataSource @Inject constructor(
         }
     }
 
-    suspend fun changePassword(
-        oldPassword: String,
-        newPassword: String
-    ): Result<String> {
-        return try {
-            Log.d("UserDataSource", "Starting changePassword network request")
-            val changePasswordRequest = ChangePasswordRequest(oldPassword, newPassword)
-            val response = userService.changePassword(changePasswordRequest)
-
-            if (response.isSuccessful && response.body() != null) {
-                Log.d("UserDataSource", "Password changed successfully")
-                Result.Success(response.body()!!)
-            } else {
-                val errorBody = response.errorBody()?.string()
-                Log.e("UserDataSource", "Change password failed: ${response.code()} ${response.message()} - $errorBody")
-                Result.Error(IOException("Error changing password: ${response.message()}"))
-            }
-        } catch (e: Exception) {
-            Log.e("UserDataSource", "Exception during changePassword network request", e)
-            Result.Error(IOException("Error changing password", e))
-        }
-    }
-
     fun logout() {
         // TODO: revoke authentication
     }
