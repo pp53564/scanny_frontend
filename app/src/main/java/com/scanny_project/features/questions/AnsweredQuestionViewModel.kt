@@ -5,7 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.scanny_project.data.model.AnsweredQuestionDTO
-import com.scanny_project.data.repository.QuestionRepository
+import com.scanny_project.data.repository.impl.QuestionRepositoryImpl
 import com.scanny_project.utils.Result
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
@@ -13,7 +13,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class AnsweredQuestionViewModel @Inject constructor(
-    private val repo: QuestionRepository
+    private val repo: QuestionRepositoryImpl
 ) : ViewModel() {
 
     private val _question = MutableLiveData<AnsweredQuestionDTO>()

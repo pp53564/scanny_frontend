@@ -4,14 +4,20 @@ import com.scanny_project.data.*
 import com.scanny_project.data.repository.UserRepository
 import com.scanny_project.data.SessionManager
 import com.scanny_project.data.api.LectureApi
-import com.scanny_project.data.repository.UserDataSource
-import com.scanny_project.data.services.StatsService
-import com.scanny_project.data.services.UserQuestionAttemptService
-import com.scanny_project.data.services.UserService
+import com.scanny_project.data.api.QuestionApi
+import com.scanny_project.data.api.UserApi
 import com.scanny_project.data.network.AuthInterceptor
 import com.scanny_project.data.repository.LectureRepository
+import com.scanny_project.data.repository.QuestionRepository
 import com.scanny_project.data.repository.impl.LectureRepositoryImpl
-import com.scanny_project.data.services.QuestionService
+import com.scanny_project.data.repository.impl.QuestionRepositoryImpl
+import com.scanny_project.data.repository.impl.UserRepositoryImpl
+import com.scanny_project.data.api.StatsApi
+import com.scanny_project.data.api.UserQuestionAttemptApi
+import com.scanny_project.data.repository.AttemptsRepository
+import com.scanny_project.data.repository.StatsRepository
+import com.scanny_project.data.repository.impl.AttemptsRepositoryImpl
+import com.scanny_project.data.repository.impl.StatsRepositoryImpl
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -56,12 +62,6 @@ object AppModule {
 
     @Provides
     @Singleton
-    fun provideUserService(retrofit: Retrofit): UserService {
-        return retrofit.create(UserService::class.java)
-    }
-
-    @Provides
-    @Singleton
     fun provideLectureApi(retrofit: Retrofit): LectureApi {
         return retrofit.create(LectureApi::class.java)
     }
@@ -72,35 +72,49 @@ object AppModule {
 
     @Provides
     @Singleton
-    fun provideQuestionService(retrofit: Retrofit): QuestionService {
-        return retrofit.create(QuestionService::class.java)
+    fun provideQuestionApi(retrofit: Retrofit): QuestionApi {
+        return retrofit.create(QuestionApi::class.java)
+    }
+    @Provides
+    @Singleton
+    fun provideQuestionRepository(api: QuestionApi): QuestionRepository =
+        QuestionRepositoryImpl(api)
+
+    @Provides
+    @Singleton
+    fun provideStatsService(retrofit: Retrofit): StatsApi {
+        return retrofit.create(StatsApi::class.java)
     }
 
     @Provides
     @Singleton
-    fun provideStatsService(retrofit: Retrofit): StatsService {
-        return retrofit.create(StatsService::class.java)
-    }
+    fun provideStatsRepository(api: StatsApi): StatsRepository =
+        StatsRepositoryImpl(api)
 
 
     @Provides
     @Singleton
-    fun provideLoginDataSource(userService: UserService): UserDataSource {
-        return UserDataSource(userService)
+    fun provideUserApi(retrofit: Retrofit): UserApi {
+        return retrofit.create(UserApi::class.java)
     }
 
     @Provides
     @Singleton
-    fun provideLoginRepository(
-        dataSource: UserDataSource,
+    fun provideUserRepository(
+        userApi: UserApi,
         sessionManager: SessionManager
     ): UserRepository {
-        return UserRepository(dataSource, sessionManager)
+        return UserRepositoryImpl(userApi, sessionManager)
     }
 
     @Provides
     @Singleton
-    fun provideAttemptsService(retrofit: Retrofit): UserQuestionAttemptService {
-        return retrofit.create(UserQuestionAttemptService::class.java)
+    fun provideAttemptsService(retrofit: Retrofit): UserQuestionAttemptApi {
+        return retrofit.create(UserQuestionAttemptApi::class.java)
     }
+
+    @Provides
+    @Singleton
+    fun provideAttemptsRepository(api: UserQuestionAttemptApi): AttemptsRepository =
+        AttemptsRepositoryImpl(api)
 }

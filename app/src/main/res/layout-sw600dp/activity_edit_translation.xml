@@ -1,0 +1,249 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <include
+        android:id="@+id/header"
+        layout="@layout/header_dark"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="?attr/actionBarSize"
+        android:padding="16dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tvCroatian"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:textSize="30sp"
+                android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6"
+                android:textColor="@color/black"
+                android:text="hr word here"
+                android:paddingBottom="30dp"/>
+
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="150dp"
+                android:layout_marginHorizontal="100dp"
+                android:layout_marginVertical="10dp"
+                app:cardCornerRadius="8dp"
+                app:cardElevation="6dp"
+                app:strokeWidth="1dp"
+                android:backgroundTint="@android:color/white">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:paddingStart="30dp"
+                    android:paddingEnd="30dp">
+
+                    <com.google.android.material.card.MaterialCardView
+                        android:id="@+id/mcFlagImageEnglish"
+                        android:layout_width="120dp"
+                        android:layout_height="100dp"
+                        app:cardCornerRadius="16dp"
+                        app:cardPreventCornerOverlap="false"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintBottom_toBottomOf="parent">
+
+                        <ImageView
+                            android:id="@+id/flagImageEnglish"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:src="@drawable/flag_en"
+                            android:scaleType="centerCrop"/>
+                    </com.google.android.material.card.MaterialCardView>
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/etEnglish"
+                        android:layout_width="100dp"
+                        android:layout_height="wrap_content"
+                        android:inputType="textCapWords"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@+id/mcFlagImageEnglish"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="150dp"
+                android:layout_marginHorizontal="100dp"
+                android:layout_marginVertical="10dp"
+                app:cardCornerRadius="8dp"
+                app:cardElevation="6dp"
+                app:strokeWidth="1dp"
+                android:backgroundTint="@android:color/white">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:paddingStart="30dp"
+                    android:paddingEnd="30dp">
+
+                    <com.google.android.material.card.MaterialCardView
+                        android:id="@+id/mcFlagImageGerman"
+                        android:layout_width="120dp"
+                        android:layout_height="100dp"
+                        app:cardCornerRadius="16dp"
+                        app:cardPreventCornerOverlap="false"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintBottom_toBottomOf="parent">
+
+                        <ImageView
+                            android:id="@+id/flagImageGerman"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:src="@drawable/flag_de"
+                            android:scaleType="centerCrop"/>
+                    </com.google.android.material.card.MaterialCardView>
+
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/etGerman"
+                        android:layout_width="100dp"
+                        android:layout_height="wrap_content"
+                        android:inputType="textCapWords"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@+id/mcFlagImageGerman"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="150dp"
+                android:layout_marginHorizontal="100dp"
+                android:layout_marginVertical="10dp"
+                app:cardCornerRadius="8dp"
+                app:cardElevation="6dp"
+                app:strokeWidth="1dp"
+                android:backgroundTint="@android:color/white">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:paddingStart="30dp"
+                    android:paddingEnd="30dp">
+
+                    <com.google.android.material.card.MaterialCardView
+                        android:id="@+id/mcFlagImageFrench"
+                        android:layout_width="120dp"
+                        android:layout_height="100dp"
+                        app:cardCornerRadius="16dp"
+                        app:cardPreventCornerOverlap="false"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintBottom_toBottomOf="parent">
+
+                        <ImageView
+                            android:id="@+id/flagImageFrench"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:src="@drawable/flag_fr"
+                            android:scaleType="centerCrop"/>
+                    </com.google.android.material.card.MaterialCardView>
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/etFrench"
+                        android:layout_width="100dp"
+                        android:layout_height="wrap_content"
+                        android:inputType="textCapWords"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@+id/mcFlagImageFrench"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="150dp"
+                android:layout_marginHorizontal="100dp"
+                android:layout_marginVertical="10dp"
+                app:cardCornerRadius="8dp"
+                app:cardElevation="6dp"
+                app:strokeWidth="1dp"
+                android:backgroundTint="@android:color/white">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:paddingStart="30dp"
+                    android:paddingEnd="30dp">
+
+                    <com.google.android.material.card.MaterialCardView
+                        android:id="@+id/mcFlagImageItalian"
+                        android:layout_width="120dp"
+                        android:layout_height="100dp"
+                        app:cardCornerRadius="16dp"
+                        app:cardPreventCornerOverlap="false"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintBottom_toBottomOf="parent">
+
+                        <ImageView
+                            android:id="@+id/flagImageItalian"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:src="@drawable/flag_it"
+                            android:scaleType="centerCrop"/>
+                    </com.google.android.material.card.MaterialCardView>
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/etItalian"
+                        android:layout_width="100dp"
+                        android:layout_height="wrap_content"
+                        android:inputType="textCapWords"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@+id/mcFlagImageItalian"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btnSave"
+                android:layout_marginTop="24dp"
+                android:text="@string/save"
+                android:layout_width="350dp"
+                android:layout_height="wrap_content"
+                android:paddingVertical="20dp"
+                android:paddingHorizontal="50dp"
+                android:layout_marginBottom="20dp"
+                android:layout_gravity="center"
+                android:background="@drawable/button_gradient"
+                android:clickable="true"
+                android:elevation="20dp"
+                android:textColor="@color/white"
+                android:textSize="25sp"
+                android:textStyle="bold" />
+        </LinearLayout>
+    </ScrollView>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

@@ -1,11 +1,11 @@
-package com.scanny_project.data.services
+package com.scanny_project.data.api
 
 import com.scanny_project.data.model.NeighborDTO
 import com.scanny_project.data.model.StatsPerUserAndLanguageDTO
 import retrofit2.http.GET
 import retrofit2.http.Path
 
-interface StatsService {
+interface StatsApi {
     @GET("api/stats/user")
     suspend fun getUserLanguagesStats(): List<StatsPerUserAndLanguageDTO>
 

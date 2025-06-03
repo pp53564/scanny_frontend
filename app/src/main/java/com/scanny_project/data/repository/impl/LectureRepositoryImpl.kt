@@ -1,6 +1,5 @@
 package com.scanny_project.data.repository.impl
 
-import android.util.Log
 import com.scanny_project.data.api.LectureApi
 import com.scanny_project.data.model.CreateLectureRequest
 import com.scanny_project.data.model.LectureDTO
@@ -8,7 +7,9 @@ import com.scanny_project.data.model.ScannedItem
 import com.scanny_project.data.model.TranslatedItemDto
 import com.scanny_project.data.model.UserLectureDTO
 import com.scanny_project.data.repository.LectureRepository
+import com.scanny_project.utils.CustomResult
 import com.scanny_project.utils.Result
+import retrofit2.HttpException
 import java.io.IOException
 import javax.inject.Inject
 import javax.inject.Singleton
@@ -61,7 +62,7 @@ class LectureRepositoryImpl @Inject constructor(
     override suspend fun sendLecture(
         lectureName: String,
         items: List<ScannedItem>
-    ): Result<String> {
+    ): CustomResult<String> {
         return try {
             val dtoItems = items.map { item ->
                 TranslatedItemDto(
@@ -69,16 +70,28 @@ class LectureRepositoryImpl @Inject constructor(
                     translations = item.translations
                 )
             }
+
             val request = CreateLectureRequest(lectureName, dtoItems)
 
             val response = api.createNewLecture(request)
-            if (response.isSuccessful) {
-                Result.Success(response.body()!!.message)
-            } else {
-                Result.Error(IOException("Failed to create lecture: ${response.code()} ${response.message()}"))
+
+            if (!response.isSuccessful) {
+                val code = response.code()
+                val bodyString = response.errorBody()?.string()
+                return CustomResult.HttpError(code, bodyString)
             }
+
+            val body = response.body()
+                ?:
+                return CustomResult.Error(
+                    Exception("Response body was null on success.")
+                )
+
+            CustomResult.Success(body.message)
+
         } catch (e: Exception) {
-            Result.Error(IOException("Error creating lecture", e))
+            CustomResult.Error(e)
         }
     }
 }
+

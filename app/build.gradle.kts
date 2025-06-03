@@ -56,6 +56,7 @@ dependencies {
     implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.8.7")
     implementation("androidx.test:runner:1.6.2")
     implementation("androidx.activity:activity:1.10.1")
+    implementation("com.google.firebase:firebase-crashlytics-buildtools:3.0.3")
     val cameraxVersion = "1.4.2"
     implementation("androidx.camera:camera-core:$cameraxVersion")
     implementation("androidx.camera:camera-camera2:$cameraxVersion")

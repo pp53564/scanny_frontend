@@ -24,17 +24,17 @@ object TranslatorHelper {
             .setTargetLanguage(targetLang)
             .build()
 
-//        translator = Translation.getClient(options)
-        val translator = Translation.getClient(options)
+        translator = Translation.getClient(options)
+        val tr = Translation.getClient(options)
 
 
         var conditions = DownloadConditions.Builder()
             .requireWifi()
             .build()
 
-        translator.downloadModelIfNeeded(conditions)
+        tr.downloadModelIfNeeded(conditions)
             .addOnSuccessListener {
-                param(translator)
+                param(tr)
                 Log.d("MLKit", "Language model downloaded successfully!")
             }
             .addOnFailureListener { exception ->

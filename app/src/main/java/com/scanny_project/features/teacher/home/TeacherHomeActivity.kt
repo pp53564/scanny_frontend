@@ -8,7 +8,6 @@ import com.example.ui_ux_demo.databinding.ActivityTeacherHomeBinding
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.scanny_project.data.SessionManager
 import com.scanny_project.features.language.SelectLanguageActivity
-import com.scanny_project.features.language.SelectLanguageActivityForImageClassification
 import com.scanny_project.features.profile.ProfileActivity
 import com.scanny_project.features.stats.StatsActivity
 import com.scanny_project.features.teacher.lecture.AddLectureActivity
@@ -29,25 +28,16 @@ class TeacherHomeActivity : AppCompatActivity() {
 
         navigation = binding.root.findViewById(R.id.bottomNavigationView)
 
-        navigation.setOnItemSelectedListener { item ->
-            when(item.itemId) {
-                R.id.home -> true
-                R.id.profile -> {
-                    startActivity(Intent(applicationContext, ProfileActivity::class.java))
-                    true
-                }
-                R.id.camera -> {
-                    startActivity(Intent(applicationContext, SelectLanguageActivity::class.java))
-                    true
-                }
-                else -> false
-            }
-        }
-
         navigation.setupNavigation(
             mapOf(
                 R.id.home to { true },
-                R.id.camera to { startActivity(Intent(this, SelectLanguageActivity::class.java)) },
+                R.id.camera to {
+                    Intent(this, SelectLanguageActivity::class.java).also {
+                        it.putExtra(SelectLanguageActivity.EXTRA_MODE,
+                            SelectLanguageActivity.MODE_CAPTURE
+                        )
+                        startActivity(it)
+                    } },
                 R.id.profile to {
                     startActivity(Intent(applicationContext, ProfileActivity::class.java))
                     true
@@ -63,7 +53,10 @@ class TeacherHomeActivity : AppCompatActivity() {
         }
         binding.cvQuiz.setOnClickListener {
 //         TransformationCompat.startActivity(transformationLayoutQuiz, Intent(this, LecturesListActivity::class.java))
-            startActivity(Intent(this, SelectLanguageActivityForImageClassification::class.java))
+            Intent(this, SelectLanguageActivity::class.java).also {
+                it.putExtra(SelectLanguageActivity.EXTRA_MODE, SelectLanguageActivity.MODE_LECTURE)
+                startActivity(it)
+            }
         }
 
         binding.cvAddLection.setOnClickListener {

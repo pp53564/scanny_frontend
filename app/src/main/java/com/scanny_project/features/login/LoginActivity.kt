@@ -69,20 +69,20 @@ class LoginActivity : AppCompatActivity() {
 //            startActivity(Intent(this, MainActivity::class.java))
         })
 
-        username.afterTextChanged {
-            loginViewModel.loginDataChanged(
-                username.text.toString(),
-                password.text.toString()
-            )
-        }
+//        username.afterTextChanged {
+//            loginViewModel.loginDataChanged(
+//                username.text.toString(),
+//                password.text.toString()
+//            )
+//        }
 
         password.apply {
-            afterTextChanged {
-                loginViewModel.loginDataChanged(
-                    username.text.toString(),
-                    password.text.toString()
-                )
-            }
+//            afterTextChanged {
+//                loginViewModel.loginDataChanged(
+//                    username.text.toString(),
+//                    password.text.toString()
+//                )
+//            }
 
             setOnEditorActionListener { _, actionId, _ ->
                 when (actionId) {

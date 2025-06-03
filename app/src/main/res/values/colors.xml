@@ -31,4 +31,6 @@
     <color name="pink_shadow">#D13775</color>
     <color name="light_green_2">#E1FDE1</color>
     <color name="dark_navy">#1A2431</color>
+    <color name="almost_white">#F1F2F5</color>
+    <color name="stroke_color_gray">#C7CAD1</color>
 </resources>

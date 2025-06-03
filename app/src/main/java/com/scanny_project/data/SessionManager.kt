@@ -18,9 +18,10 @@ class SessionManager @Inject constructor(@ApplicationContext context: Context) {
 
     private val sharedPreferences: SharedPreferences
 
+    val isTeacher: Boolean
+        get() = this.userRole == "ROLE_TEACHER"
+
     init {
-        
-        
         val masterKey = MasterKey.Builder(context)
             .setKeyScheme(MasterKey.KeyScheme.AES256_GCM)
             .build()

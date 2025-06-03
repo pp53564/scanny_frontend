@@ -5,7 +5,3 @@ data class CreateLectureRequest (
     val items: List<TranslatedItemDto>
 )
 
-data class TranslatedItemDto(
-    val base: String,
-    val translations: Map<String, String>
-)

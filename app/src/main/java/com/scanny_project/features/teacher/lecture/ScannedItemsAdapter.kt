@@ -12,9 +12,10 @@ import com.scanny_project.utils.LanguageData
 import com.scanny_project.utils.TranslatorHelper
 
 class ScannedItemsAdapter(
-    val items: MutableList<ScannedItem> = mutableListOf(),
     private val onEditClick: (ScannedItem, Int) -> Unit
 ) : RecyclerView.Adapter<ScannedItemsAdapter.ViewHolder>() {
+
+    private val items: MutableList<ScannedItem> = mutableListOf()
 
     inner class ViewHolder(private val binding: ItemScannedBinding)
         : RecyclerView.ViewHolder(binding.root) {
@@ -27,9 +28,8 @@ class ScannedItemsAdapter(
             }
 
             binding.edit.setOnClickListener {
-                onEditClick(item, position)
+                onEditClick(item, adapterPosition)
             }
-
         }
     }
 
@@ -45,25 +45,6 @@ class ScannedItemsAdapter(
     }
 
     override fun getItemCount() = items.size
-    @SuppressLint("NotifyDataSetChanged")
-    fun updateList(newItems: List<String>) {
-        items.clear()
-        items.addAll(newItems.map { word ->
-            ScannedItem(
-                name = word,
-                translations = mutableMapOf(
-                    "en" to word
-                ),
-                isChecked = true
-            )
-        })
-        notifyDataSetChanged()
-    }
-
-    fun updateItem(idx: Int, item: ScannedItem) {
-        items[idx] = item
-        notifyItemChanged(idx)
-    }
 
     @SuppressLint("NotifyDataSetChanged")
     fun setItems(newItems: List<ScannedItem>) {
@@ -72,14 +53,13 @@ class ScannedItemsAdapter(
         notifyDataSetChanged()
     }
 
-    fun getSelectedItems(): List<ScannedItem> =
-        items.filter { it.isChecked }.map { it }
-
-    fun addItem(item: ScannedItem) {
-        items.add(item)
-        notifyItemInserted(items.size - 1)
+    fun updateItem(idx: Int, item: ScannedItem) {
+        items[idx] = item
+        notifyItemChanged(idx)
     }
 
     fun findPosition(item: ScannedItem): Int = items.indexOf(item)
 
+    fun getSelectedItems(): List<ScannedItem> =
+        items.filter { it.isChecked }.map { it }
 }

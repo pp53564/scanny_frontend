@@ -1,16 +1,11 @@
 package com.scanny_project.features.questions
 
-import android.content.Intent
 import android.graphics.BitmapFactory
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
-import android.widget.Toast
 import androidx.activity.viewModels
-import com.example.ui_ux_demo.R
 import com.example.ui_ux_demo.databinding.ActivityAnsweredQuestionBinding
-import com.example.ui_ux_demo.databinding.ActivityQuestionsListBinding
-import com.scanny_project.features.language.SelectLanguageActivityForImageClassification
 import com.scanny_project.utils.TextToSpeechHelper
 import dagger.hilt.android.AndroidEntryPoint
 import java.util.Base64

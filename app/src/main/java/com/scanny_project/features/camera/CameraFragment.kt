@@ -299,7 +299,7 @@ class CameraFragment: Fragment(), ObjectDetectorHelper.DetectorListener{
                     if(selectedLangCode != "en") {
                         translator?.translate(label)
                             ?.addOnSuccessListener { translated ->
-                                if(!scannedLabels.contains(translated)) scannedLabels.add(label)
+                                if(!scannedLabels.contains(translated)) scannedLabels.add(label.lowercase(Locale.ROOT))
 
                                 val translatedNormalized = translated.trim().lowercase()
                                 val labelNormalized = label.trim().lowercase()

@@ -24,7 +24,7 @@ class MainActivity : AppCompatActivity() {
         binding.startButton.setOnClickListener {
 //            val intent = Intent(this, HomeActivity::class.java)
 //            startActivity(intent)
-            val nextScreen = if (sessionManager.userRole == "ROLE_TEACHER") {
+            val nextScreen = if (sessionManager.isTeacher) {
                 Intent(this, TeacherHomeActivity::class.java)
             } else {
                 Intent(this, HomeActivity::class.java)

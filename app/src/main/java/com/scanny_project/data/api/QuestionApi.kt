@@ -1,4 +1,4 @@
-package com.scanny_project.data.services
+package com.scanny_project.data.api
 
 import com.scanny_project.data.model.AnsweredQuestionDTO
 import com.scanny_project.data.model.QuestionDTO
@@ -7,7 +7,7 @@ import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Path
 
-interface QuestionService {
+interface QuestionApi {
     @GET("api/questions/lecture/{lectureId}")
     suspend fun getQuestionsByLecture(@Path("lectureId") lectureId: Long): Response<List<QuestionDTO>>
 

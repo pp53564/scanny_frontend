@@ -66,7 +66,7 @@
     <string name="logout_logo_desc">logout logo</string>
     <string name="language_hr">Jezik</string>
     <string name="rank">0 / 0</string>
-    <string name="lecture_title">Naslov lekcije</string>
+    <string name="lecture_title">Naziv lekcije</string>
     <string name="bravo">Bravo!</string>
     <string name="try_again">Uslikaj ponovo</string>
     <string name="old_password">Stara lozinka</string>

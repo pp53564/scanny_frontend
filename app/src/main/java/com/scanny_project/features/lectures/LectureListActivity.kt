@@ -9,7 +9,6 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.ui_ux_demo.R
 import com.example.ui_ux_demo.databinding.ActivityLecturesListBinding
-import com.scanny_project.features.language.SelectLanguageActivityForImageClassification
 import com.scanny_project.data.model.UserLectureDTO
 import com.scanny_project.features.questions.QuestionListActivity
 import dagger.hilt.android.AndroidEntryPoint

@@ -21,11 +21,11 @@ import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.constraintlayout.widget.ConstraintSet
 import com.example.ui_ux_demo.R
 import com.example.ui_ux_demo.databinding.ActivityImageClassificationAndQuizBinding
-import com.scanny_project.features.language.SelectLanguageActivityForImageClassification
+import com.scanny_project.features.language.SelectLanguageActivity
+import com.scanny_project.features.language.SelectLanguageActivity.Companion.MODE_LECTURE
 import com.scanny_project.utils.TextToSpeechHelper
 import com.scanny_project.utils.TranslatorHelper
 import dagger.hilt.android.AndroidEntryPoint
@@ -101,8 +101,10 @@ class ImageClassificationAndQuizActivity : AppCompatActivity(){
             if (viewModel.attemptSent.value == false) {
                 viewModel.sendAttempt(currentQuestionId, imageBitmap = null, langCode)
             }
-            val intent = Intent(this, SelectLanguageActivityForImageClassification::class.java)
-            startActivity(intent)
+            Intent(this, SelectLanguageActivity::class.java).also {
+                it.putExtra(SelectLanguageActivity.EXTRA_MODE, MODE_LECTURE)
+                startActivity(it)
+            }
             finish()
         }
 
@@ -160,12 +162,14 @@ class ImageClassificationAndQuizActivity : AppCompatActivity(){
             binding.confidence.visibility = View.VISIBLE
             binding.confidence.text = "${(confidenceScore * 100).toInt()}%"
         } else {
+            Log.i("petra",matchedLabel)
             TranslatorHelper.initializeTranslator(com.google.mlkit.nl.translate.TranslateLanguage.CROATIAN, "en") {
                 TranslatorHelper.translateText(matchedLabel) { translatedText ->
                     binding.resultIcon.visibility = View.VISIBLE
                     binding.classified.visibility = View.VISIBLE
                     binding.result.visibility = View.VISIBLE
                     binding.result.text = translatedText
+                    Log.i("petra",translatedText)
                 }
             }
             binding.buttonTakePicture.text = getString(R.string.try_again)
@@ -230,8 +234,10 @@ class ImageClassificationAndQuizActivity : AppCompatActivity(){
         if (viewModel.attemptSent.value == false) {
             viewModel.sendAttempt(currentQuestionId, imageBitmap = null, langCode)
         }
-        val intent = Intent(this, SelectLanguageActivityForImageClassification::class.java)
-        startActivity(intent)
+        Intent(this, SelectLanguageActivity::class.java).also {
+            it.putExtra(SelectLanguageActivity.EXTRA_MODE, MODE_LECTURE)
+            startActivity(it)
+        }
         finish()
         super.onBackPressed()
     }

@@ -13,7 +13,7 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class LoginViewModel @Inject constructor(private val userRepository: UserRepository, private val sessionManager: SessionManager) : ViewModel(){
+class LoginViewModel @Inject constructor(private val userRepository: UserRepository) : ViewModel(){
 
     private val _loginForm = MutableLiveData<LoginFormState>()
     val loginFormState: LiveData<LoginFormState> = _loginForm
@@ -28,7 +28,6 @@ class LoginViewModel @Inject constructor(private val userRepository: UserReposit
                 val result = userRepository.login(username, password)
 
                 if (result is Result.Success) {
-//                    sessionManager.authToken = result.data.token
                     _loginResult.value =
                         LoginResult(success = LoggedInUserView(displayUserName = result.data.displayName, role = result.data.role))
                 } else {
@@ -40,16 +39,16 @@ class LoginViewModel @Inject constructor(private val userRepository: UserReposit
         }
     }
 
-    fun loginDataChanged(username: String, password: String) {
-      if (!isPasswordValid(password)) {
-            _loginForm.value = LoginFormState(passwordError = R.string.invalid_password)
-        } else {
-            _loginForm.value = LoginFormState(isDataValid = true)
-        }
-    }
+//    fun loginDataChanged(username: String, password: String) {
+//      if (!isPasswordValid(password)) {
+//            _loginForm.value = LoginFormState(passwordError = R.string.invalid_password)
+//        } else {
+//            _loginForm.value = LoginFormState(isDataValid = true)
+//        }
+//    }
 
-    private fun isPasswordValid(password: String): Boolean {
-        return password.length >= 8
-    }
+//    private fun isPasswordValid(password: String): Boolean {
+//        return password.length >= 8
+//    }
 
 }

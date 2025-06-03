@@ -37,4 +37,9 @@
         <item name="shapeAppearanceSmallComponent">@style/ShapeAppearance.App.SquareCheckbox</item>
     </style>
 
+    <style name="BottomNavTextStyle" parent="@android:style/TextAppearance">
+        <item name="android:textSize">12sp</item>
+        <item name="android:textColor">@color/dark_blue</item>
+    </style>
+
 </resources>
