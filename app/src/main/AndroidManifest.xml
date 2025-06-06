@@ -35,15 +35,13 @@
         <activity
             android:name="com.scanny_project.features.stats.StatsDetailsActivity"
             android:exported="false" />
-        <activity
-            android:name="com.scanny_project.features.changePassword.ChangePasswordActivity"
-            android:exported="false" />
+<!--        <activity-->
+<!--            android:name="com.scanny_project.features.changePassword.ChangePasswordActivity"-->
+<!--            android:exported="false" />-->
         <activity
             android:name="com.scanny_project.features.stats.StatsActivity"
             android:exported="false" />
-        <activity
-            android:name="com.scanny_project.features.language.SelectLanguageActivityForImageClassification"
-            android:exported="false" />
+
         <activity
             android:name="com.scanny_project.features.language.SelectLanguageActivity"
             android:exported="false" />
@@ -86,7 +84,6 @@
         <!-- /> -->
         <activity
             android:name="com.scanny_project.features.home.MainActivity"
-            android:clearTaskOnLaunch="true"
             android:exported="true"
             android:theme="@style/Theme.MyApp.Splash">
             <intent-filter>

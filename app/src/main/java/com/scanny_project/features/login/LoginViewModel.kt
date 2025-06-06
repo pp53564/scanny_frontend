@@ -7,7 +7,7 @@ import androidx.lifecycle.viewModelScope
 import com.example.ui_ux_demo.R
 import com.scanny_project.data.repository.UserRepository
 import com.scanny_project.utils.Result
-import com.scanny_project.data.SessionManager
+import com.scanny_project.data. SessionManager
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject

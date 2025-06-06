@@ -57,12 +57,7 @@ class LoginActivity : AppCompatActivity() {
             }
             if (loginResult.success != null) {
                 updateUiWithUser(loginResult.success)
-                val nextScreen = if (loginResult.success.role == "ROLE_TEACHER") {
-                    Intent(this, TeacherHomeActivity::class.java)
-                } else {
-                    Intent(this, HomeActivity::class.java)
-                }
-                startActivity(nextScreen)
+                startActivity(Intent(this, MainActivity::class.java))
             }
             setResult(Activity.RESULT_OK)
             //samo za test OVO OBRISI POSLIJE
