@@ -43,17 +43,22 @@ Point your camera at everyday items to get instant translations, then reinforce 
 ---
 ## 📱 Screenshots
 
-<p float="left">
-  <img src="./images/img.png" width="250"/>
-  <img src="./images/img_1.png" width="250"/>
-  <img src="./images/img_2.png" width="250"/>
-  <img src="./images/img_3.png" width="250"/>
-</p>
+<table>
+  <tr>
+    <td><img src="./images/img.png" width="100" height="300"/></td>
+    <td><img src="./images/img_1.png" width="100" height="300"/></td>
+    <td><img src="./images/img_2.png" width="100" height="300"/></td>
+    <td><img src="./images/img_3.png" width="100" height="300"/></td>
+  </tr>
+  <tr>
+    <td><img src="./images/img_4.png" width="100" height="300"/></td>
+    <td><img src="./images/img_5.png" width="100" height="300"/></td>
+    <td><img src="./images/img_6.png" width="100" height="300"/></td>
+    <td><img src="./images/img_7.png" width="100" height="300"/></td>
+  </tr>
+  <tr>
+    <td><img src="./images/img_8.png" width="100" height="300"/></td>
+  </tr>
+</table>
 
-<p float="left">
-  <img src="./images/img_4.png" width="250"/>
-  <img src="./images/img_5.png" width="250"/>
-  <img src="./images/img_6.png" width="250"/>
-  <img src="./images/img_7.png" width="250"/>
-  <img src="./images/img_8.png" width="250"/>
-</p>
+
